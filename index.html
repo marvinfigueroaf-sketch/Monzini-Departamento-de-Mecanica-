@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monzini Mecánica | Control de Maquinaria y Mantenimiento</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- JsBarcode -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <!-- Html5Qrcode -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <!-- SheetJS (XLSX) -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo">
+                    <div class="logo-box">
+                        <i data-lucide="settings" class="logo-gear animate-spin-slow"></i>
+                        <span class="logo-text">M</span>
+                    </div>
+                    <div class="brand-name">
+                        <h2>MONZINI</h2>
+                        <p>Mecánica & Soporte</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-page="dashboard">
+                        <a href="#dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="machinery">
+                        <a href="#machinery">
+                            <i data-lucide="cpu"></i>
+                            <span>Maquinaria</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="scanner">
+                        <a href="#scanner">
+                            <i data-lucide="qr-code"></i>
+                            <span>Escanear Código</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="orders">
+                        <a href="#orders">
+                            <i data-lucide="wrench"></i>
+                            <span>Órdenes de Trabajo</span>
+                            <span class="badge badge-alert" id="orders-badge-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-page="reports">
+                        <a href="#reports">
+                            <i data-lucide="lock"></i>
+                            <span>Reportes (Jefe)</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="profile-avatar">
+                        <i data-lucide="user-cog"></i>
+                    </div>
+                    <div class="profile-info">
+                        <p class="profile-name">Jefe de Turno</p>
+                        <p class="profile-role">
+                            <span class="status-dot online"></span>
+                            Mecánica
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-title">
+                    <h1 id="current-section-title">Dashboard General</h1>
+                    <p id="current-section-subtitle" class="text-muted">Resumen del estado operativo de maquinaria y alertas abiertas.</p>
+                </div>
+                <div class="top-bar-actions">
+                    <div id="sync-status-badge" class="sync-badge sync-warning" title="Haz clic para sincronizar ahora">
+                        <i data-lucide="cloud-off"></i>
+                        <span id="sync-status-text">Modo Local</span>
+                    </div>
+                    <button class="btn btn-warning" id="quick-alert-btn">
+                        <i data-lucide="alert-triangle"></i>
+                        <span>Generar Alerta Rápida</span>
+                    </button>
+                    <div class="date-badge">
+                        <i data-lucide="calendar"></i>
+                        <span id="header-date">29 Jun, 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Pages -->
+            <div class="content-body">
+                
+                <!-- PAGE: Dashboard -->
+                <section id="page-dashboard" class="page-section active">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-cyan-trans">
+                                <i data-lucide="cpu" class="text-cyan"></i>
+                            </div>
+                            <div class="stat-data">
+                                <span class="stat-value" id="stat-total-machinery">0</span>
+                                <span class="stat-label">Maquinarias Activas</span>
+                            </div>
+                            <div class="stat-trend trend-neutral">
+                                <span>Inventariadas</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-danger-trans">
+                                <i data-lucide="alert-circle" class="text-danger"></i>
+                            </div>
+                            <div class="stat-data">
+                                <span class="stat-value" id="stat-active-alerts">0</span>
+                                <span class="stat-label">Alertas Abiertas</span>
+                            </div>
+                            <div class="stat-trend trend-down">
+                                <i data-lucide="trending-up"></i>
+                                <span>Atención Inmediata</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-warning-trans">
+                                <i data-lucide="clock" class="text-warning"></i>
+                            </div>
+                            <div class="stat-data">
+                                <span class="stat-value" id="stat-pending-orders">0</span>
+                                <span class="stat-label">En Progreso</span>
+                            </div>
+                            <div class="stat-trend trend-neutral">
+                                <span>Mecánicos asignados</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-success-trans">
+                                <i data-lucide="check-circle-2" class="text-success"></i>
+                            </div>
+                            <div class="stat-data">
+                                <span class="stat-value" id="stat-compliance-rate">0%</span>
+                                <span class="stat-label">Casos Resueltos</span>
+                            </div>
+                            <div class="stat-trend trend-up">
+                                <i data-lucide="trending-up"></i>
+                                <span id="stat-resolved-count">0 cerrados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts & Alert Feed Grid -->
+                    <div class="dashboard-grid">
+                        <!-- Chart Card -->
+                        <div class="dashboard-card card-chart">
+                            <div class="card-header">
+                                <h3>Mantenimiento por Tipo</h3>
+                                <p class="text-muted">Distribución de alertas por nivel de criticidad.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="chart-priority"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Active Alert Feed -->
+                        <div class="dashboard-card card-feed">
+                            <div class="card-header">
+                                <h3>Bitácora de Alertas Activas</h3>
+                                <p class="text-muted">Ordenadas por prioridad y fecha de creación.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="feed-wrapper" id="dashboard-alert-feed">
+                                    <!-- Feed items injected dynamically -->
+                                    <div class="empty-state">
+                                        <i data-lucide="check-circle" class="text-success"></i>
+                                        <p>¡Todo en orden! No hay alertas activas en este momento.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE: Machinery -->
+                <section id="page-machinery" class="page-section">
+                    <!-- Actions bar -->
+                    <div class="section-actions-bar">
+                        <div class="search-box">
+                            <i data-lucide="search"></i>
+                            <input type="text" id="machine-search-input" placeholder="Buscar máquina por nombre, código o área...">
+                        </div>
+                        <div class="filter-actions">
+                            <select id="machine-filter-area" class="form-control select-dark">
+                                <option value="all">Todos los departamentos</option>
+                            </select>
+                            <button class="btn btn-primary" id="open-add-machine-btn">
+                                <i data-lucide="plus-circle"></i>
+                                <span>Agregar Maquinaria</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Machinery Cards Grid -->
+                    <div class="machinery-grid" id="machinery-cards-container">
+                        <!-- Machine Cards injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- PAGE: Barcode Scanner -->
+                <section id="page-scanner" class="page-section">
+                    <div class="scanner-layout">
+                        <div class="scanner-card">
+                            <div class="scanner-header">
+                                <h2>Escaneo de Maquinaria por Cámara</h2>
+                                <p class="text-muted">Apunta con la cámara al código de barras pegado en la maquinaria para identificarla e iniciar una orden.</p>
+                            </div>
+                            <div class="scanner-body">
+                                <div class="scanner-viewport-wrapper">
+                                    <div id="scanner-reader" class="scanner-reader-container"></div>
+                                    <div class="scanner-overlay" id="scanner-overlay-element">
+                                        <div class="scan-laser animate-pulse"></div>
+                                        <div class="scan-frame"></div>
+                                        <div class="scan-instructions">Posiciona el código de barras dentro del recuadro</div>
+                                    </div>
+                                    <div class="scanner-offline-message" id="scanner-camera-error" style="display: none;">
+                                        <i data-lucide="camera-off" class="text-danger"></i>
+                                        <p>No se pudo acceder a la cámara. Por favor otorga permisos o usa la simulación abajo.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="scanner-controls">
+                                    <div class="camera-select-wrapper">
+                                        <label for="camera-source-select">Seleccionar Cámara:</label>
+                                        <select id="camera-source-select" class="form-control select-dark">
+                                            <option value="">Cargando dispositivos...</option>
+                                        </select>
+                                    </div>
+                                    <div class="scanner-buttons">
+                                        <button class="btn btn-primary btn-block" id="start-camera-btn">
+                                            <i data-lucide="camera"></i>
+                                            <span>Encender Cámara</span>
+                                        </button>
+                                        <button class="btn btn-danger btn-block" id="stop-camera-btn" style="display: none;">
+                                            <i data-lucide="video-off"></i>
+                                            <span>Detener Cámara</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Manual Simulator Panel -->
+                        <div class="scanner-card scanner-simulator">
+                            <div class="scanner-header">
+                                <h2>Simulador de Lector de Barras</h2>
+                                <p class="text-muted">Si no tienes cámara o códigos impresos, simula el escaneo seleccionando una máquina del catálogo.</p>
+                            </div>
+                            <div class="scanner-body">
+                                <div class="form-group">
+                                    <label for="simulated-machine-select">Seleccionar Máquina para Simular Escaneo:</label>
+                                    <select id="simulated-machine-select" class="form-control select-dark">
+                                        <!-- Injected dynamically -->
+                                    </select>
+                                </div>
+                                <div class="barcode-preview-box" id="simulated-barcode-display">
+                                    <!-- Barcode SVG will be drawn here -->
+                                    <svg id="simulated-barcode-svg"></svg>
+                                </div>
+                                <button class="btn btn-warning btn-block" id="trigger-simulated-scan-btn">
+                                    <i data-lucide="scan"></i>
+                                    <span>Simular Escaneo de Código</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE: Work Orders -->
+                <section id="page-orders" class="page-section">
+                    <div class="orders-layout">
+                        <!-- Left Panel: Create Order Form -->
+                        <div class="orders-form-card">
+                            <div class="card-header">
+                                <h3>Crear Nueva Orden de Trabajo</h3>
+                                <p class="text-muted">Completa los datos para notificar una falla o solicitar mantenimiento.</p>
+                            </div>
+                            <div class="card-body">
+                                <form id="create-order-form">
+                                    <div class="form-group">
+                                        <label for="order-machine-id">Máquina Afectada:</label>
+                                        <select id="order-machine-id" class="form-control select-dark" required>
+                                            <option value="" disabled selected>Seleccione la maquinaria...</option>
+                                            <!-- Options injected dynamically -->
+                                        </select>
+                                        <span class="form-help-text">Puedes escanear la máquina primero para auto-seleccionarla.</span>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            <label for="order-priority">Criticidad / Prioridad:</label>
+                                            <select id="order-priority" class="form-control select-dark" required>
+                                                <option value="Baja">Baja (Preventivo)</option>
+                                                <option value="Media" selected>Media (Correctivo estándar)</option>
+                                                <option value="Alta">Alta (Máquina inestable)</option>
+                                                <option value="Crítica">Crítica (Línea de producción detenida)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="order-mechanic">Mecánico Asignado:</label>
+                                            <select id="order-mechanic" class="form-control select-dark" required>
+                                                <option value="" disabled selected>Seleccione mecánico...</option>
+                                                <option value="Carlos Mendoza">Carlos Mendoza</option>
+                                                <option value="Juan R. Gómez">Juan R. Gómez</option>
+                                                <option value="Mario Aguilar">Mario Aguilar</option>
+                                                <option value="Roberto Ramos">Roberto Ramos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="order-description">Descripción de la Falla / Tarea:</label>
+                                        <textarea id="order-description" class="form-control textarea-dark" rows="3" placeholder="Ej. El motor de la prensa hidráulica presenta sobrecalentamiento y vibración excesiva..." required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="order-observations">Observaciones Iniciales (opcional):</label>
+                                        <textarea id="order-observations" class="form-control textarea-dark" rows="2" placeholder="Ej. Se detectó una pequeña fuga de aceite en la manguera de presión..."></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-warning btn-block">
+                                        <i data-lucide="send"></i>
+                                        <span>Levantar Orden de Trabajo</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Active Orders List -->
+                        <div class="orders-board-card">
+                            <div class="card-header">
+                                <h3>Órdenes de Trabajo Activas (Alertas)</h3>
+                                <p class="text-muted">Control de ejecución en tiempo real.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="orders-board-lists">
+                                    <!-- Column 1: PENDIENTES / ALERTAS -->
+                                    <div class="board-column">
+                                        <div class="column-header border-danger">
+                                            <h4>Alertas / Pendientes</h4>
+                                            <span class="count-badge bg-danger" id="count-pending-list">0</span>
+                                        </div>
+                                        <div class="board-cards-list" id="list-pending-orders">
+                                            <!-- Cards injected dynamically -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Column 2: EN PROCESO -->
+                                    <div class="board-column">
+                                        <div class="column-header border-warning">
+                                            <h4>En Curso</h4>
+                                            <span class="count-badge bg-warning" id="count-progress-list">0</span>
+                                        </div>
+                                        <div class="board-cards-list" id="list-progress-orders">
+                                            <!-- Cards injected dynamically -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE: Reports (Protected Section) -->
+                <section id="page-reports" class="page-section">
+                    <!-- Security Gate (PIN Screen) -->
+                    <div class="security-gate-wrapper" id="reports-lock-screen">
+                        <div class="security-card">
+                            <div class="lock-icon-box">
+                                <i data-lucide="lock" class="text-warning animate-bounce"></i>
+                            </div>
+                            <h2>Control de Acceso - Jefe de Área</h2>
+                            <p class="text-muted">Por favor ingresa tu código PIN de seguridad para visualizar la bitácora histórica y exportar reportes.</p>
+                            
+                            <form id="pin-login-form">
+                                <div class="pin-input-group">
+                                    <input type="password" id="pin-digit-input" maxlength="4" placeholder="••••" autocomplete="off" autofocus required>
+                                </div>
+                                <div class="pin-keyboard">
+                                    <button type="button" class="btn btn-kbd" data-val="1">1</button>
+                                    <button type="button" class="btn btn-kbd" data-val="2">2</button>
+                                    <button type="button" class="btn btn-kbd" data-val="3">3</button>
+                                    <button type="button" class="btn btn-kbd" data-val="4">4</button>
+                                    <button type="button" class="btn btn-kbd" data-val="5">5</button>
+                                    <button type="button" class="btn btn-kbd" data-val="6">6</button>
+                                    <button type="button" class="btn btn-kbd" data-val="7">7</button>
+                                    <button type="button" class="btn btn-kbd" data-val="8">8</button>
+                                    <button type="button" class="btn btn-kbd" data-val="9">9</button>
+                                    <button type="button" class="btn btn-kbd btn-danger" id="btn-pin-clear">C</button>
+                                    <button type="button" class="btn btn-kbd" data-val="0">0</button>
+                                    <button type="submit" class="btn btn-kbd btn-success" id="btn-pin-enter">➔</button>
+                                </div>
+                                <div class="error-msg" id="pin-error-msg" style="display: none;">PIN incorrecto. Intenta de nuevo.</div>
+                                <div class="pin-info-hint">Pista de prueba: PIN por defecto es <strong>1234</strong></div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Unlocked Report Content -->
+                    <div class="report-content-wrapper" id="reports-dashboard" style="display: none;">
+                        <!-- Filter Bar -->
+                        <div class="report-filter-bar">
+                            <div class="filter-inputs">
+                                <div class="form-group inline-group">
+                                    <label for="report-start-date">Desde:</label>
+                                    <input type="date" id="report-start-date" class="form-control input-dark">
+                                </div>
+                                <div class="form-group inline-group">
+                                    <label for="report-end-date">Hasta:</label>
+                                    <input type="date" id="report-end-date" class="form-control input-dark">
+                                </div>
+                                <button class="btn btn-primary" id="btn-apply-report-filters">
+                                    <i data-lucide="filter"></i>
+                                    <span>Filtrar Datos</span>
+                                </button>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-success" id="btn-export-excel">
+                                    <i data-lucide="file-spreadsheet"></i>
+                                    <span>Exportar a Excel</span>
+                                </button>
+                                <button class="btn btn-secondary" id="btn-print-report">
+                                    <i data-lucide="printer"></i>
+                                    <span>Imprimir Reporte</span>
+                                </button>
+                                <button class="btn btn-danger-outline" id="btn-lock-reports">
+                                    <i data-lucide="log-out"></i>
+                                    <span>Cerrar Sesión</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Admin Tools: Cloud Data Sync -->
+                        <div class="report-table-card" style="margin-bottom: 20px; border-left: 3px solid var(--color-warning);">
+                            <div class="card-header">
+                                <h3><i data-lucide="database"></i> Herramientas de Administrador</h3>
+                            </div>
+                            <div style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                                <div style="max-width: 520px;">
+                                    <p style="margin: 0 0 4px 0; font-weight: 600;">Sincronizar catálogo de maquinaria desde Excel</p>
+                                    <p class="text-muted" style="margin:0; font-size: 12px;">
+                                        Sobrescribe la maquinaria guardada en la nube (Firebase) con el catálogo completo
+                                        de 594 máquinas importado del Excel de departamentos. Úsalo solo si la nube tiene
+                                        datos viejos o incompletos. Las órdenes de trabajo existentes no se eliminan.
+                                    </p>
+                                </div>
+                                <button class="btn btn-warning" id="btn-resync-machinery-excel">
+                                    <i data-lucide="refresh-cw"></i>
+                                    <span>Restablecer Maquinaria desde Excel</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Report Summary Cards -->
+                        <div class="report-summary-cards">
+                            <div class="summary-mini-card">
+                                <span class="mini-label">Total Casos en Rango</span>
+                                <span class="mini-value text-cyan" id="rep-stat-total">0</span>
+                            </div>
+                            <div class="summary-mini-card">
+                                <span class="mini-label">Casos Cerrados (Evacuados)</span>
+                                <span class="mini-value text-success" id="rep-stat-closed">0</span>
+                            </div>
+                            <div class="summary-mini-card">
+                                <span class="mini-label">Casos Aún Abiertos</span>
+                                <span class="mini-value text-danger" id="rep-stat-open">0</span>
+                            </div>
+                            <div class="summary-mini-card">
+                                <span class="mini-label">Tiempo Promedio Resolución</span>
+                                <span class="mini-value text-warning" id="rep-stat-time">-- hrs</span>
+                            </div>
+                        </div>
+
+                        <!-- Closed Cases Detailed Table -->
+                        <div class="report-table-card">
+                            <div class="card-header">
+                                <div class="header-titles">
+                                    <h3>Bitácora Histórica de Casos Cerrados</h3>
+                                    <p class="text-muted">Ordenes completadas y cerradas con observaciones finales del mecánico.</p>
+                                </div>
+                            </div>
+                            <div class="card-body overflow-x">
+                                <table class="report-table" id="report-closed-cases-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Orden ID</th>
+                                            <th>Maquinaria</th>
+                                            <th>Área</th>
+                                            <th>Criticidad</th>
+                                            <th>Falla / Tarea</th>
+                                            <th>Mecánico</th>
+                                            <th>Creado en</th>
+                                            <th>Resuelto en</th>
+                                            <th>Observaciones Finales</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="report-table-body">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: Edit Observations & Action Trigger -->
+    <div class="modal-backdrop" id="observations-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Gestionar Orden de Trabajo</h3>
+                <button class="btn-close" id="btn-close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="modal-order-id">
+                
+                <div class="order-details-summary">
+                    <p><strong>Máquina:</strong> <span id="modal-machine-name">Torno CNC-01</span> (<span id="modal-machine-id-text">M-001</span>)</p>
+                    <p><strong>Falla Reportada:</strong> <span id="modal-defect-desc">Vibración y ruido</span></p>
+                    <p><strong>Asignado:</strong> <span id="modal-assigned-mechanic">Carlos Mendoza</span></p>
+                    <p><strong>Estado Actual:</strong> <span class="badge" id="modal-status-badge">Pendiente</span></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-observations-input">Observaciones Acumuladas:</label>
+                    <textarea id="modal-observations-input" class="form-control textarea-dark" rows="4" placeholder="Escribe observaciones adicionales o los pasos tomados para la reparación..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-modal-cancel">Cancelar</button>
+                <button class="btn btn-warning" id="btn-modal-progress">
+                    <i data-lucide="play"></i>
+                    <span>Iniciar Reparación</span>
+                </button>
+                <button class="btn btn-success" id="btn-modal-resolve">
+                    <i data-lucide="check"></i>
+                    <span>Cerrar Caso (Resuelto)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Add Machine -->
+    <div class="modal-backdrop" id="add-machine-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="machine-modal-title">Registrar Nueva Maquinaria</h3>
+                <button class="btn-close" id="btn-close-machine-modal">×</button>
+            </div>
+            <form id="add-machine-form">
+                <input type="hidden" id="edit-machine-original-id" value="">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="new-machine-id">Código de Barra / Identificador Único:</label>
+                        <input type="text" id="new-machine-id" class="form-control input-dark" placeholder="Ej. MONZ-MAC-015" required>
+                        <span class="form-help-text">Debe ser único. Servirá para generar el código de barras imprimible.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-machine-name">Nombre de la Máquina:</label>
+                        <input type="text" id="new-machine-name" class="form-control input-dark" placeholder="Ej. Inyectora Plástica Nissei 80T" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="new-machine-area">Área de la Planta:</label>
+                            <select id="new-machine-area" class="form-control select-dark" required>
+                                <option value="" disabled selected>Seleccione un departamento...</option>
+                                <option value="Linea del Sid">Linea del Sid</option>
+                                <option value="Derson Flores">Derson Flores</option>
+                                <option value="Hugo">Hugo</option>
+                                <option value="M.T.M">M.T.M</option>
+                                <option value="Jose Navallo">Jose Navallo</option>
+                                <option value="Jose Montes T. P.">Jose Montes T. P.</option>
+                                <option value="Mangas Tomas Pink">Mangas Tomas Pink</option>
+                                <option value="Mangas">Mangas</option>
+                                <option value="Hector Fajardo">Hector Fajardo</option>
+                                <option value="ENS-1">ENS-1</option>
+                                <option value="Emerson">Emerson</option>
+                                <option value="Jose Montes (fuera de uso)">Jose Montes (fuera de uso)</option>
+                                <option value="Desarrollo de producto">Desarrollo de producto</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="new-machine-status">Estado Operativo Inicial:</label>
+                            <select id="new-machine-status" class="form-control select-dark" required>
+                                <option value="Operando">Operando</option>
+                                <option value="Mantenimiento">Mantenimiento</option>
+                                <option value="Fuera de Servicio">Fuera de Servicio</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="new-machine-brand">Marca:</label>
+                            <input type="text" id="new-machine-brand" class="form-control input-dark" placeholder="Ej. Nissei">
+                        </div>
+                        <div class="form-group col">
+                            <label for="new-machine-model">Modelo / Serie:</label>
+                            <input type="text" id="new-machine-model" class="form-control input-dark" placeholder="Ej. NS-80-S">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-machine-modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-machine-modal">Registrar Máquina</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Scanner Success Quick Order -->
+    <div class="modal-backdrop" id="scanner-success-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header bg-success-trans">
+                <h3 class="text-success"><i data-lucide="check-circle"></i> Máquina Identificada</h3>
+                <button class="btn-close" id="btn-close-scanner-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="scanned-info-card">
+                    <p class="scanned-label">CÓDIGO ESCANEADO</p>
+                    <h2 id="scanned-code-text" class="scanned-code">MONZ-MAC-001</h2>
+                    <hr class="dark-divider">
+                    <p><strong>Máquina:</strong> <span id="scanned-machine-name">---</span></p>
+                    <p><strong>Área:</strong> <span id="scanned-machine-area">---</span></p>
+                    <p><strong>Marca/Modelo:</strong> <span id="scanned-machine-specs">---</span></p>
+                    <p><strong>Estado Actual:</strong> <span class="badge" id="scanned-machine-status">---</span></p>
+                </div>
+
+                <div class="machine-history-section">
+                    <p class="scanned-label" style="margin-bottom: 10px;">
+                        <i data-lucide="history" style="width:12px; height:12px; vertical-align:-2px;"></i>
+                        Historial de Operaciones
+                    </p>
+                    <div id="scanned-machine-history" class="machine-history-list">
+                        <!-- Se llena dinámicamente vía JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-scanner-cancel">Cerrar</button>
+                <button class="btn btn-warning" id="btn-scanner-create-order">
+                    <i data-lucide="wrench"></i>
+                    <span>Abrir Orden de Trabajo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Application -->
+    <script src="app.js"></script>
+</body>
+</html>
