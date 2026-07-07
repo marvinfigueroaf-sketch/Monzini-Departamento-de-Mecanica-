@@ -78,6 +78,15 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
+/* El overlay del menú móvil debe estar oculto SIEMPRE por defecto (también en escritorio),
+   y además sacado del flujo del grid para que no cuente como columna. Solo se activa
+   dentro del @media de pantallas pequeñas cuando se le agrega la clase .is-visible */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+}
+
 /* Sidebar Styling */
 /* --------------------------------------------------
    MOBILE MENU BUTTON (oculto en escritorio, visible via @media abajo)
@@ -1764,9 +1773,6 @@ label {
     }
 
     .sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 999;
     }
