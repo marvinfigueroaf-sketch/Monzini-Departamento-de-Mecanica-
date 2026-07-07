@@ -23,8 +23,11 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Overlay para cerrar el menú móvil al tocar fuera -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
         <!-- Sidebar Navigation -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="app-sidebar">
             <div class="sidebar-header">
                 <div class="brand-logo">
                     <div class="logo-box">
@@ -94,9 +97,14 @@
         <main class="main-content">
             <!-- Top Bar -->
             <header class="top-bar">
-                <div class="top-bar-title">
-                    <h1 id="current-section-title">Dashboard General</h1>
-                    <p id="current-section-subtitle" class="text-muted">Resumen del estado operativo de maquinaria y alertas abiertas.</p>
+                <div class="top-bar-left" style="display:flex; align-items:center; min-width:0;">
+                    <button class="btn-mobile-menu" id="btn-mobile-menu" aria-label="Abrir menú">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="top-bar-title">
+                        <h1 id="current-section-title">Dashboard General</h1>
+                        <p id="current-section-subtitle" class="text-muted">Resumen del estado operativo de maquinaria y alertas abiertas.</p>
+                    </div>
                 </div>
                 <div class="top-bar-actions">
                     <div id="sync-status-badge" class="sync-badge sync-warning" title="Haz clic para sincronizar ahora">

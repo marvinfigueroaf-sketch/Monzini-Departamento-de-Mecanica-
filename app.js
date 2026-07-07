@@ -7120,6 +7120,32 @@ function checkReportsLock() {
 
 // --- EVENT LISTENERS & INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Mobile menu (hamburger) toggle
+    const sidebarEl = document.getElementById("app-sidebar");
+    const sidebarOverlayEl = document.getElementById("sidebar-overlay");
+    const mobileMenuBtn = document.getElementById("btn-mobile-menu");
+
+    function openMobileMenu() {
+        sidebarEl.classList.add("is-open");
+        sidebarOverlayEl.classList.add("is-visible");
+    }
+    function closeMobileMenu() {
+        sidebarEl.classList.remove("is-open");
+        sidebarOverlayEl.classList.remove("is-visible");
+    }
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", () => {
+            if (sidebarEl.classList.contains("is-open")) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+    if (sidebarOverlayEl) {
+        sidebarOverlayEl.addEventListener("click", closeMobileMenu);
+    }
+
     // 1. Sidebar Nav click handlers
     const navItems = document.querySelectorAll(".nav-item");
     navItems.forEach(item => {
@@ -7127,6 +7153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const page = item.getAttribute("data-page");
             navigateToPage(page);
+            closeMobileMenu(); // Cerrar el menú al elegir una sección (en móvil)
         });
     });
 
