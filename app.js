@@ -6494,10 +6494,10 @@ function updateHeaderTitle(pageId) {
             break;
         case "machinery":
             titleEl.textContent = "Catálogo de Maquinaria";
-            subtitleEl.textContent = "Visualiza y administra el inventario de maquinaria y códigos de barras.";
+            subtitleEl.textContent = "Visualiza y administra el inventario de maquinaria y códigos QR.";
             break;
         case "scanner":
-            titleEl.textContent = "Lector de Código de Barras";
+            titleEl.textContent = "Lector de Código QR";
             subtitleEl.textContent = "Escanea la placa física de la maquinaria para gestionar incidentes.";
             break;
         case "orders":
@@ -6668,7 +6668,7 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
                 </div>
 
                 <div class="machine-barcode-area">
-                    <svg id="barcode-canvas-${m.id}"></svg>
+                    <canvas id="qr-canvas-${m.id}"></canvas>
                     <span class="machine-barcode-label">${m.id}</span>
                 </div>
             </div>
@@ -6687,15 +6687,20 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
         `;
         container.appendChild(card);
 
-        // Render Barcode
-        JsBarcode(`#barcode-canvas-${m.id}`, m.id, {
-            format: "CODE128",
-            lineColor: "#0b111e",
-            width: 1.8,
-            height: 38,
-            displayValue: false,
-            margin: 4
-        });
+        // Render QR Code
+        const qrCanvas = document.getElementById(`qr-canvas-${m.id}`);
+        if (qrCanvas && typeof QRCode !== "undefined") {
+            QRCode.toCanvas(qrCanvas, m.id, {
+                width: 90,
+                margin: 1,
+                color: {
+                    dark: "#0b111e",
+                    light: "#ffffff"
+                }
+            }, (err) => {
+                if (err) console.error("Error al generar QR:", err);
+            });
+        }
     });
 
     lucide.createIcons();
@@ -6838,13 +6843,17 @@ function populateWorkOrders() {
 
 function updateSimulatedBarcode() {
     const val = document.getElementById("simulated-machine-select").value;
-    if (val) {
-        JsBarcode("#simulated-barcode-svg", val, {
-            format: "CODE128",
-            lineColor: "#0b111e",
-            width: 2.2,
-            height: 60,
-            displayValue: true
+    const canvas = document.getElementById("simulated-qr-canvas");
+    if (val && canvas && typeof QRCode !== "undefined") {
+        QRCode.toCanvas(canvas, val, {
+            width: 160,
+            margin: 1,
+            color: {
+                dark: "#0b111e",
+                light: "#ffffff"
+            }
+        }, (err) => {
+            if (err) console.error("Error al generar QR de simulación:", err);
         });
     }
 }
@@ -7221,7 +7230,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // --- MODO AGREGAR ---
         // Validate duplication
         if (state.machinery.some(m => m.id === idVal)) {
-            alert("Error: Ya existe una maquinaria registrada con ese código de barra.");
+            alert("Error: Ya existe una maquinaria registrada con ese código QR.");
             return;
         }
 

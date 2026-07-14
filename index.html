@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- JsBarcode -->
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <!-- QRCode Generator -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <!-- Html5Qrcode -->
     <script src="https://unpkg.com/html5-qrcode"></script>
     <!-- SheetJS (XLSX) -->
@@ -246,7 +246,7 @@
                         <div class="scanner-card">
                             <div class="scanner-header">
                                 <h2>Escaneo de Maquinaria por Cámara</h2>
-                                <p class="text-muted">Apunta con la cámara al código de barras pegado en la maquinaria para identificarla e iniciar una orden.</p>
+                                <p class="text-muted">Apunta con la cámara al código QR pegado en la maquinaria para identificarla e iniciar una orden.</p>
                             </div>
                             <div class="scanner-body">
                                 <div class="scanner-viewport-wrapper">
@@ -254,7 +254,7 @@
                                     <div class="scanner-overlay" id="scanner-overlay-element">
                                         <div class="scan-laser animate-pulse"></div>
                                         <div class="scan-frame"></div>
-                                        <div class="scan-instructions">Posiciona el código de barras dentro del recuadro</div>
+                                        <div class="scan-instructions">Posiciona el código QR dentro del recuadro</div>
                                     </div>
                                     <div class="scanner-offline-message" id="scanner-camera-error" style="display: none;">
                                         <i data-lucide="camera-off" class="text-danger"></i>
@@ -286,7 +286,7 @@
                         <!-- Manual Simulator Panel -->
                         <div class="scanner-card scanner-simulator">
                             <div class="scanner-header">
-                                <h2>Simulador de Lector de Barras</h2>
+                                <h2>Simulador de Lector de QR</h2>
                                 <p class="text-muted">Si no tienes cámara o códigos impresos, simula el escaneo seleccionando una máquina del catálogo.</p>
                             </div>
                             <div class="scanner-body">
@@ -297,8 +297,8 @@
                                     </select>
                                 </div>
                                 <div class="barcode-preview-box" id="simulated-barcode-display">
-                                    <!-- Barcode SVG will be drawn here -->
-                                    <svg id="simulated-barcode-svg"></svg>
+                                    <!-- QR Canvas will be drawn here -->
+                                    <canvas id="simulated-qr-canvas"></canvas>
                                 </div>
                                 <button class="btn btn-warning btn-block" id="trigger-simulated-scan-btn">
                                     <i data-lucide="scan"></i>
@@ -597,9 +597,9 @@
                 <input type="hidden" id="edit-machine-original-id" value="">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="new-machine-id">Código de Barra / Identificador Único:</label>
+                        <label for="new-machine-id">Código QR / Identificador Único:</label>
                         <input type="text" id="new-machine-id" class="form-control input-dark" placeholder="Ej. MONZ-MAC-015" required>
-                        <span class="form-help-text">Debe ser único. Servirá para generar el código de barras imprimible.</span>
+                        <span class="form-help-text">Debe ser único. Servirá para generar el código QR imprimible.</span>
                     </div>
 
                     <div class="form-group">

@@ -13,12 +13,12 @@ Esta plataforma web es una Single Page Application (SPA) premium diseñada espec
 
 2. **Base de Datos de Maquinaria**:
    - Visualización estructurada con códigos, áreas, marcas y modelos.
-   - Generación dinámica de códigos de barras imprimibles (`JsBarcode`).
-   - Filtros de búsqueda rápidos por nombre y por área de la planta.
+   - Generación dinámica de códigos QR imprimibles (`qrcode`).
+   - Filtros de búsqueda rápidos por nombre, número de serie y por área de la planta.
    - Registro de nuevas maquinarias directo desde el panel.
 
-3. **Lector de Códigos por Cámara y Simulador**:
-   - Lector real que utiliza la cámara web de laptops o teléfonos para escanear los códigos impresos (`html5-qrcode`).
+3. **Lector de Códigos QR por Cámara y Simulador**:
+   - Lector real que utiliza la cámara web de laptops o teléfonos para escanear los códigos QR impresos (`html5-qrcode`).
    - Panel simulador alterno para pruebas ágiles en sistemas sin cámara o en entornos locales.
 
 4. **Gestión de Órdenes de Trabajo**:
