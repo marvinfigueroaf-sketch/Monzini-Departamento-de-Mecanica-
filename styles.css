@@ -982,9 +982,17 @@ label {
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.machine-barcode-area svg {
+.machine-barcode-area svg,
+.machine-barcode-area canvas,
+.machine-barcode-area img {
     max-width: 100%;
     height: 60px;
+}
+
+.qr-render-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .machine-barcode-label {

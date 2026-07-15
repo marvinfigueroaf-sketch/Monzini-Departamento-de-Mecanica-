@@ -13,7 +13,7 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- QRCode Generator -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <!-- Html5Qrcode -->
     <script src="https://unpkg.com/html5-qrcode"></script>
     <!-- SheetJS (XLSX) -->
@@ -297,8 +297,8 @@
                                     </select>
                                 </div>
                                 <div class="barcode-preview-box" id="simulated-barcode-display">
-                                    <!-- QR Canvas will be drawn here -->
-                                    <canvas id="simulated-qr-canvas"></canvas>
+                                    <!-- QR code will be drawn here -->
+                                    <div id="simulated-qr-canvas"></div>
                                 </div>
                                 <button class="btn btn-warning btn-block" id="trigger-simulated-scan-btn">
                                     <i data-lucide="scan"></i>

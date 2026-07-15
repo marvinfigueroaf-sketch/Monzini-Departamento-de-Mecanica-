@@ -6668,7 +6668,7 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
                 </div>
 
                 <div class="machine-barcode-area">
-                    <canvas id="qr-canvas-${m.id}"></canvas>
+                    <div id="qr-canvas-${m.id}" class="qr-render-box"></div>
                     <span class="machine-barcode-label">${m.id}</span>
                 </div>
             </div>
@@ -6688,18 +6688,19 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
         container.appendChild(card);
 
         // Render QR Code
-        const qrCanvas = document.getElementById(`qr-canvas-${m.id}`);
-        if (qrCanvas && typeof QRCode !== "undefined") {
-            QRCode.toCanvas(qrCanvas, m.id, {
+        const qrContainer = document.getElementById(`qr-canvas-${m.id}`);
+        if (qrContainer && typeof QRCode !== "undefined") {
+            qrContainer.innerHTML = "";
+            new QRCode(qrContainer, {
+                text: m.id,
                 width: 90,
-                margin: 1,
-                color: {
-                    dark: "#0b111e",
-                    light: "#ffffff"
-                }
-            }, (err) => {
-                if (err) console.error("Error al generar QR:", err);
+                height: 90,
+                colorDark: "#0b111e",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.M
             });
+        } else if (qrContainer) {
+            console.warn("La librería QRCode no está disponible. Verifica tu conexión a internet.");
         }
     });
 
@@ -6843,18 +6844,19 @@ function populateWorkOrders() {
 
 function updateSimulatedBarcode() {
     const val = document.getElementById("simulated-machine-select").value;
-    const canvas = document.getElementById("simulated-qr-canvas");
-    if (val && canvas && typeof QRCode !== "undefined") {
-        QRCode.toCanvas(canvas, val, {
+    const container = document.getElementById("simulated-qr-canvas");
+    if (container) container.innerHTML = "";
+    if (val && container && typeof QRCode !== "undefined") {
+        new QRCode(container, {
+            text: val,
             width: 160,
-            margin: 1,
-            color: {
-                dark: "#0b111e",
-                light: "#ffffff"
-            }
-        }, (err) => {
-            if (err) console.error("Error al generar QR de simulación:", err);
+            height: 160,
+            colorDark: "#0b111e",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
         });
+    } else if (val && container) {
+        console.warn("La librería QRCode no está disponible. Verifica tu conexión a internet.");
     }
 }
 
