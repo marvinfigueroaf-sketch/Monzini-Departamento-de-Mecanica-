@@ -6387,17 +6387,22 @@ function stopScanning() {
 function handleBarcodeFound(barcodeText) {
     playScannerBeep();
     stopScanning();
+    showMachineInfo(barcodeText.trim());
+}
 
+// Construye y abre el modal de información de la máquina (usado tanto al escanear un QR
+// como desde el botón "Información de la Máquina" en el catálogo de Maquinaria).
+function showMachineInfo(machineId) {
     // Check if machine exists
-    const machine = state.machinery.find(m => m.id.toLowerCase() === barcodeText.trim().toLowerCase());
-    
+    const machine = state.machinery.find(m => m.id.toLowerCase() === machineId.toLowerCase());
+
     const codeDisplay = document.getElementById("scanned-code-text");
     const nameDisplay = document.getElementById("scanned-machine-name");
     const areaDisplay = document.getElementById("scanned-machine-area");
     const specsDisplay = document.getElementById("scanned-machine-specs");
     const statusDisplay = document.getElementById("scanned-machine-status");
 
-    codeDisplay.textContent = barcodeText;
+    codeDisplay.textContent = machineId;
 
     if (machine) {
         nameDisplay.textContent = machine.name;
@@ -6670,17 +6675,23 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
                     <span class="machine-barcode-label">${m.id}</span>
                 </div>
             </div>
-            <div class="machine-card-footer" style="display: flex; gap: 8px;">
-                <button class="btn btn-warning" style="flex: 1;" onclick="createOrderShortcut('${m.id}')">
-                    <i data-lucide="alert-triangle"></i>
-                    <span>Levantar Alerta</span>
+            <div class="machine-card-footer" style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn btn-secondary" style="width: 100%;" onclick="showMachineInfo('${m.id}')">
+                    <i data-lucide="info"></i>
+                    <span>Información de la Máquina</span>
                 </button>
-                <button class="btn btn-secondary" style="padding: 0 12px;" onclick="openEditMachineModal('${m.id}')" title="Editar Máquina">
-                    <i data-lucide="pencil"></i>
-                </button>
-                <button class="btn btn-danger" style="padding: 0 12px; background-color: #dc2626; border-color: #dc2626; color: #fff;" onclick="deleteMachine('${m.id}')" title="Eliminar Máquina">
-                    <i data-lucide="trash-2"></i>
-                </button>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-warning" style="flex: 1;" onclick="createOrderShortcut('${m.id}')">
+                        <i data-lucide="alert-triangle"></i>
+                        <span>Levantar Alerta</span>
+                    </button>
+                    <button class="btn btn-secondary" style="padding: 0 12px;" onclick="openEditMachineModal('${m.id}')" title="Editar Máquina">
+                        <i data-lucide="pencil"></i>
+                    </button>
+                    <button class="btn btn-danger" style="padding: 0 12px; background-color: #dc2626; border-color: #dc2626; color: #fff;" onclick="deleteMachine('${m.id}')" title="Eliminar Máquina">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                </div>
             </div>
         `;
         container.appendChild(card);
