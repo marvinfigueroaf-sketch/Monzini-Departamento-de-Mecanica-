@@ -6905,6 +6905,25 @@ function closeModal(id) {
 }
 
 // --- REPORTS VIEW & EXPORT ENGINE ---
+
+// Los inputs <input type="date"> devuelven "YYYY-MM-DD". new Date("YYYY-MM-DD") lo
+// interpreta como medianoche UTC, no como medianoche local. En zonas horarias detrás
+// de UTC (como Honduras, UTC-6) eso corre el día hacia atrás y excluye casos resueltos
+// "hoy" del reporte. Estas funciones arman/leen la fecha usando componentes locales.
+function parseLocalDate(dateStr, endOfDay) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    return endOfDay
+        ? new Date(y, m - 1, d, 23, 59, 59, 999)
+        : new Date(y, m - 1, d, 0, 0, 0, 0);
+}
+
+function toLocalDateInputValue(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
 function generateReportTable() {
     const startDateVal = document.getElementById("report-start-date").value;
     const endDateVal = document.getElementById("report-end-date").value;
@@ -6916,13 +6935,11 @@ function generateReportTable() {
     let filtered = state.orders.filter(o => o.status === "Resuelto");
 
     if (startDateVal) {
-        const start = new Date(startDateVal);
-        start.setHours(0,0,0,0);
+        const start = parseLocalDate(startDateVal, false);
         filtered = filtered.filter(o => new Date(o.resolvedAt) >= start);
     }
     if (endDateVal) {
-        const end = new Date(endDateVal);
-        end.setHours(23,59,59,999);
+        const end = parseLocalDate(endDateVal, true);
         filtered = filtered.filter(o => new Date(o.resolvedAt) <= end);
     }
 
@@ -6986,13 +7003,11 @@ function exportReportToExcel() {
     let filtered = state.orders.filter(o => o.status === "Resuelto");
 
     if (startDateVal) {
-        const start = new Date(startDateVal);
-        start.setHours(0,0,0,0);
+        const start = parseLocalDate(startDateVal, false);
         filtered = filtered.filter(o => new Date(o.resolvedAt) >= start);
     }
     if (endDateVal) {
-        const end = new Date(endDateVal);
-        end.setHours(23,59,59,999);
+        const end = parseLocalDate(endDateVal, true);
         filtered = filtered.filter(o => new Date(o.resolvedAt) <= end);
     }
 
@@ -7424,8 +7439,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(today.getDate() - 30);
     
-    document.getElementById("report-start-date").value = thirtyDaysAgo.toISOString().split('T')[0];
-    document.getElementById("report-end-date").value = today.toISOString().split('T')[0];
+    document.getElementById("report-start-date").value = toLocalDateInputValue(thirtyDaysAgo);
+    document.getElementById("report-end-date").value = toLocalDateInputValue(today);
 
     document.getElementById("btn-apply-report-filters").addEventListener("click", generateReportTable);
     document.getElementById("btn-export-excel").addEventListener("click", exportReportToExcel);
