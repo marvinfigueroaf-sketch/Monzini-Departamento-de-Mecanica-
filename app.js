@@ -6331,9 +6331,7 @@ function startScanning(cameraId) {
             cameraId,
             config,
             (decodedText) => {
-                if (typeof playScannerBeep === "function") playScannerBeep();
-                stopScanning();
-                if (typeof handleScannedCode === "function") handleScannedCode(decodedText);
+                handleBarcodeFound(decodedText);
             },
             (errorMessage) => {
                 // Captura silenciosa de cuadros
