@@ -6007,7 +6007,7 @@ function saveOrders() {
 
 function saveParts() {
     localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
-    // Parts are stored locally (no cloud sync needed for catalog)
+    syncStateToCloud();
 }
 
 // Actualiza el indicador visual de la barra superior
@@ -6053,19 +6053,22 @@ async function loadStateFromCloud() {
         if (data) {
             state.machinery = data.machinery || [];
             state.orders = data.orders || [];
+            state.parts = data.parts || DEFAULT_PARTS;
             
             // Sincronizar respaldo en local storage
             localStorage.setItem("monzini_machinery", JSON.stringify(state.machinery));
             localStorage.setItem("monzini_orders", JSON.stringify(state.orders));
+            localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
             updateSyncBadge("success", "Sincronizado");
         } else {
             // Si la base de datos de la nube está vacía, subir el estado local actual solo si hay datos,
-            // de lo contrario, inicializar con DEFAULT_MACHINERY
-            if (state.machinery.length > 0 || state.orders.length > 0) {
+            // de lo contrario, inicializar con los valores por defecto
+            if (state.machinery.length > 0 || state.orders.length > 0 || state.parts.length > 0) {
                 await syncStateToCloud();
             } else {
                 state.machinery = DEFAULT_MACHINERY;
                 state.orders = DEFAULT_ORDERS;
+                state.parts = DEFAULT_PARTS;
                 await syncStateToCloud();
             }
         }
@@ -6092,7 +6095,8 @@ async function syncStateToCloud() {
             },
             body: JSON.stringify({
                 machinery: state.machinery,
-                orders: state.orders
+                orders: state.orders,
+                parts: state.parts
             })
         });
 
