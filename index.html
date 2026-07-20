@@ -527,15 +527,15 @@
                             <div class="card-header">
                                 <h3><i data-lucide="wrench"></i> Reporte de Gastos por Máquina</h3>
                             </div>
-                            <div style="padding: 16px 20px; display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
-                                <div class="form-group" style="min-width: 280px; flex: 1; margin-bottom: 0;">
-                                    <label for="report-machine-select">Selecciona la máquina:</label>
-                                    <select id="report-machine-select" class="form-control input-dark">
-                                        <option value="" disabled selected>Selecciona una máquina...</option>
-                                    </select>
-                                    <span class="form-help-text">Genera un Excel con cada pieza que se le cambió a esta máquina y su costo, con el total sumado al final.</span>
+                            <div style="padding: 16px 20px; display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+                                <div class="form-group" style="min-width: 280px; flex: 1; margin-bottom: 0; position: relative;">
+                                    <label for="report-machine-search-input">Selecciona la máquina:</label>
+                                    <input type="text" id="report-machine-search-input" class="form-control input-dark" placeholder="Escribe el nombre, código o área de la máquina..." autocomplete="off">
+                                    <input type="hidden" id="report-machine-select-id" value="">
+                                    <div id="report-machine-search-results" class="part-search-results-list" style="max-height: 260px;"></div>
+                                    <span class="form-help-text" id="report-machine-selected-label">Ningún equipo seleccionado todavía.</span>
                                 </div>
-                                <button class="btn btn-success" id="btn-export-machine-report">
+                                <button class="btn btn-success" id="btn-export-machine-report" style="margin-top: 26px;">
                                     <i data-lucide="file-spreadsheet"></i>
                                     <span>Descargar Reporte Excel</span>
                                 </button>

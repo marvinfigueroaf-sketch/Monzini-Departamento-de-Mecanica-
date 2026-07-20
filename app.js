@@ -7312,32 +7312,62 @@ function generateReportTable() {
     });
 }
 
-// Llena el selector de maquinaria del reporte de gastos por máquina
+// Prepara el buscador de máquina del reporte de gastos (limpia resultados previos)
 function populateMachineReportSelect() {
-    const select = document.getElementById("report-machine-select");
-    if (!select) return;
+    const searchInput = document.getElementById("report-machine-search-input");
+    const resultsBox = document.getElementById("report-machine-search-results");
+    if (!searchInput || !resultsBox) return;
+    resultsBox.innerHTML = "";
+}
 
-    const selectedVal = select.value;
-    select.innerHTML = '<option value="" disabled selected>Selecciona una máquina...</option>';
+// Filtra y muestra las máquinas que coinciden con la búsqueda (nombre, código o área)
+function renderMachineReportSearchResults(query) {
+    const container = document.getElementById("report-machine-search-results");
+    if (!container) return;
 
-    // Solo ordenar alfabéticamente sin mutar el arreglo original
-    const machinesSorted = [...state.machinery].sort((a, b) => a.name.localeCompare(b.name));
+    const q = query.trim().toLowerCase();
+    if (q === "") {
+        container.innerHTML = "";
+        return;
+    }
 
-    machinesSorted.forEach(m => {
-        const opt = document.createElement("option");
-        opt.value = m.id;
-        opt.textContent = `${m.name} [${m.id}] - ${m.area}`;
-        select.appendChild(opt);
-    });
+    const results = state.machinery.filter(m =>
+        m.name.toLowerCase().includes(q) ||
+        m.id.toLowerCase().includes(q) ||
+        (m.area && m.area.toLowerCase().includes(q))
+    ).slice(0, 20);
 
-    if (selectedVal) select.value = selectedVal;
+    if (results.length === 0) {
+        container.innerHTML = `<p style="color: var(--text-muted); font-size: 0.9em; padding: 4px 0;">No se encontraron máquinas que coincidan con "${query}".</p>`;
+        return;
+    }
+
+    container.innerHTML = results.map(m => `
+        <div class="part-search-result-item" style="cursor:pointer;" onclick="selectReportMachine('${m.id}')">
+            <div class="part-result-info">
+                <strong>${m.name}</strong>
+                <small>${m.id} · ${m.area}</small>
+            </div>
+        </div>
+    `).join("");
+}
+
+// Guarda la máquina elegida y limpia el listado de resultados
+function selectReportMachine(machineId) {
+    const machine = state.machinery.find(m => m.id === machineId);
+    if (!machine) return;
+
+    document.getElementById("report-machine-select-id").value = machine.id;
+    document.getElementById("report-machine-search-input").value = `${machine.name} [${machine.id}]`;
+    document.getElementById("report-machine-search-results").innerHTML = "";
+    document.getElementById("report-machine-selected-label").textContent = `Seleccionada: ${machine.name} (${machine.area})`;
 }
 
 // Genera el reporte Excel de gastos en piezas cambiadas para una máquina específica
 function exportMachinePartsReport() {
-    const machineId = document.getElementById("report-machine-select").value;
+    const machineId = document.getElementById("report-machine-select-id").value;
     if (!machineId) {
-        alert("Por favor selecciona una máquina para generar el reporte.");
+        alert("Por favor busca y selecciona una máquina de la lista antes de descargar el reporte.");
         return;
     }
 
@@ -7991,6 +8021,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-apply-report-filters").addEventListener("click", generateReportTable);
     document.getElementById("btn-export-excel").addEventListener("click", exportReportToExcel);
     document.getElementById("btn-export-machine-report").addEventListener("click", exportMachinePartsReport);
+    document.getElementById("report-machine-search-input").addEventListener("input", (e) => {
+        // Si el usuario edita el texto después de haber seleccionado una máquina, invalidamos la selección
+        document.getElementById("report-machine-select-id").value = "";
+        document.getElementById("report-machine-selected-label").textContent = "Ningún equipo seleccionado todavía.";
+        renderMachineReportSearchResults(e.target.value);
+    });
     document.getElementById("btn-print-report").addEventListener("click", () => {
         window.print();
     });
