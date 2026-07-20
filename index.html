@@ -522,6 +522,26 @@
                             </div>
                         </div>
 
+                        <!-- Reporte de Gastos por Máquina (Piezas Cambiadas) -->
+                        <div class="report-table-card" style="margin-bottom: 20px; border-left: 3px solid var(--color-cyan, #22d3ee);">
+                            <div class="card-header">
+                                <h3><i data-lucide="wrench"></i> Reporte de Gastos por Máquina</h3>
+                            </div>
+                            <div style="padding: 16px 20px; display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+                                <div class="form-group" style="min-width: 280px; flex: 1; margin-bottom: 0;">
+                                    <label for="report-machine-select">Selecciona la máquina:</label>
+                                    <select id="report-machine-select" class="form-control input-dark">
+                                        <option value="" disabled selected>Selecciona una máquina...</option>
+                                    </select>
+                                    <span class="form-help-text">Genera un Excel con cada pieza que se le cambió a esta máquina y su costo, con el total sumado al final.</span>
+                                </div>
+                                <button class="btn btn-success" id="btn-export-machine-report">
+                                    <i data-lucide="file-spreadsheet"></i>
+                                    <span>Descargar Reporte Excel</span>
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Report Summary Cards -->
                         <div class="report-summary-cards">
                             <div class="summary-mini-card">
@@ -564,6 +584,7 @@
                                             <th>Resuelto en</th>
                                             <th>Observaciones Finales</th>
                                             <th>Piezas Cambiadas</th>
+                                            <th>Costo Piezas (LPS)</th>
                                         </tr>
                                     </thead>
                                     <tbody id="report-table-body">

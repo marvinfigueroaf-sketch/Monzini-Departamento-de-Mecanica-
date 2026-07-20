@@ -7040,11 +7040,14 @@ function renderPartSearchResults(query) {
         const stockVal = p.stock != null ? p.stock : 0;
         const outOfStock = stockVal <= 0;
         const stockColor = outOfStock ? "var(--color-danger)" : (stockVal <= 3 ? "var(--color-warning)" : "var(--color-success)");
+        const priceFormatted = p.price != null
+            ? `L ${Number(p.price).toLocaleString('es-HN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+            : 'N/A';
         return `
             <div class="part-search-result-item">
                 <div class="part-result-info">
                     <strong>${p.name}</strong>
-                    <small>${p.partNumber}</small>
+                    <small>${p.partNumber} · ${priceFormatted}</small>
                 </div>
                 <span class="part-result-stock" style="color:${stockColor};">${stockVal} en stock</span>
                 <button type="button" class="btn btn-primary" style="padding: 6px 12px;" ${outOfStock ? "disabled title='Sin stock disponible'" : ""} onclick="addChangedPart('${p.id}')">
@@ -7072,7 +7075,8 @@ function addChangedPart(partId) {
             partId: part.id,
             name: part.name,
             partNumber: part.partNumber,
-            qty: 1
+            qty: 1,
+            unitPrice: part.price != null ? Number(part.price) : 0
         });
     }
     renderSelectedChangedParts();
@@ -7104,18 +7108,22 @@ function renderSelectedChangedParts() {
         return;
     }
 
-    container.innerHTML = selectedChangedParts.map(sp => `
+    container.innerHTML = selectedChangedParts.map(sp => {
+        const subtotal = (sp.unitPrice || 0) * sp.qty;
+        const subtotalFormatted = `L ${subtotal.toLocaleString('es-HN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        return `
         <div class="part-selected-item">
             <div class="part-result-info">
                 <strong>${sp.name}</strong>
-                <small>${sp.partNumber}</small>
+                <small>${sp.partNumber} · Subtotal: ${subtotalFormatted}</small>
             </div>
             <input type="number" min="1" class="form-control input-dark part-selected-qty-input" value="${sp.qty}" onchange="updateChangedPartQty('${sp.partId}', this.value)">
             <button type="button" class="btn btn-danger" style="padding: 6px 10px;" onclick="removeChangedPart('${sp.partId}')" title="Quitar pieza">
                 <i data-lucide="trash-2"></i>
             </button>
         </div>
-    `).join("");
+    `;
+    }).join("");
 
     lucide.createIcons();
 }
@@ -7128,7 +7136,8 @@ function finalizeCloseOrder(orderId, usedParts) {
     order.status = "Resuelto";
     order.resolvedAt = new Date().toISOString();
     order.usedParts = (usedParts || []).map(p => ({
-        partId: p.partId, name: p.name, partNumber: p.partNumber, qty: p.qty
+        partId: p.partId, name: p.name, partNumber: p.partNumber, qty: p.qty,
+        unitPrice: p.unitPrice != null ? Number(p.unitPrice) : 0
     }));
 
     // Re-evaluate machinery status
@@ -7173,7 +7182,10 @@ function openOrderActions(orderId) {
     const usedPartsLine = document.getElementById("modal-used-parts-line");
     const usedPartsText = document.getElementById("modal-used-parts-text");
     if (order.usedParts && order.usedParts.length > 0) {
-        usedPartsText.textContent = order.usedParts.map(p => `${p.name} (${p.partNumber}) x${p.qty}`).join(", ");
+        usedPartsText.textContent = order.usedParts.map(p => {
+            const cost = (p.unitPrice || 0) * p.qty;
+            return `${p.name} (${p.partNumber}) x${p.qty} - L ${cost.toLocaleString('es-HN', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+        }).join(", ");
         usedPartsLine.style.display = "block";
     } else {
         usedPartsLine.style.display = "none";
@@ -7271,7 +7283,7 @@ function generateReportTable() {
     if (filtered.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="10" style="text-align: center; color: var(--text-muted);">
+                <td colspan="11" style="text-align: center; color: var(--text-muted);">
                     No se encontraron casos resueltos en el rango de fechas seleccionado.
                 </td>
             </tr>
@@ -7294,9 +7306,104 @@ function generateReportTable() {
             <td>${formatDate(o.resolvedAt)}</td>
             <td><div style="max-width:250px; white-space:normal;">${o.observations || 'Sin observaciones'}</div></td>
             <td><div style="max-width:200px; white-space:normal;">${o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} x${p.qty}`).join(", ") : 'Ninguna'}</div></td>
+            <td>${o.usedParts && o.usedParts.length > 0 ? 'L ' + o.usedParts.reduce((sum, p) => sum + ((p.unitPrice || 0) * p.qty), 0).toLocaleString('es-HN', {minimumFractionDigits:2, maximumFractionDigits:2}) : 'L 0.00'}</td>
         `;
         tbody.appendChild(tr);
     });
+}
+
+// Llena el selector de maquinaria del reporte de gastos por máquina
+function populateMachineReportSelect() {
+    const select = document.getElementById("report-machine-select");
+    if (!select) return;
+
+    const selectedVal = select.value;
+    select.innerHTML = '<option value="" disabled selected>Selecciona una máquina...</option>';
+
+    // Solo ordenar alfabéticamente sin mutar el arreglo original
+    const machinesSorted = [...state.machinery].sort((a, b) => a.name.localeCompare(b.name));
+
+    machinesSorted.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m.id;
+        opt.textContent = `${m.name} [${m.id}] - ${m.area}`;
+        select.appendChild(opt);
+    });
+
+    if (selectedVal) select.value = selectedVal;
+}
+
+// Genera el reporte Excel de gastos en piezas cambiadas para una máquina específica
+function exportMachinePartsReport() {
+    const machineId = document.getElementById("report-machine-select").value;
+    if (!machineId) {
+        alert("Por favor selecciona una máquina para generar el reporte.");
+        return;
+    }
+
+    const machine = state.machinery.find(m => m.id === machineId);
+    if (!machine) {
+        alert("No se encontró la máquina seleccionada.");
+        return;
+    }
+
+    // Recolectar cada cambio de pieza (gasto) registrado en órdenes cerradas de esta máquina
+    const expenseRows = [];
+    state.orders
+        .filter(o => o.machineId === machineId && o.status === "Resuelto" && o.usedParts && o.usedParts.length > 0)
+        .sort((a, b) => new Date(a.resolvedAt) - new Date(b.resolvedAt))
+        .forEach(o => {
+            o.usedParts.forEach(p => {
+                const unitPrice = p.unitPrice || 0;
+                const subtotal = unitPrice * p.qty;
+                expenseRows.push([
+                    formatDate(o.resolvedAt),
+                    o.id,
+                    p.name,
+                    p.partNumber,
+                    p.qty,
+                    unitPrice,
+                    subtotal
+                ]);
+            });
+        });
+
+    if (expenseRows.length === 0) {
+        alert(`No hay piezas cambiadas registradas para "${machine.name}" todavía.`);
+        return;
+    }
+
+    const grandTotal = expenseRows.reduce((sum, row) => sum + row[6], 0);
+
+    // Construir la hoja de cálculo manualmente para poder incluir el encabezado y el total al final
+    const sheetData = [
+        ["Reporte de Gastos en Piezas por Máquina"],
+        ["Máquina:", machine.name, "Código:", machine.id, "Área:", machine.area],
+        [],
+        ["Fecha", "Orden ID", "Pieza", "Número de Parte", "Cantidad", "Precio Unitario (LPS)", "Subtotal (LPS)"],
+        ...expenseRows,
+        [],
+        ["", "", "", "", "", "TOTAL GASTADO:", grandTotal]
+    ];
+
+    const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+    worksheet["!cols"] = [
+        {wch: 14}, // Fecha
+        {wch: 12}, // Orden ID
+        {wch: 28}, // Pieza
+        {wch: 20}, // Número de Parte
+        {wch: 10}, // Cantidad
+        {wch: 20}, // Precio Unitario
+        {wch: 16}  // Subtotal
+    ];
+
+    const workbook = XLSX.utils.book_new();
+    // El nombre de la hoja no puede exceder 31 caracteres ni tener ciertos caracteres especiales
+    const safeSheetName = machine.name.replace(/[\\/*?:\[\]]/g, "").substring(0, 31) || "Gastos Maquina";
+    XLSX.utils.book_append_sheet(workbook, worksheet, safeSheetName);
+
+    const safeFileName = machine.name.replace(/[^a-zA-Z0-9_\-]/g, "_");
+    XLSX.writeFile(workbook, `Reporte_Gastos_${safeFileName}_${machine.id}.xlsx`);
 }
 
 function exportReportToExcel() {
@@ -7329,7 +7436,8 @@ function exportReportToExcel() {
             "Fecha Resolución": new Date(o.resolvedAt).toLocaleString("es-MX"),
             "Horas de Inactividad": calculateDiffHours(o.createdAt, o.resolvedAt),
             "Observaciones Finales": o.observations || "",
-            "Piezas Cambiadas": o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} (${p.partNumber}) x${p.qty}`).join(", ") : "Ninguna"
+            "Piezas Cambiadas": o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} (${p.partNumber}) x${p.qty}`).join(", ") : "Ninguna",
+            "Costo Total Piezas (LPS)": o.usedParts && o.usedParts.length > 0 ? o.usedParts.reduce((sum, p) => sum + ((p.unitPrice || 0) * p.qty), 0) : 0
         };
     });
 
@@ -7354,7 +7462,9 @@ function exportReportToExcel() {
         {wch: 22}, // Creación
         {wch: 22}, // Resolución
         {wch: 18}, // Horas
-        {wch: 45}  // Observaciones
+        {wch: 45}, // Observaciones
+        {wch: 45}, // Piezas Cambiadas
+        {wch: 20}  // Costo Total Piezas
     ];
     worksheet["!cols"] = wscols;
 
@@ -7440,6 +7550,7 @@ function checkReportsLock() {
         lockScreen.style.display = "none";
         reportsDashboard.style.display = "block";
         generateReportTable();
+        populateMachineReportSelect();
     } else {
         lockScreen.style.display = "flex";
         reportsDashboard.style.display = "none";
@@ -7879,6 +7990,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("btn-apply-report-filters").addEventListener("click", generateReportTable);
     document.getElementById("btn-export-excel").addEventListener("click", exportReportToExcel);
+    document.getElementById("btn-export-machine-report").addEventListener("click", exportMachinePartsReport);
     document.getElementById("btn-print-report").addEventListener("click", () => {
         window.print();
     });
