@@ -5955,10 +5955,24 @@ const DEFAULT_MACHINERY = [
 
 const DEFAULT_ORDERS = [];
 
+// --- CATÁLOGO DE PIEZAS (datos importados desde Excel "Catalogo de piezas.xlsx") ---
+const DEFAULT_PARTS = [
+    { id: "part-001", name: "KNIFE", partNumber: "B2424-280-000", price: 105.49, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-002", name: "Espaciador de costura", partNumber: "0317-150010", price: 1308.23, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-003", name: "Hook", partNumber: "110-38650", price: 827.90, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-004", name: "Spring Thread Take-Up", partNumber: "229-21605", price: 15.43, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-005", name: "Plate", partNumber: "113-00308", price: 376.22, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-006", name: "Feed Dog", partNumber: "D1609-415-B00", price: 256.28, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-007", name: "Correa Dentada", partNumber: "0396-341880", price: 964.05, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-008", name: "Upper KNIFE", partNumber: "0971-440860", price: 2617.54, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" },
+    { id: "part-009", name: "Lower KNIFE", partNumber: "0971-440870", price: 1090.69, stock: 0, description: "", createdAt: "2026-07-20T00:00:00.000Z" }
+];
+
 // Load or Seed localState (Caché local inicial)
 let state = {
     machinery: JSON.parse(localStorage.getItem("monzini_machinery")) || DEFAULT_MACHINERY,
     orders: JSON.parse(localStorage.getItem("monzini_orders")) || DEFAULT_ORDERS,
+    parts: JSON.parse(localStorage.getItem("monzini_parts")) || DEFAULT_PARTS,
     unlockedReports: false
 };
 
@@ -5975,6 +5989,10 @@ if (state.orders.length === 0) {
     state.orders = DEFAULT_ORDERS;
     localStorage.setItem("monzini_orders", JSON.stringify(state.orders));
 }
+if (!state.parts || state.parts.length === 0) {
+    state.parts = DEFAULT_PARTS;
+    localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
+}
 
 // --- STATE MANAGEMENT HELPERS & SYNC ENGINE ---
 function saveMachinery() {
@@ -5985,6 +6003,11 @@ function saveMachinery() {
 function saveOrders() {
     localStorage.setItem("monzini_orders", JSON.stringify(state.orders));
     syncStateToCloud();
+}
+
+function saveParts() {
+    localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
+    // Parts are stored locally (no cloud sync needed for catalog)
 }
 
 // Actualiza el indicador visual de la barra superior
@@ -6499,6 +6522,10 @@ function updateHeaderTitle(pageId) {
             titleEl.textContent = "Catálogo de Maquinaria";
             subtitleEl.textContent = "Visualiza y administra el inventario de maquinaria y códigos QR.";
             break;
+        case "parts":
+            titleEl.textContent = "Catálogo de Piezas";
+            subtitleEl.textContent = "Inventario de repuestos y piezas disponibles para mantenimiento.";
+            break;
         case "scanner":
             titleEl.textContent = "Lector de Código QR";
             subtitleEl.textContent = "Escanea la placa física de la maquinaria para gestionar incidentes.";
@@ -6714,6 +6741,110 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
     });
 
     lucide.createIcons();
+}
+
+// --- CATÁLOGO DE PIEZAS ---
+
+function populateParts(filterSearch = "") {
+    const container = document.getElementById("parts-cards-container");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const filtered = (state.parts || []).filter(p => {
+        const q = filterSearch.toLowerCase();
+        return p.name.toLowerCase().includes(q) ||
+               p.partNumber.toLowerCase().includes(q) ||
+               (p.description && p.description.toLowerCase().includes(q));
+    });
+
+    if (filtered.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state" style="grid-column: 1 / -1">
+                <i data-lucide="package-x"></i>
+                <p>No se encontraron piezas que coincidan con la búsqueda.</p>
+            </div>
+        `;
+        lucide.createIcons();
+        return;
+    }
+
+    filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "machine-card part-card";
+
+        const priceFormatted = p.price != null
+            ? `L ${Number(p.price).toLocaleString('es-HN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+            : 'N/A';
+
+        const stockVal = p.stock != null ? p.stock : 0;
+        const stockClass = stockVal <= 0 ? 'text-danger' : (stockVal <= 3 ? 'text-warning' : 'text-success');
+        const stockLabel = stockVal <= 0 ? 'Sin Stock' : (stockVal <= 3 ? 'Stock Bajo' : 'En Stock');
+
+        card.innerHTML = `
+            <div class="machine-card-header">
+                <div>
+                    <h3>${p.name}</h3>
+                    <span class="machine-id-tag">${p.partNumber}</span>
+                </div>
+                <span class="machine-status-badge ${stockClass === 'text-danger' ? 'badge-status-Fuera' : (stockClass === 'text-warning' ? 'badge-status-Mantenimiento' : 'badge-status-Operando')}">${stockLabel}</span>
+            </div>
+            <div class="machine-card-body">
+                <div class="machine-info-specs">
+                    <div class="spec-item">
+                        <span>N° de Parte</span>
+                        <span>${p.partNumber}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span>Precio Unitario</span>
+                        <span class="part-price-value">${priceFormatted}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span>Cantidad en Stock</span>
+                        <span class="${stockClass}" style="font-weight:700; font-size:1.1em;">${stockVal} unidades</span>
+                    </div>
+                    <div class="spec-item">
+                        <span>Registrado</span>
+                        <span>${new Date(p.createdAt).toLocaleDateString()}</span>
+                    </div>
+                </div>
+                ${p.description ? `<div class="part-description-box">${p.description}</div>` : ''}
+            </div>
+            <div class="machine-card-footer" style="display: flex; gap: 8px;">
+                <button class="btn btn-warning" style="flex: 1;" onclick="openEditPartModal('${p.id}')">
+                    <i data-lucide="pencil"></i>
+                    <span>Editar</span>
+                </button>
+                <button class="btn btn-danger" style="padding: 0 14px; background-color: #dc2626; border-color: #dc2626; color: #fff;" onclick="deletePart('${p.id}')" title="Eliminar Pieza">
+                    <i data-lucide="trash-2"></i>
+                </button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    lucide.createIcons();
+}
+
+function resetPartModalToAddMode() {
+    document.getElementById("part-modal-title").textContent = "Registrar Nueva Pieza";
+    document.getElementById("btn-submit-part-modal").textContent = "Registrar Pieza";
+    document.getElementById("edit-part-original-id").value = "";
+}
+
+function openEditPartModal(partId) {
+    const part = (state.parts || []).find(p => p.id === partId);
+    if (!part) return;
+
+    document.getElementById("part-modal-title").textContent = "Editar Pieza";
+    document.getElementById("btn-submit-part-modal").textContent = "Guardar Cambios";
+    document.getElementById("edit-part-original-id").value = part.id;
+    document.getElementById("new-part-name").value = part.name || "";
+    document.getElementById("new-part-number").value = part.partNumber || "";
+    document.getElementById("new-part-price").value = part.price != null ? part.price : "";
+    document.getElementById("new-part-stock").value = part.stock != null ? part.stock : "";
+    document.getElementById("new-part-description").value = part.description || "";
+
+    openModal("add-part-modal");
 }
 
 // Abre el modal de maquinaria en modo edición, precargando los datos actuales.
@@ -7127,6 +7258,8 @@ function renderPageContent(pageId) {
     } else if (pageId === "machinery") {
         populateAreaFilterOptions();
         populateMachinery();
+    } else if (pageId === "parts") {
+        populateParts();
     } else if (pageId === "orders") {
         populateWorkOrders();
     } else if (pageId === "scanner") {
@@ -7224,6 +7357,71 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     document.getElementById("btn-close-machine-modal").addEventListener("click", closeMachineModal);
     document.getElementById("btn-cancel-machine-modal").addEventListener("click", closeMachineModal);
+
+    // 4b. Parts catalog modal open/close
+    document.getElementById("open-add-part-btn").addEventListener("click", () => {
+        resetPartModalToAddMode();
+        document.getElementById("add-part-form").reset();
+        openModal("add-part-modal");
+    });
+
+    const closePartModal = () => {
+        closeModal("add-part-modal");
+        resetPartModalToAddMode();
+    };
+    document.getElementById("btn-close-part-modal").addEventListener("click", closePartModal);
+    document.getElementById("btn-cancel-part-modal").addEventListener("click", closePartModal);
+
+    // Parts search
+    document.getElementById("parts-search-input").addEventListener("input", (e) => {
+        populateParts(e.target.value);
+    });
+
+    // Add / Edit part form
+    document.getElementById("add-part-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const originalId = document.getElementById("edit-part-original-id").value;
+        const nameVal = document.getElementById("new-part-name").value.trim();
+        const partNumVal = document.getElementById("new-part-number").value.trim().toUpperCase();
+        const priceVal = parseFloat(document.getElementById("new-part-price").value) || 0;
+        const stockVal = parseInt(document.getElementById("new-part-stock").value, 10) || 0;
+        const descVal = document.getElementById("new-part-description").value.trim();
+
+        if (!state.parts) state.parts = [];
+
+        if (originalId) {
+            // --- MODO EDICIÓN ---
+            const part = state.parts.find(p => p.id === originalId);
+            if (!part) { alert("Error: no se encontró la pieza a editar."); return; }
+            part.name = nameVal;
+            part.partNumber = partNumVal;
+            part.price = priceVal;
+            part.stock = stockVal;
+            part.description = descVal;
+            saveParts();
+            closeModal("add-part-modal");
+            resetPartModalToAddMode();
+            e.target.reset();
+            populateParts(document.getElementById("parts-search-input").value);
+            return;
+        }
+
+        // --- MODO AGREGAR ---
+        const newPart = {
+            id: `part-${Date.now()}`,
+            name: nameVal,
+            partNumber: partNumVal,
+            price: priceVal,
+            stock: stockVal,
+            description: descVal,
+            createdAt: new Date().toISOString()
+        };
+        state.parts.push(newPart);
+        saveParts();
+        closeModal("add-part-modal");
+        e.target.reset();
+        populateParts();
+    });
 
     // Add / Edit machinery form (modo determinado por edit-machine-original-id)
     document.getElementById("add-machine-form").addEventListener("submit", (e) => {
@@ -7535,6 +7733,15 @@ function deleteMachine(machineId) {
         populateWorkOrders();
     }
 }
+// --- FUNCIÓN PARA ELIMINAR PIEZAS (ÁMBITO GLOBAL) ---
+function deletePart(partId) {
+    if (confirm(`¿Está seguro de que desea eliminar esta pieza del catálogo? Esta acción no se puede deshacer.`)) {
+        state.parts = (state.parts || []).filter(p => p.id !== partId);
+        saveParts();
+        populateParts(document.getElementById("parts-search-input")?.value || "");
+    }
+}
+
 // --- SCRIPT CORRECTOR DE ARRANQUE IMPREVISTO (MAQUINARIA Y ÓRDENES) ---
 (function() {
     // Restaurar caché de localStorage al cargar el archivo de manera síncrona inmediata

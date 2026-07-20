@@ -55,6 +55,12 @@
                             <span>Maquinaria</span>
                         </a>
                     </li>
+                    <li class="nav-item" data-page="parts">
+                        <a href="#parts">
+                            <i data-lucide="package"></i>
+                            <span>Catálogo de Piezas</span>
+                        </a>
+                    </li>
                     <li class="nav-item" data-page="scanner">
                         <a href="#scanner">
                             <i data-lucide="qr-code"></i>
@@ -237,6 +243,28 @@
                     <!-- Machinery Cards Grid -->
                     <div class="machinery-grid" id="machinery-cards-container">
                         <!-- Machine Cards injected dynamically -->
+                    </div>
+                </section>
+
+                <!-- PAGE: Parts Catalog -->
+                <section id="page-parts" class="page-section">
+                    <!-- Actions bar -->
+                    <div class="section-actions-bar">
+                        <div class="search-box">
+                            <i data-lucide="search"></i>
+                            <input type="text" id="parts-search-input" placeholder="Buscar pieza por nombre o número de parte...">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary" id="open-add-part-btn">
+                                <i data-lucide="plus-circle"></i>
+                                <span>Agregar Pieza</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Parts Cards Grid -->
+                    <div class="machinery-grid" id="parts-cards-container">
+                        <!-- Part Cards injected dynamically -->
                     </div>
                 </section>
 
@@ -651,6 +679,50 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="btn-cancel-machine-modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btn-submit-machine-modal">Registrar Máquina</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Add / Edit Part -->
+    <div class="modal-backdrop" id="add-part-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="part-modal-title">Registrar Nueva Pieza</h3>
+                <button class="btn-close" id="btn-close-part-modal">×</button>
+            </div>
+            <form id="add-part-form">
+                <input type="hidden" id="edit-part-original-id" value="">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="new-part-name">Nombre de la Pieza:</label>
+                        <input type="text" id="new-part-name" class="form-control input-dark" placeholder="Ej. KNIFE, Hook, Feed Dog" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="new-part-number">Número de Parte:</label>
+                            <input type="text" id="new-part-number" class="form-control input-dark" placeholder="Ej. B2424-280-000" required>
+                        </div>
+                        <div class="form-group col">
+                            <label for="new-part-price">Precio Unitario (LPS):</label>
+                            <input type="number" id="new-part-price" class="form-control input-dark" placeholder="Ej. 105.49" step="0.01" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-part-stock">Cantidad en Stock:</label>
+                        <input type="number" id="new-part-stock" class="form-control input-dark" placeholder="Ej. 10" min="0" step="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-part-description">Descripción / Observaciones (opcional):</label>
+                        <textarea id="new-part-description" class="form-control textarea-dark" rows="2" placeholder="Ej. Compatible con Juki DDL-9000B, repuesto de cuchilla de corte..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-part-modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-part-modal">Registrar Pieza</button>
                 </div>
             </form>
         </div>
