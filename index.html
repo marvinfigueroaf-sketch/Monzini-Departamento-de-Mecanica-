@@ -563,6 +563,7 @@
                                             <th>Creado en</th>
                                             <th>Resuelto en</th>
                                             <th>Observaciones Finales</th>
+                                            <th>Piezas Cambiadas</th>
                                         </tr>
                                     </thead>
                                     <tbody id="report-table-body">
@@ -593,6 +594,7 @@
                     <p><strong>Falla Reportada:</strong> <span id="modal-defect-desc">Vibración y ruido</span></p>
                     <p><strong>Asignado:</strong> <span id="modal-assigned-mechanic">Carlos Mendoza</span></p>
                     <p><strong>Estado Actual:</strong> <span class="badge" id="modal-status-badge">Pendiente</span></p>
+                    <p id="modal-used-parts-line" style="display:none;"><strong>Piezas Cambiadas:</strong> <span id="modal-used-parts-text"></span></p>
                 </div>
 
                 <div class="form-group">
@@ -609,6 +611,65 @@
                 <button class="btn btn-success" id="btn-modal-resolve">
                     <i data-lucide="check"></i>
                     <span>Cerrar Caso (Resuelto)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ¿Cambió repuesto? -->
+    <div class="modal-backdrop" id="confirm-part-change-modal" style="display: none;">
+        <div class="modal-card" style="max-width: 420px;">
+            <div class="modal-header">
+                <h3>Cierre de Orden de Trabajo</h3>
+                <button class="btn-close" id="btn-close-confirm-part-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding: 10px 0;">
+                    <i data-lucide="package-search" style="width:42px; height:42px; color: var(--color-warning);"></i>
+                    <p style="font-size: 1.05em; font-weight: 600;">¿Se cambió algún repuesto en esta reparación?</p>
+                    <p style="color: var(--text-muted); font-size: 0.9em;">Si cambiaste alguna pieza, la descontaremos automáticamente del catálogo de piezas.</p>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: center; gap: 14px;">
+                <button class="btn btn-secondary" id="btn-part-change-no" style="min-width: 110px;">
+                    <i data-lucide="x"></i>
+                    <span>No</span>
+                </button>
+                <button class="btn btn-success" id="btn-part-change-yes" style="min-width: 110px;">
+                    <i data-lucide="check"></i>
+                    <span>Sí</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Seleccionar Pieza Cambiada -->
+    <div class="modal-backdrop" id="select-changed-parts-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Agregar Pieza que Cambió</h3>
+                <button class="btn-close" id="btn-close-select-parts-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="part-change-search-input">Buscar por nombre o número de pieza:</label>
+                    <input type="text" id="part-change-search-input" class="form-control input-dark" placeholder="Ej. KNIFE, Hook, B2424-280-000...">
+                </div>
+
+                <div id="part-change-search-results" class="part-search-results-list"></div>
+
+                <div class="form-group" style="margin-top: 18px;">
+                    <label>Piezas seleccionadas para esta orden:</label>
+                    <div id="part-change-selected-list" class="part-selected-list">
+                        <p class="empty-selected-parts-msg" style="color: var(--text-muted); font-size: 0.9em;">Aún no has agregado ninguna pieza.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancel-select-parts">Cancelar</button>
+                <button class="btn btn-success" id="btn-accept-select-parts">
+                    <i data-lucide="check"></i>
+                    <span>Aceptar y Cerrar Orden</span>
                 </button>
             </div>
         </div>

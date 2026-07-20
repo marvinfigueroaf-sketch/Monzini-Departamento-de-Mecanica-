@@ -7004,6 +7004,152 @@ function updateSimulatedBarcode() {
     }
 }
 
+// --- CIERRE DE ORDEN CON CAMBIO DE REPUESTO ---
+let pendingCloseOrderId = null;   // Orden que está en proceso de cierre
+let selectedChangedParts = [];    // [{ partId, name, partNumber, qty }]
+
+function openPartSelectionModal() {
+    selectedChangedParts = [];
+    document.getElementById("part-change-search-input").value = "";
+    renderPartSearchResults("");
+    renderSelectedChangedParts();
+    openModal("select-changed-parts-modal");
+}
+
+function renderPartSearchResults(query) {
+    const container = document.getElementById("part-change-search-results");
+    if (!container) return;
+
+    const q = query.toLowerCase();
+    const results = (state.parts || []).filter(p => {
+        if (q === "") return false; // No mostrar el catálogo completo hasta que se busque algo
+        return p.name.toLowerCase().includes(q) || p.partNumber.toLowerCase().includes(q);
+    }).slice(0, 15);
+
+    if (q === "") {
+        container.innerHTML = `<p style="color: var(--text-muted); font-size: 0.9em; padding: 4px 0;">Escribe el nombre o número de pieza para buscar en el catálogo...</p>`;
+        return;
+    }
+
+    if (results.length === 0) {
+        container.innerHTML = `<p style="color: var(--text-muted); font-size: 0.9em; padding: 4px 0;">No se encontraron piezas que coincidan con "${query}".</p>`;
+        return;
+    }
+
+    container.innerHTML = results.map(p => {
+        const stockVal = p.stock != null ? p.stock : 0;
+        const outOfStock = stockVal <= 0;
+        const stockColor = outOfStock ? "var(--color-danger)" : (stockVal <= 3 ? "var(--color-warning)" : "var(--color-success)");
+        return `
+            <div class="part-search-result-item">
+                <div class="part-result-info">
+                    <strong>${p.name}</strong>
+                    <small>${p.partNumber}</small>
+                </div>
+                <span class="part-result-stock" style="color:${stockColor};">${stockVal} en stock</span>
+                <button type="button" class="btn btn-primary" style="padding: 6px 12px;" ${outOfStock ? "disabled title='Sin stock disponible'" : ""} onclick="addChangedPart('${p.id}')">
+                    <i data-lucide="plus"></i>
+                    <span>Agregar</span>
+                </button>
+            </div>
+        `;
+    }).join("");
+
+    lucide.createIcons();
+}
+
+function addChangedPart(partId) {
+    const part = state.parts.find(p => p.id === partId);
+    if (!part) return;
+
+    const existing = selectedChangedParts.find(sp => sp.partId === partId);
+    if (existing) {
+        if (existing.qty < (part.stock || 0)) {
+            existing.qty += 1;
+        }
+    } else {
+        selectedChangedParts.push({
+            partId: part.id,
+            name: part.name,
+            partNumber: part.partNumber,
+            qty: 1
+        });
+    }
+    renderSelectedChangedParts();
+}
+
+function updateChangedPartQty(partId, qty) {
+    const sp = selectedChangedParts.find(sp => sp.partId === partId);
+    const part = state.parts.find(p => p.id === partId);
+    if (!sp || !part) return;
+
+    let newQty = parseInt(qty, 10);
+    if (isNaN(newQty) || newQty < 1) newQty = 1;
+    if (newQty > (part.stock || 0)) newQty = part.stock || 0;
+    sp.qty = newQty;
+    renderSelectedChangedParts();
+}
+
+function removeChangedPart(partId) {
+    selectedChangedParts = selectedChangedParts.filter(sp => sp.partId !== partId);
+    renderSelectedChangedParts();
+}
+
+function renderSelectedChangedParts() {
+    const container = document.getElementById("part-change-selected-list");
+    if (!container) return;
+
+    if (selectedChangedParts.length === 0) {
+        container.innerHTML = `<p class="empty-selected-parts-msg" style="color: var(--text-muted); font-size: 0.9em;">Aún no has agregado ninguna pieza.</p>`;
+        return;
+    }
+
+    container.innerHTML = selectedChangedParts.map(sp => `
+        <div class="part-selected-item">
+            <div class="part-result-info">
+                <strong>${sp.name}</strong>
+                <small>${sp.partNumber}</small>
+            </div>
+            <input type="number" min="1" class="form-control input-dark part-selected-qty-input" value="${sp.qty}" onchange="updateChangedPartQty('${sp.partId}', this.value)">
+            <button type="button" class="btn btn-danger" style="padding: 6px 10px;" onclick="removeChangedPart('${sp.partId}')" title="Quitar pieza">
+                <i data-lucide="trash-2"></i>
+            </button>
+        </div>
+    `).join("");
+
+    lucide.createIcons();
+}
+
+// Cierra definitivamente la orden de trabajo, ya con la decisión de repuestos resuelta
+function finalizeCloseOrder(orderId, usedParts) {
+    const order = state.orders.find(o => o.id === orderId);
+    if (!order) return;
+
+    order.status = "Resuelto";
+    order.resolvedAt = new Date().toISOString();
+    order.usedParts = (usedParts || []).map(p => ({
+        partId: p.partId, name: p.name, partNumber: p.partNumber, qty: p.qty
+    }));
+
+    // Re-evaluate machinery status
+    // If there are no other active warnings or outages on this machine, return status to "Operando"
+    const otherActiveOnMachine = state.orders.some(o => o.machineId === order.machineId && o.status !== "Resuelto" && o.id !== orderId);
+    if (!otherActiveOnMachine) {
+        const machine = state.machinery.find(m => m.id === order.machineId);
+        if (machine) {
+            machine.status = "Operando";
+            saveMachinery();
+        }
+    }
+
+    saveOrders();
+    populateWorkOrders();
+    populateDashboard();
+    if (document.getElementById("parts-cards-container")) {
+        populateParts();
+    }
+}
+
 // --- ORDER ACTION ACTIONS AND MODALS ---
 function openOrderActions(orderId) {
     const order = state.orders.find(o => o.id === orderId);
@@ -7022,6 +7168,16 @@ function openOrderActions(orderId) {
     statusBadge.className = `badge badge-status-${order.status.split(' ')[0]}`;
 
     document.getElementById("modal-observations-input").value = order.observations || "";
+
+    // Mostrar piezas cambiadas, si las hubo
+    const usedPartsLine = document.getElementById("modal-used-parts-line");
+    const usedPartsText = document.getElementById("modal-used-parts-text");
+    if (order.usedParts && order.usedParts.length > 0) {
+        usedPartsText.textContent = order.usedParts.map(p => `${p.name} (${p.partNumber}) x${p.qty}`).join(", ");
+        usedPartsLine.style.display = "block";
+    } else {
+        usedPartsLine.style.display = "none";
+    }
 
     // Toggle button views depending on status
     const btnProgress = document.getElementById("btn-modal-progress");
@@ -7115,7 +7271,7 @@ function generateReportTable() {
     if (filtered.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="9" style="text-align: center; color: var(--text-muted);">
+                <td colspan="10" style="text-align: center; color: var(--text-muted);">
                     No se encontraron casos resueltos en el rango de fechas seleccionado.
                 </td>
             </tr>
@@ -7137,6 +7293,7 @@ function generateReportTable() {
             <td>${formatDate(o.createdAt)}</td>
             <td>${formatDate(o.resolvedAt)}</td>
             <td><div style="max-width:250px; white-space:normal;">${o.observations || 'Sin observaciones'}</div></td>
+            <td><div style="max-width:200px; white-space:normal;">${o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} x${p.qty}`).join(", ") : 'Ninguna'}</div></td>
         `;
         tbody.appendChild(tr);
     });
@@ -7171,7 +7328,8 @@ function exportReportToExcel() {
             "Fecha Creación": new Date(o.createdAt).toLocaleString("es-MX"),
             "Fecha Resolución": new Date(o.resolvedAt).toLocaleString("es-MX"),
             "Horas de Inactividad": calculateDiffHours(o.createdAt, o.resolvedAt),
-            "Observaciones Finales": o.observations || ""
+            "Observaciones Finales": o.observations || "",
+            "Piezas Cambiadas": o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} (${p.partNumber}) x${p.qty}`).join(", ") : "Ninguna"
         };
     });
 
@@ -7496,7 +7654,8 @@ document.addEventListener("DOMContentLoaded", () => {
             mechanic: document.getElementById("order-mechanic").value,
             status: "Pendiente",
             createdAt: new Date().toISOString(),
-            resolvedAt: null
+            resolvedAt: null,
+            usedParts: []
         };
 
         // Automatically set the machine status to "Fuera de Servicio" if priority is Crítica, or "Mantenimiento" if Alta/Media
@@ -7577,27 +7736,90 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const order = state.orders.find(o => o.id === orderId);
-        if (order) {
-            order.status = "Resuelto";
-            order.observations = obs;
-            order.resolvedAt = new Date().toISOString();
-            
-            // Re-evaluate machinery status
-            // If there are no other active warnings or outages on this machine, return status to "Operando"
-            const otherActiveOnMachine = state.orders.some(o => o.machineId === order.machineId && o.status !== "Resuelto" && o.id !== orderId);
-            if (!otherActiveOnMachine) {
-                const machine = state.machinery.find(m => m.id === order.machineId);
-                if (machine) {
-                    machine.status = "Operando";
-                    saveMachinery();
-                }
-            }
+        if (!order) return;
 
-            saveOrders();
-            closeModal("observations-modal");
-            populateWorkOrders();
-            populateDashboard();
+        // Guardamos las observaciones acumuladas antes de preguntar por el repuesto
+        order.observations = obs;
+        saveOrders();
+
+        // Preguntamos si se cambió algún repuesto antes de cerrar el caso
+        pendingCloseOrderId = orderId;
+        closeModal("observations-modal");
+        openModal("confirm-part-change-modal");
+    });
+
+    // --- FLUJO: ¿CAMBIÓ REPUESTO AL CERRAR ORDEN? ---
+    document.getElementById("btn-close-confirm-part-modal").addEventListener("click", () => {
+        closeModal("confirm-part-change-modal");
+        pendingCloseOrderId = null;
+    });
+
+    // No cambió repuesto: se cierra la orden de forma normal
+    document.getElementById("btn-part-change-no").addEventListener("click", () => {
+        const orderId = pendingCloseOrderId;
+        closeModal("confirm-part-change-modal");
+        if (orderId) {
+            finalizeCloseOrder(orderId, []);
         }
+        pendingCloseOrderId = null;
+    });
+
+    // Sí cambió repuesto: abrimos el buscador de piezas
+    document.getElementById("btn-part-change-yes").addEventListener("click", () => {
+        closeModal("confirm-part-change-modal");
+        openPartSelectionModal();
+    });
+
+    // Cancelar la selección de piezas: regresamos a la orden sin cerrarla
+    document.getElementById("btn-cancel-select-parts").addEventListener("click", () => {
+        closeModal("select-changed-parts-modal");
+        const orderId = pendingCloseOrderId;
+        pendingCloseOrderId = null;
+        if (orderId) {
+            openOrderActions(orderId);
+        }
+    });
+    document.getElementById("btn-close-select-parts-modal").addEventListener("click", () => {
+        document.getElementById("btn-cancel-select-parts").click();
+    });
+
+    // Buscador de piezas dentro del modal de cierre de orden
+    document.getElementById("part-change-search-input").addEventListener("input", (e) => {
+        renderPartSearchResults(e.target.value.trim());
+    });
+
+    // Confirmar piezas seleccionadas y cerrar la orden descontando inventario
+    document.getElementById("btn-accept-select-parts").addEventListener("click", () => {
+        const orderId = pendingCloseOrderId;
+        if (!orderId) return;
+
+        if (selectedChangedParts.length === 0) {
+            alert("Agrega al menos una pieza, o presiona 'Cancelar' y selecciona 'No' si finalmente no hubo cambio de repuesto.");
+            return;
+        }
+
+        // Validar que ninguna cantidad exceda el stock disponible
+        for (const sp of selectedChangedParts) {
+            const part = state.parts.find(p => p.id === sp.partId);
+            if (!part) continue;
+            if (sp.qty > (part.stock || 0)) {
+                alert(`La cantidad seleccionada de "${part.name}" (${sp.qty}) excede el stock disponible (${part.stock || 0}).`);
+                return;
+            }
+        }
+
+        // Descontar del inventario del catálogo de piezas
+        selectedChangedParts.forEach(sp => {
+            const part = state.parts.find(p => p.id === sp.partId);
+            if (part) {
+                part.stock = Math.max(0, (part.stock || 0) - sp.qty);
+            }
+        });
+        saveParts();
+
+        closeModal("select-changed-parts-modal");
+        finalizeCloseOrder(orderId, selectedChangedParts);
+        pendingCloseOrderId = null;
     });
 
     // Save observations without changing status
