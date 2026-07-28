@@ -6645,6 +6645,144 @@ function populateAreaFilterOptions() {
     }
 }
 
+// Genera un PNG (data URL) del QR de un código, usando la misma librería QRCode.js
+// que ya usa el sistema para renderizar los QR en las tarjetas de maquinaria.
+function generateQrDataUrl(text) {
+    return new Promise((resolve) => {
+        const tempDiv = document.createElement("div");
+        tempDiv.style.position = "fixed";
+        tempDiv.style.left = "-9999px";
+        document.body.appendChild(tempDiv);
+
+        new QRCode(tempDiv, {
+            text: text,
+            width: 200,
+            height: 200,
+            colorDark: "#0b111e",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+        });
+
+        // QRCode.js dibuja en un <canvas> (o en un <img> como respaldo); esperamos
+        // un instante a que termine de renderizar antes de leer el resultado.
+        setTimeout(() => {
+            const canvas = tempDiv.querySelector("canvas");
+            const img = tempDiv.querySelector("img");
+            let dataUrl = null;
+            if (canvas) {
+                dataUrl = canvas.toDataURL("image/png");
+            } else if (img && img.src) {
+                dataUrl = img.src;
+            }
+            document.body.removeChild(tempDiv);
+            resolve(dataUrl);
+        }, 20);
+    });
+}
+
+// Genera e imprime las etiquetas QR de la maquinaria, usando exactamente los mismos
+// códigos (m.id) que tu sistema ya usa para identificar cada máquina al escanear.
+// Respeta el filtro de búsqueda/área que tengas activo en la pantalla de Maquinaria,
+// así puedes imprimir todo el catálogo o solo un departamento a la vez.
+async function printMachineryQRLabels() {
+    const searchQuery = document.getElementById("machine-search-input")?.value || "";
+    const areaFilter = document.getElementById("machine-filter-area")?.value || "all";
+    const q = searchQuery.toLowerCase();
+
+    const filtered = state.machinery.filter(m => {
+        const matchesSearch = m.name.toLowerCase().includes(q) ||
+                              m.id.toLowerCase().includes(q) ||
+                              (m.brand && m.brand.toLowerCase().includes(q)) ||
+                              (m.model && m.model.toLowerCase().includes(q));
+        const matchesArea = areaFilter === "all" || m.area === areaFilter;
+        return matchesSearch && matchesArea;
+    });
+
+    if (filtered.length === 0) {
+        alert("No hay máquinas que coincidan con el filtro/búsqueda actual para imprimir.");
+        return;
+    }
+
+    const btn = document.getElementById("print-qr-labels-btn");
+    const originalHtml = btn ? btn.innerHTML : null;
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Generando ${filtered.length} etiquetas...</span>`;
+    }
+
+    const labels = [];
+    for (const m of filtered) {
+        const dataUrl = await generateQrDataUrl(m.id);
+        labels.push({ id: m.id, name: m.name || "", area: m.area || "" });
+        labels[labels.length - 1].dataUrl = dataUrl;
+    }
+
+    if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+    }
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+        alert("Tu navegador bloqueó la ventana de impresión. Permite ventanas emergentes para este sitio e inténtalo de nuevo.");
+        return;
+    }
+
+    const labelsHtml = labels.map(l => `
+        <div class="qr-label">
+            <img src="${l.dataUrl}" alt="QR ${l.id}">
+            <div class="qr-label-text">
+                <div class="qr-label-id">${l.id}</div>
+                ${l.name ? `<div class="qr-label-name">${l.name}</div>` : ""}
+                ${l.area ? `<div class="qr-label-area">${l.area}</div>` : ""}
+            </div>
+        </div>
+    `).join("");
+
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+        <meta charset="UTF-8">
+        <title>Etiquetas QR - Monzini Mecánica</title>
+        <style>
+            @page { margin: 12mm; }
+            * { box-sizing: border-box; }
+            body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 18px; color: #1c2024; }
+            .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+            .toolbar button { padding: 10px 18px; font-size: 13.5px; font-weight: 700; border: none; border-radius: 6px; background: #d98e2c; color: #1c2024; cursor: pointer; }
+            .toolbar select { padding: 8px; font-size: 13px; border-radius: 6px; border: 1px solid #ccc; }
+            .count { font-size: 13px; color: #555; }
+            .sheet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .qr-label { border: 1.4px dashed #999; border-radius: 6px; padding: 8px; display: flex; align-items: center; gap: 8px; break-inside: avoid; page-break-inside: avoid; }
+            .qr-label img { width: 62px; height: 62px; flex: none; }
+            .qr-label-text { min-width: 0; }
+            .qr-label-id { font-family: 'Consolas', monospace; font-weight: 800; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .qr-label-name { font-size: 10.5px; color: #444; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .qr-label-area { font-size: 9px; color: #a8681a; text-transform: uppercase; font-weight: 700; margin-top: 1px; }
+            @media print { .toolbar { display: none; } }
+        </style>
+        </head>
+        <body>
+            <div class="toolbar">
+                <div class="count">${labels.length} etiquetas — códigos QR tomados en vivo de tu sistema</div>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <select id="colSelect" onchange="document.querySelector('.sheet').style.gridTemplateColumns = 'repeat(' + this.value + ', 1fr)'">
+                        <option value="2">2 columnas</option>
+                        <option value="3" selected>3 columnas</option>
+                        <option value="4">4 columnas</option>
+                        <option value="5">5 columnas</option>
+                    </select>
+                    <button onclick="window.print()">🖨️ Imprimir</button>
+                </div>
+            </div>
+            <div class="sheet">${labelsHtml}</div>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+}
+
 function populateMachinery(filterSearch = "", filterArea = "all") {
     const container = document.getElementById("machinery-cards-container");
     container.innerHTML = "";
