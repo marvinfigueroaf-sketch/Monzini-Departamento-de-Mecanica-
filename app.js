@@ -9,6 +9,12 @@
 // Si se deja vacío, la aplicación funcionará de forma local (Modo Local).
 const CONFIG_DATABASE_URL = "https://monzini-mecanica-default-rtdb.firebaseio.com"; 
 
+// --- PIN DE JEFE DE ÁREA ---
+// Se usa tanto para desbloquear "Reportes (Jefe)" como para confirmar cambios de
+// maquinaria (agregar / editar / eliminar). Cambia el valor aquí y se actualiza en
+// ambos lugares automáticamente.
+const BOSS_PIN = "1234";
+
 // --- INITIAL DATA & LOCALSTORAGE SEEDING ---
 const DEFAULT_MACHINERY = [
     {
@@ -7374,6 +7380,26 @@ function closeModal(id) {
     document.getElementById(id).style.display = "none";
 }
 
+// --- CONFIRMACIÓN CON PIN DE JEFE (usada para agregar/editar/eliminar maquinaria) ---
+// Muestra el mismo teclado de PIN que la sección de Reportes y, si el PIN ingresado
+// coincide con BOSS_PIN, ejecuta la función `onConfirm` que se le pase.
+let pendingPinConfirmCallback = null;
+
+function requestBossPinConfirmation(message, onConfirm) {
+    pendingPinConfirmCallback = onConfirm;
+    document.getElementById("confirm-pin-message").textContent =
+        message || "Ingresa el PIN de jefe de área para confirmar este cambio.";
+    document.getElementById("confirm-pin-digit-input").value = "";
+    document.getElementById("confirm-pin-error-msg").style.display = "none";
+    openModal("confirm-pin-modal");
+    document.getElementById("confirm-pin-digit-input").focus();
+}
+
+function closeConfirmPinModal() {
+    closeModal("confirm-pin-modal");
+    pendingPinConfirmCallback = null;
+}
+
 // --- REPORTS VIEW & EXPORT ENGINE ---
 
 // Los inputs <input type="date"> devuelven "YYYY-MM-DD". new Date("YYYY-MM-DD") lo
@@ -7895,18 +7921,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Error: no se encontró la máquina a editar.");
                 return;
             }
-            machine.name = document.getElementById("new-machine-name").value.trim();
-            machine.area = document.getElementById("new-machine-area").value;
-            machine.status = document.getElementById("new-machine-status").value;
-            machine.brand = document.getElementById("new-machine-brand").value.trim() || "Genérica";
-            machine.model = document.getElementById("new-machine-model").value.trim() || "N/A";
+            const updatedName = document.getElementById("new-machine-name").value.trim();
+            const updatedArea = document.getElementById("new-machine-area").value;
+            const updatedStatus = document.getElementById("new-machine-status").value;
+            const updatedBrand = document.getElementById("new-machine-brand").value.trim() || "Genérica";
+            const updatedModel = document.getElementById("new-machine-model").value.trim() || "N/A";
 
-            saveMachinery();
-            closeModal("add-machine-modal");
-            resetMachineModalToAddMode();
-            e.target.reset();
-            populateAreaFilterOptions();
-            populateMachinery();
+            requestBossPinConfirmation(
+                `Ingresa el PIN de jefe para guardar los cambios de "${machine.name}" (${machine.id}).`,
+                () => {
+                    machine.name = updatedName;
+                    machine.area = updatedArea;
+                    machine.status = updatedStatus;
+                    machine.brand = updatedBrand;
+                    machine.model = updatedModel;
+
+                    saveMachinery();
+                    closeModal("add-machine-modal");
+                    resetMachineModalToAddMode();
+                    e.target.reset();
+                    populateAreaFilterOptions();
+                    populateMachinery();
+                }
+            );
             return;
         }
 
@@ -7927,14 +7964,19 @@ document.addEventListener("DOMContentLoaded", () => {
             createdAt: new Date().toISOString()
         };
 
-        state.machinery.push(newMachine);
-        saveMachinery();
-        closeModal("add-machine-modal");
-        e.target.reset();
-        
-        // Refresh and display machinery
-        populateAreaFilterOptions();
-        populateMachinery();
+        requestBossPinConfirmation(
+            `Ingresa el PIN de jefe para registrar la máquina "${newMachine.name || newMachine.id}".`,
+            () => {
+                state.machinery.push(newMachine);
+                saveMachinery();
+                closeModal("add-machine-modal");
+                e.target.reset();
+
+                // Refresh and display machinery
+                populateAreaFilterOptions();
+                populateMachinery();
+            }
+        );
     });
 
     // 5. Work Order creation
@@ -8149,7 +8191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pin-login-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const pin = pinDigitsInput.value;
-        if (pin === "1234") {
+        if (pin === BOSS_PIN) {
             state.unlockedReports = true;
             pinError.style.display = "none";
             checkReportsLock();
@@ -8157,6 +8199,41 @@ document.addEventListener("DOMContentLoaded", () => {
             pinError.style.display = "block";
             pinDigitsInput.value = "";
             playScannerBeep(); // Audio feedback of error
+        }
+    });
+
+    // 8b. PIN de confirmación para cambios de maquinaria (agregar/editar/eliminar)
+    const confirmPinInput = document.getElementById("confirm-pin-digit-input");
+    const confirmPinError = document.getElementById("confirm-pin-error-msg");
+
+    document.querySelectorAll("#confirm-pin-modal .btn-kbd[data-cval]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (confirmPinInput.value.length < 4) {
+                confirmPinInput.value += btn.getAttribute("data-cval");
+            }
+        });
+    });
+
+    document.getElementById("btn-confirm-pin-clear").addEventListener("click", () => {
+        confirmPinInput.value = "";
+        confirmPinError.style.display = "none";
+    });
+
+    document.getElementById("btn-confirm-pin-cancel").addEventListener("click", () => {
+        closeConfirmPinModal();
+    });
+
+    document.getElementById("confirm-pin-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const pin = confirmPinInput.value;
+        if (pin === BOSS_PIN) {
+            const callback = pendingPinConfirmCallback;
+            closeConfirmPinModal();
+            if (typeof callback === "function") callback();
+        } else {
+            confirmPinError.style.display = "block";
+            confirmPinInput.value = "";
+            playScannerBeep();
         }
     });
 
@@ -8247,21 +8324,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- FUNCIÓN PARA ELIMINAR MAQUINARIA (ÁMBITO GLOBAL) ---
 function deleteMachine(machineId) {
-    if (confirm(`¿Está seguro de que desea eliminar la máquina con código ${machineId}? Esta acción no se puede deshacer.`)) {
-        state.machinery = state.machinery.filter(m => m.id !== machineId);
-        saveMachinery();
-        
-        const currentSearch = document.getElementById("machine-search-input")?.value || "";
-        const currentArea = document.getElementById("machine-filter-area")?.value || "all";
-        populateMachinery(currentSearch, currentArea);
-        
-        if (typeof populateDashboard === "function") {
-            populateDashboard();
+    const machine = state.machinery.find(m => m.id === machineId);
+    if (!machine) return;
+
+    requestBossPinConfirmation(
+        `Vas a eliminar la máquina "${machine.name}" (${machine.id}). Esta acción no se puede deshacer. Ingresa el PIN de jefe para confirmar.`,
+        () => {
+            state.machinery = state.machinery.filter(m => m.id !== machineId);
+            saveMachinery();
+
+            const currentSearch = document.getElementById("machine-search-input")?.value || "";
+            const currentArea = document.getElementById("machine-filter-area")?.value || "all";
+            populateMachinery(currentSearch, currentArea);
+
+            if (typeof populateDashboard === "function") {
+                populateDashboard();
+            }
+
+            // Refresh the dropdown lists in other views too
+            populateWorkOrders();
         }
-        
-        // Refresh the dropdown lists in other views too
-        populateWorkOrders();
-    }
+    );
 }
 // --- FUNCIÓN PARA ELIMINAR PIEZAS (ÁMBITO GLOBAL) ---
 function deletePart(partId) {

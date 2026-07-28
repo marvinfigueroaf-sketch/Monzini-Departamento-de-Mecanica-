@@ -853,6 +853,43 @@
     </div>
 
     <!-- Script Application -->
+    <!-- Modal: Confirmación con PIN de Jefe (para agregar/editar/eliminar maquinaria) -->
+    <div class="modal-backdrop" id="confirm-pin-modal" style="display: none;">
+        <div class="modal-card" style="max-width: 380px;">
+            <div class="modal-body">
+                <div class="security-card" style="box-shadow:none; padding:8px 0 0;">
+                    <div class="lock-icon-box">
+                        <i data-lucide="shield-alert" class="text-warning"></i>
+                    </div>
+                    <h2 id="confirm-pin-title">Confirmar Cambio de Maquinaria</h2>
+                    <p class="text-muted" id="confirm-pin-message">Ingresa el PIN de jefe de área para confirmar este cambio.</p>
+
+                    <form id="confirm-pin-form">
+                        <div class="pin-input-group">
+                            <input type="password" id="confirm-pin-digit-input" maxlength="4" placeholder="••••" autocomplete="off" required>
+                        </div>
+                        <div class="pin-keyboard">
+                            <button type="button" class="btn btn-kbd" data-cval="1">1</button>
+                            <button type="button" class="btn btn-kbd" data-cval="2">2</button>
+                            <button type="button" class="btn btn-kbd" data-cval="3">3</button>
+                            <button type="button" class="btn btn-kbd" data-cval="4">4</button>
+                            <button type="button" class="btn btn-kbd" data-cval="5">5</button>
+                            <button type="button" class="btn btn-kbd" data-cval="6">6</button>
+                            <button type="button" class="btn btn-kbd" data-cval="7">7</button>
+                            <button type="button" class="btn btn-kbd" data-cval="8">8</button>
+                            <button type="button" class="btn btn-kbd" data-cval="9">9</button>
+                            <button type="button" class="btn btn-kbd btn-danger" id="btn-confirm-pin-clear">C</button>
+                            <button type="button" class="btn btn-kbd" data-cval="0">0</button>
+                            <button type="submit" class="btn btn-kbd btn-success" id="btn-confirm-pin-enter">➔</button>
+                        </div>
+                        <div class="error-msg" id="confirm-pin-error-msg" style="display: none;">PIN incorrecto. Intenta de nuevo.</div>
+                    </form>
+                    <button type="button" class="btn btn-secondary" style="width:100%; margin-top:10px;" id="btn-confirm-pin-cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
