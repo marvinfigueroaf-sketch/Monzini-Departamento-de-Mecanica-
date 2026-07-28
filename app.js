@@ -6703,6 +6703,24 @@ async function printMachineryQRLabels() {
         return;
     }
 
+    // Abrimos la ventana INMEDIATAMENTE (de forma síncrona, en el mismo clic) para que
+    // el navegador no la trate como un pop-up no solicitado. Si esperamos a generar los
+    // QR primero y recién ahí abrimos la ventana, Chrome/Firefox la bloquean.
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+        alert("Tu navegador bloqueó la ventana de impresión. Permite ventanas emergentes para este sitio (ícono en la barra de direcciones) e inténtalo de nuevo.");
+        return;
+    }
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head><meta charset="UTF-8"><title>Etiquetas QR - Monzini Mecánica</title></head>
+        <body style="font-family:Arial,sans-serif;padding:40px;color:#555;">
+            <p>Generando ${filtered.length} etiquetas QR, un momento...</p>
+        </body>
+        </html>
+    `);
+
     const btn = document.getElementById("print-qr-labels-btn");
     const originalHtml = btn ? btn.innerHTML : null;
     if (btn) {
@@ -6722,9 +6740,8 @@ async function printMachineryQRLabels() {
         btn.innerHTML = originalHtml;
     }
 
-    const printWindow = window.open("", "_blank");
-    if (!printWindow) {
-        alert("Tu navegador bloqueó la ventana de impresión. Permite ventanas emergentes para este sitio e inténtalo de nuevo.");
+    if (printWindow.closed) {
+        alert("La ventana de impresión se cerró antes de terminar. Intenta de nuevo.");
         return;
     }
 
@@ -6739,6 +6756,7 @@ async function printMachineryQRLabels() {
         </div>
     `).join("");
 
+    printWindow.document.open();
     printWindow.document.write(`
         <!DOCTYPE html>
         <html lang="es">
