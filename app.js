@@ -9,6 +9,56 @@
 // Si se deja vacío, la aplicación funcionará de forma local (Modo Local).
 const CONFIG_DATABASE_URL = "https://monzini-mecanica-default-rtdb.firebaseio.com"; 
 
+// --- CONFIGURACIÓN DE FIREBASE AUTH (login anónimo automático) ---
+// Necesario porque las reglas de la base de datos ahora exigen "auth != null".
+// No pide usuario/contraseña a los técnicos: el navegador inicia sesión anónima
+// automáticamente y usa ese token para leer/escribir en Realtime Database.
+const FIREBASE_PROJECT_ID = "monzini-mecanica";
+const FIREBASE_API_KEY = "AIzaSyD1a7s4tZq9baS_aXVgsoNeq26r7XULO-I";
+let firebaseIdToken = null;
+let firebaseAuthReady = null;
+
+function initFirebaseAuth() {
+    if (!CONFIG_DATABASE_URL || !FIREBASE_API_KEY) {
+        firebaseAuthReady = Promise.resolve(null);
+        return firebaseAuthReady;
+    }
+    if (window.firebase && !window.firebase.apps.length) {
+        window.firebase.initializeApp({
+            apiKey: FIREBASE_API_KEY,
+            authDomain: `${FIREBASE_PROJECT_ID}.firebaseapp.com`,
+            databaseURL: CONFIG_DATABASE_URL
+        });
+    }
+    firebaseAuthReady = new Promise((resolve) => {
+        if (!window.firebase) { resolve(null); return; }
+        window.firebase.auth().onAuthStateChanged(async (user) => {
+            if (user) {
+                try {
+                    firebaseIdToken = await user.getIdToken();
+                    resolve(firebaseIdToken);
+                } catch (e) {
+                    console.error("Error obteniendo token de Firebase Auth:", e);
+                    resolve(null);
+                }
+            } else {
+                window.firebase.auth().signInAnonymously().catch((err) => {
+                    console.error("Error iniciando sesión anónima en Firebase:", err);
+                    resolve(null);
+                });
+            }
+        });
+    });
+    return firebaseAuthReady;
+}
+
+// Construye la URL de Realtime Database agregando el token de auth cuando exista
+function buildAuthedDbUrl(baseUrl) {
+    if (!firebaseIdToken) return baseUrl;
+    const sep = baseUrl.includes("?") ? "&" : "?";
+    return `${baseUrl}${sep}auth=${firebaseIdToken}`;
+}
+
 // --- PIN DE JEFE DE ÁREA ---
 // Se usa tanto para desbloquear "Reportes (Jefe)" como para confirmar cambios de
 // maquinaria (agregar / editar / eliminar). Cambia el valor aquí y se actualiza en
@@ -6050,8 +6100,9 @@ async function loadStateFromCloud() {
 
     updateSyncBadge("loading", "Conectando...");
     try {
+        if (firebaseAuthReady) { await firebaseAuthReady; }
         const cleanUrl = CONFIG_DATABASE_URL.replace(/\/$/, "");
-        const response = await fetch(`${cleanUrl}/monzini.json`);
+        const response = await fetch(buildAuthedDbUrl(`${cleanUrl}/monzini.json`));
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -6093,8 +6144,9 @@ async function syncStateToCloud() {
 
     updateSyncBadge("loading", "Guardando...");
     try {
+        if (firebaseAuthReady) { await firebaseAuthReady; }
         const cleanUrl = CONFIG_DATABASE_URL.replace(/\/$/, "");
-        const response = await fetch(`${cleanUrl}/monzini.json`, {
+        const response = await fetch(buildAuthedDbUrl(`${cleanUrl}/monzini.json`), {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -7773,6 +7825,10 @@ function checkReportsLock() {
 
 // --- EVENT LISTENERS & INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Iniciar sesión anónima en Firebase (necesario para que las reglas
+    //    "auth != null" permitan leer/escribir en Realtime Database).
+    initFirebaseAuth();
+
     // 0. Mobile menu (hamburger) toggle
     const sidebarEl = document.getElementById("app-sidebar");
     const sidebarOverlayEl = document.getElementById("sidebar-overlay");
