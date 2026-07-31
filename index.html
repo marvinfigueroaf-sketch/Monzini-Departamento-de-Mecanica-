@@ -549,6 +549,80 @@
                             </div>
                         </div>
 
+                        <!-- Reporte por Mecánico -->
+                        <div class="report-table-card" style="margin-bottom: 20px; border-left: 3px solid var(--color-success, #22c55e);">
+                            <div class="card-header">
+                                <h3><i data-lucide="user-check"></i> Reporte por Mecánico</h3>
+                            </div>
+                            <div style="padding: 16px 20px; display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+                                <div class="form-group" style="min-width: 260px; margin-bottom: 0;">
+                                    <label for="report-mechanic-select">Selecciona el mecánico:</label>
+                                    <select id="report-mechanic-select" class="form-control select-dark">
+                                        <option value="" disabled selected>Seleccione mecánico...</option>
+                                        <option value="Carlos Mendoza">Carlos Mendoza</option>
+                                        <option value="Juan R. Gómez">Juan R. Gómez</option>
+                                        <option value="Mario Aguilar">Mario Aguilar</option>
+                                        <option value="Roberto Ramos">Roberto Ramos</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" id="btn-generate-mechanic-report">
+                                    <i data-lucide="search"></i>
+                                    <span>Generar Reporte</span>
+                                </button>
+                                <button class="btn btn-success" id="btn-export-mechanic-report">
+                                    <i data-lucide="file-spreadsheet"></i>
+                                    <span>Descargar Reporte Excel</span>
+                                </button>
+                            </div>
+
+                            <!-- Mini stats del mecánico seleccionado -->
+                            <div class="report-summary-cards" id="mechanic-report-stats" style="display:none; padding: 0 20px 20px;">
+                                <div class="summary-mini-card">
+                                    <span class="mini-label">Órdenes Asignadas (Total)</span>
+                                    <span class="mini-value text-cyan" id="mech-stat-total">0</span>
+                                </div>
+                                <div class="summary-mini-card">
+                                    <span class="mini-label">Órdenes Resueltas</span>
+                                    <span class="mini-value text-success" id="mech-stat-resolved">0</span>
+                                </div>
+                                <div class="summary-mini-card">
+                                    <span class="mini-label">Órdenes Activas</span>
+                                    <span class="mini-value text-danger" id="mech-stat-active">0</span>
+                                </div>
+                                <div class="summary-mini-card">
+                                    <span class="mini-label">Tiempo Promedio Resolución</span>
+                                    <span class="mini-value text-warning" id="mech-stat-time">-- hrs</span>
+                                </div>
+                                <div class="summary-mini-card">
+                                    <span class="mini-label">Costo Total Piezas Usadas</span>
+                                    <span class="mini-value text-cyan" id="mech-stat-cost">L 0.00</span>
+                                </div>
+                            </div>
+
+                            <!-- Detalle de órdenes del mecánico -->
+                            <div class="card-body overflow-x" id="mechanic-report-table-wrapper" style="display:none;">
+                                <table class="report-table" id="mechanic-report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Orden ID</th>
+                                            <th>Maquinaria</th>
+                                            <th>Área</th>
+                                            <th>Criticidad</th>
+                                            <th>Estado</th>
+                                            <th>Falla / Tarea</th>
+                                            <th>Creado en</th>
+                                            <th>Resuelto en</th>
+                                            <th>Piezas Cambiadas</th>
+                                            <th>Costo Piezas (LPS)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mechanic-report-table-body">
+                                        <!-- Injected dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <!-- Report Summary Cards -->
                         <div class="report-summary-cards">
                             <div class="summary-mini-card">

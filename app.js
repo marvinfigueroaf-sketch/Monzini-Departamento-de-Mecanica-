@@ -7670,6 +7670,152 @@ function exportMachinePartsReport() {
     XLSX.writeFile(workbook, `Reporte_Gastos_${safeFileName}_${machine.id}.xlsx`);
 }
 
+// Calcula las estadísticas y arma la tabla detallada del mecánico seleccionado
+function generateMechanicReport() {
+    const mechanic = document.getElementById("report-mechanic-select").value;
+    const statsBox = document.getElementById("mechanic-report-stats");
+    const tableWrapper = document.getElementById("mechanic-report-table-wrapper");
+
+    if (!mechanic) {
+        alert("Por favor selecciona un mecánico antes de generar el reporte.");
+        return;
+    }
+
+    const mechanicOrders = state.orders.filter(o => o.mechanic === mechanic);
+    const resolvedOrders = mechanicOrders.filter(o => o.status === "Resuelto");
+    const activeOrders = mechanicOrders.filter(o => o.status !== "Resuelto");
+
+    // Tiempo promedio de resolución (en horas), solo sobre órdenes ya cerradas
+    let avgHoursLabel = "-- hrs";
+    if (resolvedOrders.length > 0) {
+        const totalHours = resolvedOrders.reduce((sum, o) => sum + parseFloat(calculateDiffHours(o.createdAt, o.resolvedAt) || 0), 0);
+        avgHoursLabel = `${(totalHours / resolvedOrders.length).toFixed(1)} hrs`;
+    }
+
+    // Costo total de piezas utilizadas en las órdenes que este mecánico ha cerrado
+    const totalPartsCost = resolvedOrders.reduce((sum, o) => {
+        if (!o.usedParts || o.usedParts.length === 0) return sum;
+        return sum + o.usedParts.reduce((s, p) => s + ((p.unitPrice || 0) * p.qty), 0);
+    }, 0);
+
+    document.getElementById("mech-stat-total").textContent = mechanicOrders.length;
+    document.getElementById("mech-stat-resolved").textContent = resolvedOrders.length;
+    document.getElementById("mech-stat-active").textContent = activeOrders.length;
+    document.getElementById("mech-stat-time").textContent = avgHoursLabel;
+    document.getElementById("mech-stat-cost").textContent = "L " + totalPartsCost.toLocaleString('es-HN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+    // Tabla detallada, de la orden más reciente a la más antigua
+    const tbody = document.getElementById("mechanic-report-table-body");
+    tbody.innerHTML = "";
+
+    const sortedOrders = [...mechanicOrders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    if (sortedOrders.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color: var(--text-muted);">Este mecánico no tiene órdenes registradas todavía.</td></tr>`;
+    } else {
+        sortedOrders.forEach(o => {
+            const machine = state.machinery.find(m => m.id === o.machineId) || { name: "Maquinaria Desconocida", area: "N/A" };
+            const partsCost = o.usedParts && o.usedParts.length > 0
+                ? o.usedParts.reduce((sum, p) => sum + ((p.unitPrice || 0) * p.qty), 0)
+                : 0;
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${o.id}</td>
+                <td>${machine.name}</td>
+                <td>${machine.area}</td>
+                <td>${o.priority || 'N/A'}</td>
+                <td>${o.status}</td>
+                <td><div style="max-width:220px; white-space:normal;">${o.description || ''}</div></td>
+                <td>${formatDate(o.createdAt)}</td>
+                <td>${o.status === "Resuelto" ? formatDate(o.resolvedAt) : '--'}</td>
+                <td><div style="max-width:200px; white-space:normal;">${o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} x${p.qty}`).join(", ") : 'Ninguna'}</div></td>
+                <td>${'L ' + partsCost.toLocaleString('es-HN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    statsBox.style.display = "grid";
+    tableWrapper.style.display = "block";
+}
+
+// Genera y descarga el reporte Excel con todas las órdenes del mecánico seleccionado
+function exportMechanicReport() {
+    const mechanic = document.getElementById("report-mechanic-select").value;
+    if (!mechanic) {
+        alert("Por favor selecciona un mecánico de la lista antes de descargar el reporte.");
+        return;
+    }
+
+    const mechanicOrders = state.orders.filter(o => o.mechanic === mechanic);
+    if (mechanicOrders.length === 0) {
+        alert(`No hay órdenes registradas para "${mechanic}" todavía.`);
+        return;
+    }
+
+    const sortedOrders = [...mechanicOrders].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    const dataForExcel = sortedOrders.map(o => {
+        const machine = state.machinery.find(m => m.id === o.machineId) || { name: "Maquinaria Desconocida", area: "N/A" };
+        const partsCost = o.usedParts && o.usedParts.length > 0
+            ? o.usedParts.reduce((sum, p) => sum + ((p.unitPrice || 0) * p.qty), 0)
+            : 0;
+        return {
+            "ID Orden": o.id,
+            "Nombre Máquina": machine.name,
+            "Área Planta": machine.area,
+            "Criticidad": o.priority,
+            "Estado": o.status,
+            "Falla / Tarea": o.description,
+            "Fecha Creación": new Date(o.createdAt).toLocaleString("es-MX"),
+            "Fecha Resolución": o.status === "Resuelto" ? new Date(o.resolvedAt).toLocaleString("es-MX") : "--",
+            "Horas de Inactividad": o.status === "Resuelto" ? calculateDiffHours(o.createdAt, o.resolvedAt) : "--",
+            "Observaciones Finales": o.observations || "",
+            "Piezas Cambiadas": o.usedParts && o.usedParts.length > 0 ? o.usedParts.map(p => `${p.name} (${p.partNumber}) x${p.qty}`).join(", ") : "Ninguna",
+            "Costo Piezas (LPS)": partsCost
+        };
+    });
+
+    const resolvedOrders = mechanicOrders.filter(o => o.status === "Resuelto");
+    const totalPartsCost = resolvedOrders.reduce((sum, o) => {
+        if (!o.usedParts || o.usedParts.length === 0) return sum;
+        return sum + o.usedParts.reduce((s, p) => s + ((p.unitPrice || 0) * p.qty), 0);
+    }, 0);
+
+    const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
+    worksheet["!cols"] = [
+        {wch: 12}, // ID Orden
+        {wch: 28}, // Nombre Máquina
+        {wch: 14}, // Área
+        {wch: 12}, // Criticidad
+        {wch: 12}, // Estado
+        {wch: 40}, // Falla
+        {wch: 22}, // Fecha Creación
+        {wch: 22}, // Fecha Resolución
+        {wch: 18}, // Horas Inactividad
+        {wch: 40}, // Observaciones
+        {wch: 40}, // Piezas Cambiadas
+        {wch: 18}  // Costo Piezas
+    ];
+
+    // Añadir un resumen al final de la hoja
+    XLSX.utils.sheet_add_aoa(worksheet, [
+        [],
+        ["", "", "", "", "", "", "", "", "", "", "TOTAL ÓRDENES:", mechanicOrders.length],
+        ["", "", "", "", "", "", "", "", "", "", "ÓRDENES RESUELTAS:", resolvedOrders.length],
+        ["", "", "", "", "", "", "", "", "", "", "COSTO TOTAL PIEZAS (LPS):", totalPartsCost]
+    ], { origin: -1 });
+
+    const workbook = XLSX.utils.book_new();
+    // El nombre de la hoja no puede exceder 31 caracteres ni tener ciertos caracteres especiales
+    const safeSheetName = mechanic.replace(/[\\/*?:\[\]]/g, "").substring(0, 31) || "Reporte Mecanico";
+    XLSX.utils.book_append_sheet(workbook, worksheet, safeSheetName);
+
+    const safeFileName = mechanic.replace(/[^a-zA-Z0-9_\-]/g, "_");
+    XLSX.writeFile(workbook, `Reporte_Mecanico_${safeFileName}.xlsx`);
+}
+
 function exportReportToExcel() {
     const startDateVal = document.getElementById("report-start-date").value;
     const endDateVal = document.getElementById("report-end-date").value;
@@ -7821,6 +7967,11 @@ function checkReportsLock() {
         document.getElementById("pin-digit-input").value = "";
         document.getElementById("pin-error-msg").style.display = "none";
     }
+
+    // Reinicia el panel del reporte por mecánico cada vez que se entra a la sección
+    document.getElementById("report-mechanic-select").value = "";
+    document.getElementById("mechanic-report-stats").style.display = "none";
+    document.getElementById("mechanic-report-table-wrapper").style.display = "none";
 }
 
 // --- EVENT LISTENERS & INITIALIZATION ---
@@ -8310,6 +8461,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-apply-report-filters").addEventListener("click", generateReportTable);
     document.getElementById("btn-export-excel").addEventListener("click", exportReportToExcel);
     document.getElementById("btn-export-machine-report").addEventListener("click", exportMachinePartsReport);
+    document.getElementById("btn-generate-mechanic-report").addEventListener("click", generateMechanicReport);
+    document.getElementById("btn-export-mechanic-report").addEventListener("click", exportMechanicReport);
     document.getElementById("report-machine-search-input").addEventListener("input", (e) => {
         // Si el usuario edita el texto después de haber seleccionado una máquina, invalidamos la selección
         document.getElementById("report-machine-select-id").value = "";
