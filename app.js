@@ -6006,6 +6006,696 @@ const DEFAULT_MACHINERY = [
         "model": "C007KD-W322",
         "station": "Desarrollo de producto",
         "createdAt": "2026-07-06T20:57:42.033735Z"
+    },
+    {
+        "id": "S04246",
+        "name": "Juki DLN-5410-6",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DLN-5410-6",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2D3GC00303",
+        "name": "Juki DLN-9010A-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DLN-9010A-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8L3NA00429",
+        "name": "Juki LH-3528A-7",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "LH-3528A-7",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "DLNWL20212",
+        "name": "Juki DLN-5410N-7",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DLN-5410N-7",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "141305",
+        "name": "HOFFMAN P.R",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "HOFFMAN",
+        "model": "P.R",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOHH06129",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOEG11929",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2DCXFC1351",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOEE31633",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOFJ21607",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOEC11196",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOFJ21552",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOHL02171",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "S992805",
+        "name": "SINGER 261",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "SINGER",
+        "model": "261",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "5972864",
+        "name": "SINGER 261",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "SINGER",
+        "model": "261",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOEE31013",
+        "name": "Juki DDL-9000B-SS",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "DDL-9000B-SS",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "3M8K00032",
+        "name": "Juki MS1190",
+        "area": "ENS-2",
+        "status": "Operando",
+        "brand": "Juki",
+        "model": "MS1190",
+        "station": "ENS-2",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "228755422",
+        "name": "SIRUBA LKS-1903AN-SS302",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "LKS-1903AN-SS302",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "919Y024965",
+        "name": "SIRUBA DL7200-NM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-NM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "MZN-PL1-000349",
+        "name": "LUNA PRESS CP-323T",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "LUNA PRESS",
+        "model": "CP-323T",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "MZN-PL1-000563",
+        "name": "LUNA PRESS CP-323T",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "LUNA PRESS",
+        "model": "CP-323T",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "65563",
+        "name": "NEW YORKER Oxford Industries, inc.",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "NEW YORKER",
+        "model": "Oxford Industries, inc.",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "MZN-PL1-000352",
+        "name": "NEW YORKER Oxford Industries, inc.",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "NEW YORKER",
+        "model": "Oxford Industries, inc.",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "1262881",
+        "name": "UNION SPECIAL 56300",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "UNION SPECIAL",
+        "model": "56300",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "919Y021356",
+        "name": "SIRUBA DL7200B-BM1-17Q",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200B-BM1-17Q",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "X89018120",
+        "name": "SIRUBA DL7200-NM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-NM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOFJ21528",
+        "name": "JUKI DDL-9000B-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DDL-9000B-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "219L000397",
+        "name": "SIRUBA 747LD 747LD-514M-3-24/VTE/DKLT1-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA 747LD",
+        "model": "747LD-514M-3-24/VTE/DKLT1-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOFM21187",
+        "name": "JUKI DDL-9000B-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DDL-9000B-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "218K004510",
+        "name": "SIRUBA 757KT-516M-3-35/CT",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "757KT-516M-3-35/CT",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "919Y021346",
+        "name": "SIRUBA DL7200B-BM1-17Q",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200B-BM1-17Q",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "PTX-PL3-000345",
+        "name": "TRANSFER",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "TRANSFER",
+        "model": "",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "19083000851",
+        "name": "JACK JK-T9270D-12-2PL-Q-(1/4)",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JACK",
+        "model": "JK-T9270D-12-2PL-Q-(1/4)",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "140197699",
+        "name": "JACK JK-8558W-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JACK",
+        "model": "JK-8558W-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "S914478",
+        "name": "SINGER 261",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SINGER",
+        "model": "261",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "KS322857A",
+        "name": "KANSAI SPECIAL FX4413PK-UTC",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "KANSAI SPECIAL",
+        "model": "FX4413PK-UTC",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2L1FM00677",
+        "name": "JUKI LK-1900AN-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "LK-1900AN-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "DLNAB36592",
+        "name": "JUKI DLN-5410N-7",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DLN-5410N-7",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "92OY003865",
+        "name": "SIRUBA DL7200-BM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-BM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2MOVL00243",
+        "name": "JUKI MO-6900",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "MO-6900",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "218L000798",
+        "name": "SIRUBA 747LD-514M-3-24/VTE/DKLT1-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "747LD-514M-3-24/VTE/DKLT1-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "923OY006463",
+        "name": "SIRUBA DL7200-BM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-BM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "219L000320",
+        "name": "SIRUBA 747DL-514M-3-24/VTE/DKLT1-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "747DL-514M-3-24/VTE/DKLT1-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOGE12258",
+        "name": "JUKI DDL-9000B-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DDL-9000B-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2DLOFM00512",
+        "name": "JUKI LBH-1790S",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "LBH-1790S",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "22054518118",
+        "name": "JACK A6F",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JACK",
+        "model": "A6F",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2D3MF00059",
+        "name": "JUKI DLN-9010A-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DLN-9010A-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2D3MF00121",
+        "name": "JUKI DLN-9010A-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DLN-9010A-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "1494104",
+        "name": "UNION SPECIAL 53600",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "UNION SPECIAL",
+        "model": "53600",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "3M1D00090",
+        "name": "JUKI MH-380",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "MH-380",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "218L007092",
+        "name": "SIRUBA 747LD-514M-3-24/VTE/DKLT1-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "747LD-514M-3-24/VTE/DKLT1-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "219L000372",
+        "name": "SIRUBA 747LD-514M-3-24/VTE/DKLT1-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "747LD-514M-3-24/VTE/DKLT1-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "92OY003824",
+        "name": "SIRUBA DL7200-BM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-BM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "211244",
+        "name": "US L-7039-13",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "US",
+        "model": "L-7039-13",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "911399",
+        "name": "JUKI DDL-8700B-7",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DDL-8700B-7",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8L3NA01239",
+        "name": "JUKI LH-3528A-7",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "LH-3528A-7",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "219L000402",
+        "name": "SIRUBA 747DL-514M-3-24/VTE/DKLT1-1",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "747DL-514M-3-24/VTE/DKLT1-1",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "128361674",
+        "name": "SIRUBA DL7200-NM1-13",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-NM1-13",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "919Y021293",
+        "name": "SIRUBA DL7200-NM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-NM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "0261568493",
+        "name": "DURKOPP ADLER 261",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "DURKOPP ADLER",
+        "model": "261",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "92OY003815",
+        "name": "SIRUBA DL7200-BM1-16",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "SIRUBA",
+        "model": "DL7200-BM1-16",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "DLNVK13075",
+        "name": "JUKI DLN-5410-6",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DLN-5410-6",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "8DOFJ21632",
+        "name": "JUKI DDL-9000B-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DDL-9000B-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "MZN-PL1-000463",
+        "name": "WILLCOX & GIBBS 515-E32-450",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "WILLCOX & GIBBS",
+        "model": "515-E32-450",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "G557876",
+        "name": "BROTHER MA4-V92-92-6",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "BROTHER",
+        "model": "MA4-V92-92-6",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2D3EH000348",
+        "name": "JUKI DLN-9010A-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DLN-9010A-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2D3GC00297",
+        "name": "JUKI DLN-9010A-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "DLN-9010A-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2L1HJ02638",
+        "name": "JUKI LK-1903B-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "LK-1903B-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
+    },
+    {
+        "id": "2L1HJ01996",
+        "name": "JUKI LK-1903B-SS",
+        "area": "Miselaneos",
+        "status": "Operando",
+        "brand": "JUKI",
+        "model": "LK-1903B-SS",
+        "station": "Miselaneos",
+        "createdAt": "2026-08-10T00:00:00.000000Z"
     }
 ];
 
