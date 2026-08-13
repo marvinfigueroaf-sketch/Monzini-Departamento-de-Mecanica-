@@ -56,7 +56,7 @@ body {
     background-color: var(--bg-base);
     color: var(--text-primary);
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 16.8px;
     line-height: 1.5;
     overflow-x: hidden;
     height: 100vh;
@@ -158,14 +158,14 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 16px;
+    font-size: 19.2px;
     color: var(--text-primary);
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     display: none; /* Just using the gear icon now */
 }
 
 .brand-name h2 {
-    font-size: 18px;
+    font-size: 21.6px;
     font-weight: 700;
     letter-spacing: 0.05em;
     background: linear-gradient(to right, #ffffff, #cbd5e1);
@@ -174,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-name p {
-    font-size: 11px;
+    font-size: 13.2px;
     color: var(--color-primary);
     text-transform: uppercase;
     font-weight: 600;
@@ -235,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     right: 16px;
     padding: 2px 8px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     border-radius: 20px;
     letter-spacing: 0.02em;
@@ -274,12 +274,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .profile-name {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15.6px;
     color: var(--text-primary);
 }
 
 .profile-role {
-    font-size: 11px;
+    font-size: 13.2px;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
@@ -320,13 +320,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-bar-title h1 {
-    font-size: 22px;
+    font-size: 26.4px;
     font-weight: 700;
     color: var(--text-primary);
 }
 
 .top-bar-title p {
-    font-size: 13px;
+    font-size: 15.6px;
     margin-top: 2px;
 }
 
@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 8px 16px;
     border-radius: var(--radius-md);
     color: var(--text-secondary);
-    font-size: 13px;
+    font-size: 15.6px;
     font-weight: 500;
 }
 
@@ -385,7 +385,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 8px;
     padding: 10px 20px;
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 15.6px;
     font-weight: 600;
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -470,7 +470,7 @@ h1, h2, h3, h4, h5, h6 {
     background: none;
     border: none;
     color: var(--text-secondary);
-    font-size: 24px;
+    font-size: 28.8px;
     cursor: pointer;
     transition: var(--transition-fast);
 }
@@ -495,7 +495,7 @@ h1, h2, h3, h4, h5, h6 {
 
 label {
     display: block;
-    font-size: 12px;
+    font-size: 14.4px;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -511,7 +511,7 @@ label {
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     font-family: var(--font-body);
-    font-size: 13.5px;
+    font-size: 16.2px;
     transition: var(--transition-fast);
 }
 
@@ -537,7 +537,7 @@ label {
 .form-help-text {
     display: block;
     margin-top: 6px;
-    font-size: 11.5px;
+    font-size: 13.8px;
     color: var(--text-muted);
 }
 
@@ -604,7 +604,7 @@ label {
 }
 
 .stat-value {
-    font-size: 32px;
+    font-size: 38.4px;
     font-weight: 700;
     font-family: var(--font-heading);
     line-height: 1.1;
@@ -612,7 +612,7 @@ label {
 }
 
 .stat-label {
-    font-size: 13px;
+    font-size: 15.6px;
     color: var(--text-secondary);
     font-weight: 500;
 }
@@ -621,7 +621,7 @@ label {
     margin-top: 16px;
     padding-top: 12px;
     border-top: 1px solid var(--border-color);
-    font-size: 11px;
+    font-size: 13.2px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -659,12 +659,12 @@ label {
 }
 
 .card-header h3 {
-    font-size: 16px;
+    font-size: 19.2px;
     font-weight: 600;
 }
 
 .card-header p {
-    font-size: 12px;
+    font-size: 14.4px;
     margin-top: 2px;
 }
 
@@ -735,7 +735,7 @@ label {
 }
 
 .feed-machine-id {
-    font-size: 11px;
+    font-size: 13.2px;
     color: var(--text-secondary);
     background-color: rgba(255, 255, 255, 0.05);
     padding: 1px 6px;
@@ -743,7 +743,7 @@ label {
 }
 
 .feed-badge {
-    font-size: 9.5px;
+    font-size: 11.4px;
     font-weight: 800;
     text-transform: uppercase;
     padding: 1px 6px;
@@ -756,13 +756,13 @@ label {
 .badge-priority-Baja { background-color: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
 
 .feed-description {
-    font-size: 12.5px;
+    font-size: 15px;
     color: var(--text-secondary);
     line-height: 1.4;
 }
 
 .feed-observations {
-    font-size: 11.5px;
+    font-size: 13.8px;
     color: var(--color-warning);
     background-color: rgba(251, 191, 36, 0.04);
     padding: 8px 12px;
@@ -772,7 +772,7 @@ label {
 }
 
 .feed-meta {
-    font-size: 11px;
+    font-size: 13.2px;
     color: var(--text-muted);
     display: flex;
     gap: 12px;
@@ -857,7 +857,7 @@ label {
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     font-family: var(--font-body);
-    font-size: 13.5px;
+    font-size: 16.2px;
     transition: var(--transition-fast);
 }
 
@@ -906,12 +906,12 @@ label {
 }
 
 .machine-card-header h3 {
-    font-size: 16px;
+    font-size: 19.2px;
     font-weight: 700;
 }
 
 .machine-id-tag {
-    font-size: 11px;
+    font-size: 13.2px;
     font-family: var(--font-heading);
     background-color: rgba(255, 255, 255, 0.05);
     padding: 2px 8px;
@@ -924,7 +924,7 @@ label {
 
 .machine-status-badge {
     padding: 4px 10px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     border-radius: 20px;
@@ -943,7 +943,7 @@ label {
 }
 
 .machine-info-specs {
-    font-size: 12.5px;
+    font-size: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -956,7 +956,7 @@ label {
 }
 
 .spec-item span:first-child {
-    font-size: 10px;
+    font-size: 12px;
     text-transform: uppercase;
     color: var(--text-muted);
     font-weight: 600;
@@ -996,7 +996,7 @@ label {
 }
 
 .machine-barcode-label {
-    font-size: 10px;
+    font-size: 12px;
     color: #0b111e;
     font-weight: 700;
     font-family: monospace;
@@ -1032,12 +1032,12 @@ label {
 }
 
 .scanner-header h2 {
-    font-size: 18px;
+    font-size: 21.6px;
     font-weight: 700;
 }
 
 .scanner-header p {
-    font-size: 13px;
+    font-size: 15.6px;
     margin-top: 4px;
 }
 
@@ -1099,7 +1099,7 @@ label {
     position: absolute;
     bottom: 20px;
     color: var(--text-primary);
-    font-size: 11px;
+    font-size: 13.2px;
     font-weight: 600;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     background-color: rgba(0, 0, 0, 0.7);
@@ -1205,7 +1205,7 @@ label {
 }
 
 .column-header h4 {
-    font-size: 14px;
+    font-size: 16.8px;
     font-weight: 700;
 }
 
@@ -1213,7 +1213,7 @@ label {
 .column-header.border-warning { border-top-color: var(--color-cyan); } /* Use Cyan for progress in columns */
 
 .count-badge {
-    font-size: 11px;
+    font-size: 13.2px;
     font-weight: 700;
     padding: 2px 8px;
     border-radius: 10px;
@@ -1255,18 +1255,18 @@ label {
 
 .board-card-title {
     font-weight: 700;
-    font-size: 13.5px;
+    font-size: 16.2px;
 }
 
 .board-card-desc {
-    font-size: 12px;
+    font-size: 14.4px;
     color: var(--text-secondary);
     margin-bottom: 12px;
     line-height: 1.4;
 }
 
 .board-card-obs {
-    font-size: 11.5px;
+    font-size: 13.8px;
     color: var(--color-warning);
     border-left: 2px solid var(--color-warning);
     padding-left: 8px;
@@ -1277,7 +1277,7 @@ label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 11px;
+    font-size: 13.2px;
     color: var(--text-muted);
     border-top: 1px solid var(--border-color);
     padding-top: 10px;
@@ -1330,7 +1330,7 @@ label {
 }
 
 .security-card h2 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -1344,7 +1344,7 @@ label {
     border: 2px solid var(--border-color);
     color: var(--text-primary);
     text-align: center;
-    font-size: 32px;
+    font-size: 38.4px;
     letter-spacing: 24px;
     padding: 12px 8px 12px 32px;
     border-radius: var(--radius-md);
@@ -1374,7 +1374,7 @@ label {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-primary);
-    font-size: 18px;
+    font-size: 21.6px;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-fast);
@@ -1396,13 +1396,13 @@ label {
 
 .error-msg {
     color: var(--color-danger);
-    font-size: 12px;
+    font-size: 14.4px;
     font-weight: 600;
     margin-top: 16px;
 }
 
 .pin-info-hint {
-    font-size: 11px;
+    font-size: 13.2px;
     color: var(--text-muted);
     margin-top: 24px;
 }
@@ -1451,7 +1451,7 @@ label {
     padding: 8px 16px;
     border-radius: var(--radius-md);
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 15.6px;
 }
 
 .input-dark:focus {
@@ -1481,7 +1481,7 @@ label {
 }
 
 .mini-label {
-    font-size: 11px;
+    font-size: 13.2px;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--text-secondary);
@@ -1489,7 +1489,7 @@ label {
 }
 
 .mini-value {
-    font-size: 22px;
+    font-size: 26.4px;
     font-weight: 700;
     font-family: var(--font-heading);
 }
@@ -1511,7 +1511,7 @@ label {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 13px;
+    font-size: 15.6px;
 }
 
 .report-table th,
@@ -1525,7 +1525,7 @@ label {
     background-color: rgba(0, 0, 0, 0.2);
     font-weight: 600;
     color: var(--text-secondary);
-    font-size: 11px;
+    font-size: 13.2px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -1617,7 +1617,7 @@ label {
 }
 
 .part-search-result-item .part-result-info strong {
-    font-size: 0.95em;
+    font-size: 1.14em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1628,7 +1628,7 @@ label {
 }
 
 .part-search-result-item .part-result-stock {
-    font-size: 0.8em;
+    font-size: 0.96em;
     font-weight: 600;
 }
 
@@ -1658,7 +1658,7 @@ label {
 }
 
 .part-selected-item .part-result-info strong {
-    font-size: 0.95em;
+    font-size: 1.14em;
 }
 
 .part-selected-item .part-result-info small {
@@ -1680,7 +1680,7 @@ label {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font-size: 13px;
+    font-size: 15.6px;
 }
 
 .scanned-info-card {
@@ -1692,7 +1692,7 @@ label {
 }
 
 .scanned-label {
-    font-size: 10px;
+    font-size: 12px;
     text-transform: uppercase;
     font-weight: 700;
     color: var(--text-muted);
@@ -1702,7 +1702,7 @@ label {
 .scanned-code {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 24px;
+    font-size: 28.8px;
     color: var(--color-success);
     margin: 4px 0 16px 0;
     letter-spacing: 0.02em;
@@ -1718,7 +1718,7 @@ label {
 .scanned-info-card p {
     text-align: left;
     margin-bottom: 8px;
-    font-size: 13px;
+    font-size: 15.6px;
 }
 
 /* --------------------------------------------------
@@ -1752,7 +1752,7 @@ label {
     border-left: 3px solid var(--color-success);
     border-radius: var(--radius-sm);
     padding: 10px 12px;
-    font-size: 12px;
+    font-size: 14.4px;
 }
 
 .history-item.is-critical { border-left-color: var(--color-danger); }
@@ -1767,13 +1767,13 @@ label {
 
 .history-item-date {
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 13.2px;
     font-weight: 600;
 }
 
 .history-item-mechanic {
     color: var(--text-secondary, #94a3b8);
-    font-size: 11px;
+    font-size: 13.2px;
 }
 
 .history-item-desc {
@@ -1792,7 +1792,7 @@ label {
     text-align: center;
     padding: 20px 10px;
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 14.4px;
     border: 1px dashed var(--border-color);
     border-radius: var(--radius-sm);
 }
@@ -1916,7 +1916,7 @@ label {
     padding: 8px 16px;
     border-radius: var(--radius-md);
     color: var(--text-secondary);
-    font-size: 13px;
+    font-size: 15.6px;
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition-fast);
@@ -2033,7 +2033,7 @@ label {
 .part-price-value {
     color: var(--color-cyan);
     font-weight: 700;
-    font-size: 1.05em;
+    font-size: 1.26em;
     letter-spacing: -0.01em;
 }
 
@@ -2044,7 +2044,7 @@ label {
     background: rgba(6, 182, 212, 0.06);
     border-left: 3px solid var(--color-cyan);
     border-radius: var(--radius-sm);
-    font-size: 12px;
+    font-size: 14.4px;
     color: var(--text-secondary);
     line-height: 1.5;
     font-style: italic;

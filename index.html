@@ -378,10 +378,16 @@
                                             <label for="order-mechanic">Mecánico Asignado:</label>
                                             <select id="order-mechanic" class="form-control select-dark" required>
                                                 <option value="" disabled selected>Seleccione mecánico...</option>
-                                                <option value="Carlos Mendoza">Carlos Mendoza</option>
-                                                <option value="Juan R. Gómez">Juan R. Gómez</option>
-                                                <option value="Mario Aguilar">Mario Aguilar</option>
-                                                <option value="Roberto Ramos">Roberto Ramos</option>
+                                                <option value="Franklin Nuñez">Franklin Nuñez</option>
+                                                <option value="Edgar Martinez">Edgar Martinez</option>
+                                                <option value="Emerson">Emerson</option>
+                                                <option value="Jose Navarro">Jose Navarro</option>
+                                                <option value="Derson Flores">Derson Flores</option>
+                                                <option value="Ever Humaña">Ever Humaña</option>
+                                                <option value="Jose Montes">Jose Montes</option>
+                                                <option value="William Murillo">William Murillo</option>
+                                                <option value="Hector Fajardo">Hector Fajardo</option>
+                                                <option value="Jose Varela">Jose Varela</option>
                                             </select>
                                         </div>
                                     </div>
@@ -516,7 +522,7 @@
                             <div style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
                                 <div style="max-width: 520px;">
                                     <p style="margin: 0 0 4px 0; font-weight: 600;">Sincronizar catálogo de maquinaria desde Excel</p>
-                                    <p class="text-muted" style="margin:0; font-size: 12px;">
+                                    <p class="text-muted" style="margin:0; font-size: 14.4px;">
                                         Sobrescribe la maquinaria guardada en la nube (Firebase) con el catálogo completo
                                         de 594 máquinas importado del Excel de departamentos. Úsalo solo si la nube tiene
                                         datos viejos o incompletos. Las órdenes de trabajo existentes no se eliminan.
@@ -559,10 +565,16 @@
                                     <label for="report-mechanic-select">Selecciona el mecánico:</label>
                                     <select id="report-mechanic-select" class="form-control select-dark">
                                         <option value="" disabled selected>Seleccione mecánico...</option>
-                                        <option value="Carlos Mendoza">Carlos Mendoza</option>
-                                        <option value="Juan R. Gómez">Juan R. Gómez</option>
-                                        <option value="Mario Aguilar">Mario Aguilar</option>
-                                        <option value="Roberto Ramos">Roberto Ramos</option>
+                                        <option value="Franklin Nuñez">Franklin Nuñez</option>
+                                        <option value="Edgar Martinez">Edgar Martinez</option>
+                                        <option value="Emerson">Emerson</option>
+                                        <option value="Jose Navarro">Jose Navarro</option>
+                                        <option value="Derson Flores">Derson Flores</option>
+                                        <option value="Ever Humaña">Ever Humaña</option>
+                                        <option value="Jose Montes">Jose Montes</option>
+                                        <option value="William Murillo">William Murillo</option>
+                                        <option value="Hector Fajardo">Hector Fajardo</option>
+                                        <option value="Jose Varela">Jose Varela</option>
                                     </select>
                                 </div>
                                 <button class="btn btn-primary" id="btn-generate-mechanic-report">
@@ -728,8 +740,8 @@
             <div class="modal-body">
                 <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding: 10px 0;">
                     <i data-lucide="package-search" style="width:42px; height:42px; color: var(--color-warning);"></i>
-                    <p style="font-size: 1.05em; font-weight: 600;">¿Se cambió algún repuesto en esta reparación?</p>
-                    <p style="color: var(--text-muted); font-size: 0.9em;">Si cambiaste alguna pieza, la descontaremos automáticamente del catálogo de piezas.</p>
+                    <p style="font-size: 1.26em; font-weight: 600;">¿Se cambió algún repuesto en esta reparación?</p>
+                    <p style="color: var(--text-muted); font-size: 1.08em;">Si cambiaste alguna pieza, la descontaremos automáticamente del catálogo de piezas.</p>
                 </div>
             </div>
             <div class="modal-footer" style="justify-content: center; gap: 14px;">
@@ -763,7 +775,7 @@
                 <div class="form-group" style="margin-top: 18px;">
                     <label>Piezas seleccionadas para esta orden:</label>
                     <div id="part-change-selected-list" class="part-selected-list">
-                        <p class="empty-selected-parts-msg" style="color: var(--text-muted); font-size: 0.9em;">Aún no has agregado ninguna pieza.</p>
+                        <p class="empty-selected-parts-msg" style="color: var(--text-muted); font-size: 1.08em;">Aún no has agregado ninguna pieza.</p>
                     </div>
                 </div>
             </div>
