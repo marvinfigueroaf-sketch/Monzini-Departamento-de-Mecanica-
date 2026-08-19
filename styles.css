@@ -692,6 +692,14 @@ label {
     height: 480px; /* Fixed height for dashboard layout parity */
 }
 
+.dashboard-card-auto {
+    height: auto;
+}
+
+.dashboard-card-auto .card-body {
+    overflow-y: visible;
+}
+
 .card-header {
     padding: 24px;
     border-bottom: 1px solid var(--border-color);
