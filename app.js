@@ -7311,6 +7311,14 @@ function populateDashboard() {
     document.getElementById("stat-compliance-rate").textContent = `${compliance}%`;
     document.getElementById("stat-resolved-count").textContent = `${closedCount} cerrados`;
 
+    // Machine Status Breakdown
+    const operandoCount = state.machinery.filter(m => m.status === "Operando").length;
+    const mantenimientoCount = state.machinery.filter(m => m.status === "Mantenimiento").length;
+    const fueraCount = state.machinery.filter(m => m.status === "Fuera de Servicio" || (m.status || "").toLowerCase().includes("fuera")).length;
+    document.getElementById("stat-status-operando").textContent = operandoCount;
+    document.getElementById("stat-status-mantenimiento").textContent = mantenimientoCount;
+    document.getElementById("stat-status-fuera").textContent = fueraCount;
+
     // Sidebar indicator update
     document.getElementById("orders-badge-count").textContent = activeAlerts + progressOrders;
 

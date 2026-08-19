@@ -546,6 +546,45 @@ label {
 -------------------------------------------------- */
 
 /* Stats Grid */
+.status-breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+.status-breakdown-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 12px 16px;
+    background-color: var(--bg-card-hover);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md, 10px);
+}
+
+.status-breakdown-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.status-breakdown-dot.dot-success { background-color: var(--color-success, #22c55e); }
+.status-breakdown-dot.dot-warning { background-color: var(--color-warning, #f59e0b); }
+.status-breakdown-dot.dot-danger { background-color: var(--color-danger, #ef4444); }
+
+.status-breakdown-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.status-breakdown-label {
+    font-size: 13.2px;
+    color: var(--text-secondary);
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

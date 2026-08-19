@@ -144,7 +144,7 @@
                             </div>
                             <div class="stat-data">
                                 <span class="stat-value" id="stat-total-machinery">0</span>
-                                <span class="stat-label">Maquinarias Activas</span>
+                                <span class="stat-label">Maquinarias Registradas</span>
                             </div>
                             <div class="stat-trend trend-neutral">
                                 <span>Inventariadas</span>
@@ -186,6 +186,33 @@
                             <div class="stat-trend trend-up">
                                 <i data-lucide="trending-up"></i>
                                 <span id="stat-resolved-count">0 cerrados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Machine Status Breakdown -->
+                    <div class="dashboard-card" style="margin-bottom: 24px;">
+                        <div class="card-header">
+                            <h3>Estado de la Maquinaria</h3>
+                            <p class="text-muted">Desglose de todas las máquinas registradas por estado operativo.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="status-breakdown-grid" id="status-breakdown-grid">
+                                <div class="status-breakdown-item">
+                                    <span class="status-breakdown-dot dot-success"></span>
+                                    <span class="status-breakdown-value" id="stat-status-operando">0</span>
+                                    <span class="status-breakdown-label">Operando</span>
+                                </div>
+                                <div class="status-breakdown-item">
+                                    <span class="status-breakdown-dot dot-warning"></span>
+                                    <span class="status-breakdown-value" id="stat-status-mantenimiento">0</span>
+                                    <span class="status-breakdown-label">Mantenimiento</span>
+                                </div>
+                                <div class="status-breakdown-item">
+                                    <span class="status-breakdown-dot dot-danger"></span>
+                                    <span class="status-breakdown-value" id="stat-status-fuera">0</span>
+                                    <span class="status-breakdown-label">Fuera de Servicio</span>
+                                </div>
                             </div>
                         </div>
                     </div>
