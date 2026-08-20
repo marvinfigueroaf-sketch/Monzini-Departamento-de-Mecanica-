@@ -2300,7 +2300,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-4",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2310,7 +2310,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "5406L5879",
         "name": "DURKOPP 540-100",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "540-100",
@@ -2320,7 +2320,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-5",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2330,7 +2330,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-6",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2340,7 +2340,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "219KOO2955",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2350,7 +2350,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-7",
         "name": "DURKOPP 540-100",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "540-100",
@@ -2360,7 +2360,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-8",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2370,7 +2370,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-9",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2380,7 +2380,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-10",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2390,7 +2390,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-11",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2400,7 +2400,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-12",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2410,7 +2410,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "5540606702",
         "name": "DURKOPP 546-100",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "546-100",
@@ -2420,7 +2420,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-13",
         "name": "SIRUBA LBH-1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH-1790",
@@ -2430,7 +2430,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "540613508",
         "name": "DURKOPP 546-100",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "546-100",
@@ -2440,7 +2440,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-14",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2450,7 +2450,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-15",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2460,7 +2460,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L0E600620",
         "name": "Juki LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH1790",
@@ -2470,7 +2470,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "219KOO2716",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2480,7 +2480,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2LOF100159",
         "name": "Juki LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH1790",
@@ -2490,7 +2490,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "170490450",
         "name": "JACK JKT1790BK",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790BK",
@@ -2500,7 +2500,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "LBH-1790",
         "name": "JACK JK.140996620",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "JACK",
         "model": "JK.140996620",
@@ -2510,7 +2510,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2LOL000148",
         "name": "JACK JKT1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790",
@@ -2520,7 +2520,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2LOM600502",
         "name": "Juki LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH1790",
@@ -2530,7 +2530,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "219KOO2681",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2540,7 +2540,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1460195362",
         "name": "JACK JKT1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790",
@@ -2550,7 +2550,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "176390516",
         "name": "JACK JKT1790",
-        "area": "Jose Navallo",
+        "area": "Jose Navarro",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790",
@@ -5570,7 +5570,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "MHOWK06119",
         "name": "juki MH380",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "MH380",
@@ -5580,7 +5580,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1735330",
         "name": "U. SPECIAL 56400",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56400",
@@ -5590,7 +5590,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "MHOVL02852",
         "name": "juki MH380",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "MH380",
@@ -5600,7 +5600,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8MOKA027285",
         "name": "juki M06716",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "M06716",
@@ -5610,7 +5610,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1113662",
         "name": "U. SPECIAL 56300",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
@@ -5620,7 +5620,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1389794",
         "name": "U. SPECIAL 56400",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56400",
@@ -5630,7 +5630,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "MHOVA02173",
         "name": "juki MH380",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "MH380",
@@ -5640,7 +5640,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1606916",
         "name": "U. SPECIAL 56300",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
@@ -5650,7 +5650,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L1DH02003",
         "name": "juki LK1903A",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "LK1903A",
@@ -5660,7 +5660,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L1DF01193",
         "name": "juki LK1903A",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "LK1903A",
@@ -5670,7 +5670,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "19083000699",
         "name": "jack JKI9270D",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "jack",
         "model": "JKI9270D",
@@ -5680,7 +5680,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "504773-2",
         "name": "juki DLN9410-6",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN9410-6",
@@ -5690,7 +5690,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "17042011775",
         "name": "jack 58450-G",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "jack",
         "model": "58450-G",
@@ -5700,7 +5700,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2A3ZF00142",
         "name": "juki AMS-210E",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "AMS-210E",
@@ -5710,7 +5710,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "18101027927",
         "name": "jack 58450-J",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "jack",
         "model": "58450-J",
@@ -5720,7 +5720,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DLNWC16158",
         "name": "juki DLN5410-6",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN5410-6",
@@ -5730,7 +5730,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "X8915159",
         "name": "siruba DL7200BM1",
-        "area": "Jose Montes (fuera de uso)",
+        "area": "Fuera de uso",
         "status": "Operando",
         "brand": "siruba",
         "model": "DL7200BM1",
