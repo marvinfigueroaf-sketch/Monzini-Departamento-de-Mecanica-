@@ -320,7 +320,7 @@
                                     </div>
                                     <div class="scanner-offline-message" id="scanner-camera-error" style="display: none;">
                                         <i data-lucide="camera-off" class="text-danger"></i>
-                                        <p>No se pudo acceder a la cámara. Por favor otorga permisos o usa la simulación abajo.</p>
+                                        <p>No se pudo acceder a la cámara. Por favor otorga permisos e intenta de nuevo.</p>
                                     </div>
                                 </div>
                                 
@@ -342,30 +342,6 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Manual Simulator Panel -->
-                        <div class="scanner-card scanner-simulator">
-                            <div class="scanner-header">
-                                <h2>Simulador de Lector de QR</h2>
-                                <p class="text-muted">Si no tienes cámara o códigos impresos, simula el escaneo seleccionando una máquina del catálogo.</p>
-                            </div>
-                            <div class="scanner-body">
-                                <div class="form-group">
-                                    <label for="simulated-machine-select">Seleccionar Máquina para Simular Escaneo:</label>
-                                    <select id="simulated-machine-select" class="form-control select-dark">
-                                        <!-- Injected dynamically -->
-                                    </select>
-                                </div>
-                                <div class="barcode-preview-box" id="simulated-barcode-display">
-                                    <!-- QR code will be drawn here -->
-                                    <div id="simulated-qr-canvas"></div>
-                                </div>
-                                <button class="btn btn-warning btn-block" id="trigger-simulated-scan-btn">
-                                    <i data-lucide="scan"></i>
-                                    <span>Simular Escaneo de Código</span>
-                                </button>
                             </div>
                         </div>
                     </div>

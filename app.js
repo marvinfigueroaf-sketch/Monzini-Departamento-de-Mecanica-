@@ -7884,36 +7884,7 @@ function populateWorkOrders() {
 
     if (selectedVal) selectMachine.value = selectedVal;
 
-    // Simulator Select Seeding
-    const selectSim = document.getElementById("simulated-machine-select");
-    selectSim.innerHTML = "";
-    state.machinery.forEach(m => {
-        const opt = document.createElement("option");
-        opt.value = m.id;
-        opt.textContent = `${m.name} (${m.id})`;
-        selectSim.appendChild(opt);
-    });
-
-    updateSimulatedBarcode();
     lucide.createIcons();
-}
-
-function updateSimulatedBarcode() {
-    const val = document.getElementById("simulated-machine-select").value;
-    const container = document.getElementById("simulated-qr-canvas");
-    if (container) container.innerHTML = "";
-    if (val && container && typeof QRCode !== "undefined") {
-        new QRCode(container, {
-            text: val,
-            width: 160,
-            height: 160,
-            colorDark: "#0b111e",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.M
-        });
-    } else if (val && container) {
-        console.warn("La librería QRCode no está disponible. Verifica tu conexión a internet.");
-    }
 }
 
 // --- CIERRE DE ORDEN CON CAMBIO DE REPUESTO ---
@@ -8644,7 +8615,7 @@ function renderPageContent(pageId) {
         populateWorkOrders();
     } else if (pageId === "scanner") {
         initCameraScanner();
-        populateWorkOrders(); // Needed to load simulated selector too
+        populateWorkOrders();
     } else if (pageId === "reports") {
         checkReportsLock();
     }
@@ -8935,21 +8906,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("stop-camera-btn").addEventListener("click", stopScanning);
     document.getElementById("btn-close-scanner-modal").addEventListener("click", () => closeModal("scanner-success-modal"));
     document.getElementById("btn-scanner-cancel").addEventListener("click", () => closeModal("scanner-success-modal"));
-
-    // Simulator handler
-    document.getElementById("simulated-machine-select").addEventListener("change", updateSimulatedBarcode);
-    document.getElementById("trigger-simulated-scan-btn").addEventListener("click", () => {
-        const val = document.getElementById("simulated-machine-select").value;
-        if (val) {
-            // Flash effect simulator
-            const wrapper = document.querySelector(".scanner-simulator");
-            wrapper.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
-            setTimeout(() => {
-                wrapper.style.backgroundColor = "var(--bg-card)";
-                handleBarcodeFound(val);
-            }, 300);
-        }
-    });
 
     // 7. Order Action Modal Actions
     document.getElementById("btn-close-modal").addEventListener("click", () => closeModal("observations-modal"));

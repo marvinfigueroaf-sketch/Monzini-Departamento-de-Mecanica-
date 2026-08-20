@@ -2005,6 +2005,22 @@ label {
    PRINT ENGINE STYLES (Excel & Reports print)
 -------------------------------------------------- */
 @media print {
+    html, body {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Anula el layout de app de una sola pantalla (altura fija + overflow oculto)
+       que recortaba el reporte cuando tenía más contenido del que cabía en 100vh */
+    .app-container,
+    .main-content,
+    .content-body {
+        display: block !important;
+        height: auto !important;
+        width: auto !important;
+        overflow: visible !important;
+    }
+
     body * {
         visibility: hidden;
     }
@@ -2016,10 +2032,13 @@ label {
     }
     
     #page-reports {
-        position: absolute;
-        left: 0;
-        top: 0;
+        display: block !important;
+        position: static !important;
+        left: auto;
+        top: auto;
         width: 100%;
+        height: auto !important;
+        overflow: visible !important;
         background: #ffffff !important;
         color: #000000 !important;
     }
