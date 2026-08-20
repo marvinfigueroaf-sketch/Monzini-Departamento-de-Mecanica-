@@ -1060,10 +1060,8 @@ label {
    BARCODE SCANNER PAGE STYLES
 -------------------------------------------------- */
 .scanner-layout {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 32px;
-    align-items: flex-start;
+    display: flex;
+    justify-content: center;
 }
 
 .scanner-card {
@@ -1072,6 +1070,8 @@ label {
     border-radius: var(--radius-lg);
     padding: 32px;
     backdrop-filter: blur(8px);
+    width: 100%;
+    max-width: 820px; /* Tarjeta centrada y ~20% más grande, sin depender de la columna del simulador (eliminado) */
 }
 
 .scanner-header {
@@ -1923,10 +1923,6 @@ label {
     }
     
     .orders-layout {
-        grid-template-columns: 1fr;
-    }
-    
-    .scanner-layout {
         grid-template-columns: 1fr;
     }
     
