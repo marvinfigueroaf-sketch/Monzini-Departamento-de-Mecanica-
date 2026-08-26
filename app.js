@@ -18,6 +18,19 @@ const FIREBASE_API_KEY = "AIzaSyD1a7s4tZq9baS_aXVgsoNeq26r7XULO-I";
 let firebaseIdToken = null;
 let firebaseAuthReady = null;
 
+// --- CONFIGURACIÓN DE ALERTAS POR TELEGRAM ---
+// 1. Abre Telegram, busca "@BotFather", envía /newbot y sigue los pasos para crear tu bot.
+// 2. BotFather te dará un TOKEN parecido a: 123456789:AAExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// 3. Pega ese token aquí abajo, reemplazando el texto entre comillas.
+// Si se deja vacío (""), las alertas de Telegram quedan desactivadas y el resto de la app funciona igual.
+const TELEGRAM_BOT_TOKEN = "";
+
+// Lista de mecánicos del taller (debe coincidir con las opciones de los <select> en index.html)
+const MECHANIC_LIST = [
+    "Franklin Nuñez", "Edgar Martinez", "Emerson", "Jose Navarro", "Derson Flores",
+    "Ever Humaña", "Jose Montes", "William Murillo", "Hector Fajardo", "Jose Varela"
+];
+
 function initFirebaseAuth() {
     if (!CONFIG_DATABASE_URL || !FIREBASE_API_KEY) {
         firebaseAuthReady = Promise.resolve(null);
@@ -9307,6 +9320,7 @@ let state = {
     machinery: JSON.parse(localStorage.getItem("monzini_machinery")) || DEFAULT_MACHINERY,
     orders: JSON.parse(localStorage.getItem("monzini_orders")) || DEFAULT_ORDERS,
     parts: JSON.parse(localStorage.getItem("monzini_parts")) || DEFAULT_PARTS,
+    mechanicTelegram: JSON.parse(localStorage.getItem("monzini_mechanic_telegram")) || {},
     unlockedReports: false
 };
 
@@ -9342,6 +9356,43 @@ function saveOrders() {
 function saveParts() {
     localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
     syncStateToCloud();
+}
+
+function saveMechanicTelegram() {
+    localStorage.setItem("monzini_mechanic_telegram", JSON.stringify(state.mechanicTelegram));
+    syncStateToCloud();
+}
+
+// Envía una alerta de incidencia por Telegram al mecánico asignado.
+// No bloquea la interfaz: si falla (bot no configurado, sin chat ID, sin internet), solo lo avisa en consola.
+async function sendTelegramAlert(mechanicName, mensaje) {
+    if (!TELEGRAM_BOT_TOKEN) return; // Alertas de Telegram desactivadas (token vacío)
+    if (!mechanicName) return;
+
+    const chatId = state.mechanicTelegram && state.mechanicTelegram[mechanicName];
+    if (!chatId) {
+        console.warn(`No hay Chat ID de Telegram configurado para "${mechanicName}". La alerta no se envió.`);
+        return;
+    }
+
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: mensaje,
+                parse_mode: "HTML"
+            })
+        });
+        if (!response.ok) {
+            const errText = await response.text();
+            console.error("Error enviando alerta de Telegram:", errText);
+        }
+    } catch (err) {
+        console.error("Error de red enviando alerta de Telegram:", err);
+    }
 }
 
 // Actualiza el indicador visual de la barra superior
@@ -9389,11 +9440,13 @@ async function loadStateFromCloud() {
             state.machinery = data.machinery || [];
             state.orders = data.orders || [];
             state.parts = data.parts || DEFAULT_PARTS;
+            state.mechanicTelegram = data.mechanicTelegram || {};
             
             // Sincronizar respaldo en local storage
             localStorage.setItem("monzini_machinery", JSON.stringify(state.machinery));
             localStorage.setItem("monzini_orders", JSON.stringify(state.orders));
             localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
+            localStorage.setItem("monzini_mechanic_telegram", JSON.stringify(state.mechanicTelegram));
             updateSyncBadge("success", "Sincronizado");
         } else {
             // Si la base de datos de la nube está vacía, subir el estado local actual solo si hay datos,
@@ -9432,7 +9485,8 @@ async function syncStateToCloud() {
             body: JSON.stringify({
                 machinery: state.machinery,
                 orders: state.orders,
-                parts: state.parts
+                parts: state.parts,
+                mechanicTelegram: state.mechanicTelegram || {}
             })
         });
 
@@ -11200,6 +11254,23 @@ function renderPageContent(pageId) {
     }
 }
 
+function populateTelegramConfig() {
+    const container = document.getElementById("telegram-mechanic-config-list");
+    if (!container) return;
+    if (!state.mechanicTelegram) state.mechanicTelegram = {};
+
+    container.innerHTML = MECHANIC_LIST.map(name => {
+        const safeId = `telegram-chatid-${name.replace(/\s+/g, "_")}`;
+        const currentVal = state.mechanicTelegram[name] || "";
+        return `
+            <div class="telegram-config-item">
+                <label for="${safeId}">${name}</label>
+                <input type="text" id="${safeId}" class="form-control input-dark" placeholder="Chat ID de Telegram (ej. 123456789)" value="${currentVal}">
+            </div>
+        `;
+    }).join("");
+}
+
 function checkReportsLock() {
     const lockScreen = document.getElementById("reports-lock-screen");
     const reportsDashboard = document.getElementById("reports-dashboard");
@@ -11209,6 +11280,7 @@ function checkReportsLock() {
         reportsDashboard.style.display = "block";
         generateReportTable();
         populateMachineReportSelect();
+        populateTelegramConfig();
     } else {
         lockScreen.style.display = "flex";
         reportsDashboard.style.display = "none";
@@ -11467,6 +11539,21 @@ document.addEventListener("DOMContentLoaded", () => {
         saveOrders();
         e.target.reset();
 
+        // Alerta automática por Telegram al mecánico asignado (si está configurado)
+        if (newOrder.mechanic) {
+            const machineName = machine ? (machine.name || machine.id) : machineId;
+            const machineDept = machine ? (machine.area || "") : "";
+            const mensaje =
+                `🔧 <b>Nueva incidencia asignada</b>\n\n` +
+                `<b>Orden:</b> ${newOrder.id}\n` +
+                `<b>Máquina:</b> ${machineName}\n` +
+                (machineDept ? `<b>Departamento:</b> ${machineDept}\n` : "") +
+                `<b>Prioridad:</b> ${newOrder.priority}\n` +
+                `<b>Descripción:</b> ${newOrder.description || "Sin descripción"}\n\n` +
+                `Ingresa a la app de Monzini para ver el detalle completo.`;
+            sendTelegramAlert(newOrder.mechanic, mensaje);
+        }
+
         alert(`Orden ${newOrder.id} levantada exitosamente.`);
         navigateToPage("dashboard");
     });
@@ -11686,6 +11773,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.getElementById("btn-print-report").addEventListener("click", () => {
         window.print();
+    });
+
+    // Configuración de Alertas por Telegram
+    document.getElementById("btn-save-telegram-config").addEventListener("click", () => {
+        if (!state.mechanicTelegram) state.mechanicTelegram = {};
+        MECHANIC_LIST.forEach(name => {
+            const input = document.getElementById(`telegram-chatid-${name.replace(/\s+/g, "_")}`);
+            if (input) {
+                const val = input.value.trim();
+                if (val) {
+                    state.mechanicTelegram[name] = val;
+                } else {
+                    delete state.mechanicTelegram[name];
+                }
+            }
+        });
+        saveMechanicTelegram();
+        alert("✅ Configuración de Telegram guardada y sincronizada.");
     });
 
     // Admin: forzar la sobreescritura de la maquinaria en la nube con el catálogo del Excel

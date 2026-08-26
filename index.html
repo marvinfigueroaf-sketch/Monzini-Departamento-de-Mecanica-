@@ -538,6 +538,27 @@
                             </div>
                         </div>
 
+                        <!-- Configuración de Alertas por Telegram -->
+                        <div class="report-table-card" style="margin-bottom: 20px; border-left: 3px solid #26A5E4;">
+                            <div class="card-header">
+                                <h3><i data-lucide="send"></i> Alertas de Incidencias por Telegram</h3>
+                            </div>
+                            <div style="padding: 16px 20px;">
+                                <p class="text-muted" style="margin: 0 0 16px 0;">
+                                    Asigna el <strong>Chat ID</strong> de Telegram de cada mecánico para que reciba una alerta automática
+                                    apenas se le asigne una nueva orden de trabajo. Si un mecánico no tiene Chat ID configurado, simplemente
+                                    no recibirá la alerta (el resto de la app sigue funcionando igual).
+                                </p>
+                                <div id="telegram-mechanic-config-list" class="telegram-config-grid">
+                                    <!-- Se llena dinámicamente por JS -->
+                                </div>
+                                <button class="btn btn-primary" id="btn-save-telegram-config" style="margin-top: 16px;">
+                                    <i data-lucide="save"></i>
+                                    <span>Guardar Configuración de Telegram</span>
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Reporte de Gastos por Máquina (Piezas Cambiadas) -->
                         <div class="report-table-card" style="margin-bottom: 20px; border-left: 3px solid var(--color-cyan, #22d3ee);">
                             <div class="card-header">

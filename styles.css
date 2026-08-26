@@ -547,6 +547,28 @@ label {
 -------------------------------------------------- */
 
 /* Stats Grid */
+.telegram-config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+}
+
+.telegram-config-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
+    background-color: var(--bg-card-hover);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md, 10px);
+}
+
+.telegram-config-item label {
+    font-size: 13.2px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
 .status-breakdown-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
