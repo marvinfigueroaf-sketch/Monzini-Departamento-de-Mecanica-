@@ -28,7 +28,7 @@ const TELEGRAM_BOT_TOKEN = "8796194319:AAGIaLqTgpjlx-e7d7ozTQZEi5nyA2_jUiw";
 // Lista de mecánicos del taller (debe coincidir con las opciones de los <select> en index.html)
 const MECHANIC_LIST = [
     "Franklin Nuñez", "Edgar Martinez", "Emerson", "Jose Navarro", "Derson Flores",
-    "Ever Humaña", "Jose Montes", "William Murillo", "Hector Fajardo", "Jose Varela"
+    "Ever Humaña", "Jose Montes", "William Murillo", "Hector Fajardo", "Denis Rodriguez"
 ];
 
 function initFirebaseAuth() {
