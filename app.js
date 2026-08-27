@@ -23,7 +23,7 @@ let firebaseAuthReady = null;
 // 2. BotFather te dará un TOKEN parecido a: 123456789:AAExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 // 3. Pega ese token aquí abajo, reemplazando el texto entre comillas.
 // Si se deja vacío (""), las alertas de Telegram quedan desactivadas y el resto de la app funciona igual.
-const TELEGRAM_BOT_TOKEN = "";
+const TELEGRAM_BOT_TOKEN = "8796194319:AAGIaLqTgpjlx-e7d7ozTQZEi5nyA2_jUiw";
 
 // Lista de mecánicos del taller (debe coincidir con las opciones de los <select> en index.html)
 const MECHANIC_LIST = [
