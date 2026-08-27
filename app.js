@@ -9321,6 +9321,7 @@ let state = {
     orders: JSON.parse(localStorage.getItem("monzini_orders")) || DEFAULT_ORDERS,
     parts: JSON.parse(localStorage.getItem("monzini_parts")) || DEFAULT_PARTS,
     mechanicTelegram: JSON.parse(localStorage.getItem("monzini_mechanic_telegram")) || {},
+    jefeTelegramChatId: localStorage.getItem("monzini_jefe_telegram") || "",
     unlockedReports: false
 };
 
@@ -9363,17 +9364,16 @@ function saveMechanicTelegram() {
     syncStateToCloud();
 }
 
-// Envía una alerta de incidencia por Telegram al mecánico asignado.
-// No bloquea la interfaz: si falla (bot no configurado, sin chat ID, sin internet), solo lo avisa en consola.
-async function sendTelegramAlert(mechanicName, mensaje) {
-    if (!TELEGRAM_BOT_TOKEN) return; // Alertas de Telegram desactivadas (token vacío)
-    if (!mechanicName) return;
+function saveJefeTelegram() {
+    localStorage.setItem("monzini_jefe_telegram", state.jefeTelegramChatId || "");
+    syncStateToCloud();
+}
 
-    const chatId = state.mechanicTelegram && state.mechanicTelegram[mechanicName];
-    if (!chatId) {
-        console.warn(`No hay Chat ID de Telegram configurado para "${mechanicName}". La alerta no se envió.`);
-        return;
-    }
+// Envía un mensaje de Telegram a un chat_id específico. Función de bajo nivel, reutilizable.
+// No bloquea la interfaz: si falla (bot no configurado, sin chat ID, sin internet), solo lo avisa en consola.
+async function sendTelegramMessage(chatId, mensaje) {
+    if (!TELEGRAM_BOT_TOKEN) return; // Alertas de Telegram desactivadas (token vacío)
+    if (!chatId) return;
 
     try {
         const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -9388,10 +9388,30 @@ async function sendTelegramAlert(mechanicName, mensaje) {
         });
         if (!response.ok) {
             const errText = await response.text();
-            console.error("Error enviando alerta de Telegram:", errText);
+            console.error("Error enviando mensaje de Telegram:", errText);
         }
     } catch (err) {
-        console.error("Error de red enviando alerta de Telegram:", err);
+        console.error("Error de red enviando mensaje de Telegram:", err);
+    }
+}
+
+// Envía una alerta de incidencia por Telegram al mecánico asignado, y además
+// manda una copia de respaldo al Chat ID del jefe (si está configurado).
+async function sendTelegramAlert(mechanicName, mensaje) {
+    if (!TELEGRAM_BOT_TOKEN) return; // Alertas de Telegram desactivadas (token vacío)
+    if (!mechanicName) return;
+
+    const chatId = state.mechanicTelegram && state.mechanicTelegram[mechanicName];
+    if (!chatId) {
+        console.warn(`No hay Chat ID de Telegram configurado para "${mechanicName}". La alerta no se envió.`);
+    } else {
+        sendTelegramMessage(chatId, mensaje);
+    }
+
+    // Copia de respaldo para el jefe, siempre que tenga su Chat ID configurado
+    if (state.jefeTelegramChatId) {
+        const mensajeCopia = `📋 <b>Copia de respaldo</b> (mecánico: ${mechanicName})\n\n${mensaje}`;
+        sendTelegramMessage(state.jefeTelegramChatId, mensajeCopia);
     }
 }
 
@@ -9441,12 +9461,14 @@ async function loadStateFromCloud() {
             state.orders = data.orders || [];
             state.parts = data.parts || DEFAULT_PARTS;
             state.mechanicTelegram = data.mechanicTelegram || {};
+            state.jefeTelegramChatId = data.jefeTelegramChatId || "";
             
             // Sincronizar respaldo en local storage
             localStorage.setItem("monzini_machinery", JSON.stringify(state.machinery));
             localStorage.setItem("monzini_orders", JSON.stringify(state.orders));
             localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
             localStorage.setItem("monzini_mechanic_telegram", JSON.stringify(state.mechanicTelegram));
+            localStorage.setItem("monzini_jefe_telegram", state.jefeTelegramChatId);
             updateSyncBadge("success", "Sincronizado");
         } else {
             // Si la base de datos de la nube está vacía, subir el estado local actual solo si hay datos,
@@ -9486,7 +9508,8 @@ async function syncStateToCloud() {
                 machinery: state.machinery,
                 orders: state.orders,
                 parts: state.parts,
-                mechanicTelegram: state.mechanicTelegram || {}
+                mechanicTelegram: state.mechanicTelegram || {},
+                jefeTelegramChatId: state.jefeTelegramChatId || ""
             })
         });
 
@@ -11259,6 +11282,9 @@ function populateTelegramConfig() {
     if (!container) return;
     if (!state.mechanicTelegram) state.mechanicTelegram = {};
 
+    const jefeInput = document.getElementById("telegram-chatid-jefe");
+    if (jefeInput) jefeInput.value = state.jefeTelegramChatId || "";
+
     container.innerHTML = MECHANIC_LIST.map(name => {
         const safeId = `telegram-chatid-${name.replace(/\s+/g, "_")}`;
         const currentVal = state.mechanicTelegram[name] || "";
@@ -11790,6 +11816,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         saveMechanicTelegram();
+
+        const jefeInput = document.getElementById("telegram-chatid-jefe");
+        if (jefeInput) {
+            state.jefeTelegramChatId = jefeInput.value.trim();
+            saveJefeTelegram();
+        }
+
         alert("✅ Configuración de Telegram guardada y sincronizada.");
     });
 
