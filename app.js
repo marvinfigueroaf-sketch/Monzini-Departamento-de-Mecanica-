@@ -98,6 +98,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-55",
         "station": "Frente izquierdo",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -118,6 +119,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "LBH-17905",
         "station": "Frente izquierdo",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -128,6 +130,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "Frente izquierdo",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -138,6 +141,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "AGF-E",
         "station": "Frente izquierdo",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -148,6 +152,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Singer",
         "model": "591",
         "station": "Frente Derecho",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -178,6 +183,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "AGF-E",
         "station": "Frente Derecho",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -188,6 +194,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Frente Derecho",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -218,6 +225,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Durkooppader",
         "model": "261",
         "station": "Cuello",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -238,6 +246,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Cuello",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -278,6 +287,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Cuello",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -288,6 +298,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Willcoy Gibbs",
         "model": "515-E32-430",
         "station": "Cuello",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -298,6 +309,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-55",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -308,6 +320,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLL-9000B-55",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -318,6 +331,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-5410-6",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -348,6 +362,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-55",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -358,6 +373,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-5550-6",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -368,6 +384,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Epa",
         "model": "203",
         "station": "Mangas",
+        "operationType": "fusionar mangas",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -398,6 +415,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Ensamble",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -448,6 +466,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Ensamble",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -478,6 +497,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000C",
         "station": "Ensamble",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -488,6 +508,7 @@ const DEFAULT_MACHINERY = [
         "brand": "siruba",
         "model": "DL7200BMI-16",
         "station": "Ensamble",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -498,6 +519,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Ensamble",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -508,6 +530,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Ensamble",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -518,6 +541,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "Ensamble",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -558,6 +582,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "LK-1900B-55",
         "station": "Ensamble",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -568,6 +593,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "LBH-17905",
         "station": "Ensamble",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -578,6 +604,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "371U-2",
         "station": "Ensamble",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -598,12 +625,13 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "DDL-8700B-7",
         "station": "Ensamble",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "BG1833615",
         "name": "U. SPECIAL 56500",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56500",
@@ -613,27 +641,29 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1289582",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA L.R",
+        "operationType": "cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1184351",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA L.R",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "120288",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
@@ -643,47 +673,51 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1169578",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA L.R",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1267625",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA L.R",
+        "operationType": "cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1742855",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA L.R",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1771040",
         "name": "U. SPECIAL 56300",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA L.R",
+        "operationType": "cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "586961",
         "name": "juki DDL-5550-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL-5550-6",
@@ -693,17 +727,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "T11311",
         "name": "juki DDL-5550-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL-5550-6",
         "station": "ESPALDA L.R",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "80BMF02066",
         "name": "Juki DDL9000C",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL9000C",
@@ -713,7 +748,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DDMF01948",
         "name": "Juki DDL9000C",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL9000C",
@@ -723,7 +758,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DDMF02063",
         "name": "Juki DDL9000C",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL9000C",
@@ -733,37 +768,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DDLTM11230",
         "name": "juki DDL-5550-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL-5550-6",
         "station": "ESPALDA L.R",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "DDLTM11216",
         "name": "juki DDL-5550-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL-5550-6",
         "station": "ESPALDA L.R",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "DDLUH15992",
         "name": "Juki DDL-5550-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL-5550-6",
         "station": "ESPALDA L.R",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DDGG12294",
         "name": "Juki DDL9000C",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL9000C",
@@ -773,17 +811,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2D3EH00353",
         "name": "Juki DDL9000A",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL9000A",
         "station": "ESPALDA L.R",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "DLNUHOG483",
         "name": "Juki DDLN-5410-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDLN-5410-6",
@@ -793,27 +832,29 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2D3MF00135",
         "name": "Juki DLN-9010A-55",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DLN-9010A-55",
         "station": "ESPALDA L.R",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "X89015176",
         "name": "SIRUBA DL7200",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "DL7200",
         "station": "ESPALDA L.R",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "DLNTHO1158",
         "name": "juki DLN5410-6",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN5410-6",
@@ -823,7 +864,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "D26158495",
         "name": "DURKOPP 261",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "261",
@@ -833,7 +874,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2615681399",
         "name": "DURKOPP 261",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "261",
@@ -843,7 +884,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "920406454",
         "name": "SIRUBA DL7200BMI-16",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "DL7200BMI-16",
@@ -853,7 +894,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "9204016154",
         "name": "SIRUBA DL7200BMI-16",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "DL7200BMI-16",
@@ -863,7 +904,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "5410-6",
         "name": "Juki 585104",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "585104",
@@ -873,17 +914,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "261568414",
         "name": "DURKOPP 261",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "261",
         "station": "ESPALDA L.R",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8D0409183",
         "name": "juki DDL900BB",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL900BB",
@@ -893,7 +935,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "92YDO6434",
         "name": "Juki DL7200",
-        "area": "Derson Flores",
+        "area": "Espaldas",
         "status": "Operando",
         "brand": "Juki",
         "model": "DL7200",
@@ -918,6 +960,7 @@ const DEFAULT_MACHINERY = [
         "brand": "DURKOPP ADLER",
         "model": "261",
         "station": "PUÑO HUGO",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -928,6 +971,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "PUÑO HUGO",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -948,6 +992,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "EMSAMBLE HUGO",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -968,6 +1013,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN901055",
         "station": "EMSAMBLE HUGO",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -998,6 +1044,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "747LD-514M",
         "station": "EMSAMBLE HUGO",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1028,6 +1075,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NMI-16",
         "station": "EMSAMBLE HUGO",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1038,6 +1086,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NMI-16",
         "station": "EMSAMBLE HUGO",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1048,6 +1097,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "EMSAMBLE HUGO",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1198,6 +1248,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DDL9000B-55",
         "station": "CUELLOS",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1208,6 +1259,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "CUELLOS",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1218,6 +1270,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DLN-7200-NMI-16",
         "station": "CUELLOS",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1258,6 +1311,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "CUELLOS",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1278,6 +1332,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "LK1903BN",
         "station": "FRENTES",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1298,6 +1353,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DDL9000C",
         "station": "FRENTES",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1308,6 +1364,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NMI-16",
         "station": "CAMBIO DE MAQ.",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1358,6 +1415,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "757KT-516M",
         "station": "ESPALDAS",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1398,6 +1456,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN9010A-55",
         "station": "MANGAS DE HUGO",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1418,6 +1477,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DDL9000B-55",
         "station": "MANGAS DE HUGO",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1498,6 +1558,7 @@ const DEFAULT_MACHINERY = [
         "brand": "N/D",
         "model": "N/D",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1528,6 +1589,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-52110-6",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1568,6 +1630,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1588,6 +1651,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-5410-6",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1608,6 +1672,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Brother",
         "model": "DLN-9010-ASS",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1628,6 +1693,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DL7200-BM1",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1668,6 +1734,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN5410-6",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1698,6 +1765,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Cuellos",
+        "operationType": "Sobre/cost. cuello",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1728,6 +1796,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "LK-1903B-55",
         "station": "Cuellos",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1738,6 +1807,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "LBH5-17905",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1758,6 +1828,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1768,6 +1839,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010",
         "station": "Cuellos",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1828,6 +1900,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "CUELLOS Y PUÑOS",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1848,6 +1921,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN5410-6",
         "station": "CUELLOS Y PUÑOS",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1858,6 +1932,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "LK-1903A-55",
         "station": "CUELLOS Y PUÑOS",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1888,6 +1963,7 @@ const DEFAULT_MACHINERY = [
         "brand": "WILCOX",
         "model": "515-E32-420",
         "station": "CUELLOS Y PUÑOS",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1908,6 +1984,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ESPALDA",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1938,6 +2015,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7000-NMI-13",
         "station": "FRENTE DERECHO",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1948,6 +2026,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "FRENTE DERECHO",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1958,6 +2037,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "FRENTE DERECHO",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -1988,6 +2068,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "54400",
         "station": "FRENTE IZQUIERO",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2008,6 +2089,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "LBH17905",
         "station": "FRENTE IZQUIERO",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2038,6 +2120,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "2BH1790-5",
         "station": "MANGA",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2058,6 +2141,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN-9010A-55",
         "station": "MANGA",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2078,6 +2162,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DDL-5550-6",
         "station": "MANGA",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2088,6 +2173,7 @@ const DEFAULT_MACHINERY = [
         "brand": "BROTHER",
         "model": "MA4-V92",
         "station": "ENSAMBLE",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2108,6 +2194,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN9010A-55",
         "station": "ENSAMBLE 1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2138,6 +2225,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56400",
         "station": "ENSAMBLE 1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2178,6 +2266,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "ENSAMBLE 1",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2188,6 +2277,7 @@ const DEFAULT_MACHINERY = [
         "brand": "WILLCOX",
         "model": "515-E32",
         "station": "ENSAMBLE 1",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2198,6 +2288,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "M06716",
         "station": "ENSAMBLE 2",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2218,6 +2309,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN9010A-55",
         "station": "ENSAMBLE 2",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2288,6 +2380,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "LK1903-55",
         "station": "ENSAMBLE 2",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2313,7 +2406,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-4",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2323,7 +2416,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "5406L5879",
         "name": "DURKOPP 540-100",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "540-100",
@@ -2333,7 +2426,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-5",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2343,7 +2436,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-6",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2353,7 +2446,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "219KOO2955",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2363,7 +2456,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-7",
         "name": "DURKOPP 540-100",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "540-100",
@@ -2373,7 +2466,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-8",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2383,7 +2476,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-9",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2393,7 +2486,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-10",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2403,7 +2496,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-11",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2413,7 +2506,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-12",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2423,7 +2516,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "5540606702",
         "name": "DURKOPP 546-100",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "546-100",
@@ -2433,7 +2526,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-13",
         "name": "SIRUBA LBH-1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH-1790",
@@ -2443,7 +2536,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "540613508",
         "name": "DURKOPP 546-100",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP",
         "model": "546-100",
@@ -2453,7 +2546,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-14",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2463,7 +2556,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "SINSERIE-15",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2473,7 +2566,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L0E600620",
         "name": "Juki LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH1790",
@@ -2483,7 +2576,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "219KOO2716",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2493,7 +2586,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2LOF100159",
         "name": "Juki LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH1790",
@@ -2503,7 +2596,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "170490450",
         "name": "JACK JKT1790BK",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790BK",
@@ -2513,7 +2606,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "LBH-1790",
         "name": "JACK JK.140996620",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "JK.140996620",
@@ -2523,7 +2616,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2LOL000148",
         "name": "JACK JKT1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790",
@@ -2533,7 +2626,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2LOM600502",
         "name": "Juki LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH1790",
@@ -2543,7 +2636,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "219KOO2681",
         "name": "SIRUBA LBH1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "LBH1790",
@@ -2553,7 +2646,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1460195362",
         "name": "JACK JKT1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790",
@@ -2563,7 +2656,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "176390516",
         "name": "JACK JKT1790",
-        "area": "Jose Navarro",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "JKT1790",
@@ -2573,7 +2666,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DLNUL06513",
         "name": "juki DLN-5410-6",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN-5410-6",
@@ -2583,47 +2676,51 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DLNAB36570",
         "name": "juki DLN-5410-7",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN-5410-7",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "X89018139",
         "name": "siruba DL7200",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "siruba",
         "model": "DL7200",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "919Y021308",
         "name": "siruba DL7200",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "siruba",
         "model": "DL7200",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "DLNUJ07127",
         "name": "juki DLN5410-6",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN5410-6",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "505749",
         "name": "juki DLN5410-6",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN5410-6",
@@ -2633,37 +2730,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DLNWC16144",
         "name": "juki DLN5410-6",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DLN5410-6",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "920Y003814",
         "name": "siruba DL7200",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "siruba",
         "model": "DL7200",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "MHOWB03708",
         "name": "juki MH380",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "MH380",
         "station": "Tomas pink",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1589794",
         "name": "u. special 56400",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "u. special",
         "model": "56400",
@@ -2673,47 +2773,51 @@ const DEFAULT_MACHINERY = [
     {
         "id": "1769336",
         "name": "u. special 56400",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "u. special",
         "model": "56400",
         "station": "Tomas pink",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOFJ21531",
         "name": "Juki DDL9000",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL9000",
         "station": "Tomas pink",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DONF02456",
         "name": "Juki DDL8000A",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL8000A",
         "station": "Tomas pink",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2D3JL00106",
         "name": "juki 9010",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "9010",
         "station": "Tomas pink",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOHH061221",
         "name": "juki DDL9000",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL9000",
@@ -2723,7 +2827,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "X890150921",
         "name": "siruba DL7200",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "siruba",
         "model": "DL7200",
@@ -2733,7 +2837,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DOF52696",
         "name": "juki DDL9000",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "DDL9000",
@@ -2743,7 +2847,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DL7200",
         "name": "siruba 92070161156",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "siruba",
         "model": "92070161156",
@@ -2753,17 +2857,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "X89018117",
         "name": "siruba DL7200",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "siruba",
         "model": "DL7200",
         "station": "Tomas pink",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1761",
         "name": "juki 2207451653",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "2207451653",
@@ -2773,7 +2878,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L4EH00350",
         "name": "juki 9010",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "9010",
@@ -2783,21 +2888,23 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2D3MF00065",
         "name": "juki 9010",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "juki",
         "model": "9010",
         "station": "Tomas pink",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "C8561106",
         "name": "Brother DB2-B791",
-        "area": "Jose Montes T. P.",
+        "area": "Tomas Pink",
         "status": "Operando",
         "brand": "Brother",
         "model": "DB2-B791",
         "station": "Tomas pink",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2808,6 +2915,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "5410-6",
         "station": "Ensamble #2",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2878,6 +2986,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "5410-6",
         "station": "Ensamble #2",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2968,6 +3077,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL9000C",
         "station": "Ensamble #2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -2998,6 +3108,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL9000",
         "station": "Ensamble #2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3138,6 +3249,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "LK-1903B-SS",
         "station": "Mangas",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3148,6 +3260,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "LBH5-1790S",
         "station": "Mangas",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3218,6 +3331,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-5410-6",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3238,6 +3352,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-NM1-16",
         "station": "Mangas",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3258,6 +3373,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-NM1-16",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3288,6 +3404,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-5410N-7",
         "station": "Mangas",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3298,6 +3415,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-NM1-16",
         "station": "Mangas",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3328,6 +3446,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-NM1-16",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3338,6 +3457,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-NM1-16",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3348,6 +3468,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-5410-6",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3358,6 +3479,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-SS",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3368,6 +3490,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-BM1-16",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3448,6 +3571,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Durkopp Adler",
         "model": "261",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3458,6 +3582,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-BM1-16",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3478,6 +3603,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-BM1-16",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3488,6 +3614,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Durkopp Adler",
         "model": "261",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3518,6 +3645,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "AMS-210E",
         "station": "Mangas",
+        "operationType": "pegar etiqueta AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3528,6 +3656,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "AMS-210E",
         "station": "Mangas",
+        "operationType": "pegar etiqueta AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3538,6 +3667,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "AMS-210E",
         "station": "Mangas",
+        "operationType": "pegar etiqueta AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3558,6 +3688,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-5550-6",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3568,6 +3699,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-BM1-16",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3598,6 +3730,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Brother",
         "model": "DB2-B791-413A",
         "station": "Mangas",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3608,6 +3741,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "T1900BSK",
         "station": "Mangas",
+        "operationType": "Rematadora",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3628,6 +3762,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "T1900BSK",
         "station": "Mangas",
+        "operationType": "Rematadora",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3668,6 +3803,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Brother",
         "model": "LT2-B842-905",
         "station": "Mangas",
+        "operationType": "plana doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3698,6 +3834,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-SS",
         "station": "Mangas",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3718,6 +3855,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200-BM1-16",
         "station": "Mangas",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -3763,7 +3901,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "535-329",
         "name": "Adler 971",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Adler",
         "model": "971",
@@ -3773,37 +3911,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "494",
         "name": "Adler 971",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Adler",
         "model": "971",
         "station": "Puños",
+        "operationType": "Cerrar puño AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "410875",
         "name": "Adler 991",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Adler",
         "model": "991",
         "station": "Puños",
+        "operationType": "Cerrar puño AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "3459",
         "name": "Adler 971",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Adler",
         "model": "971",
         "station": "Puños",
+        "operationType": "Cerrar puño AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "0261568494",
         "name": "Adler 261",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Adler",
         "model": "261",
@@ -3813,37 +3954,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2D3GC00311",
         "name": "Juki DLN 9010A",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "DLN 9010A",
         "station": "Puños",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "0261568401",
         "name": "Adler 261",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Adler",
         "model": "261",
         "station": "Puños",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOFM21193",
         "name": "Juki DDL-9000 B",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL-9000 B",
         "station": "Puños",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "MZN-PL1-000425",
         "name": "Lunapress CP 21.5 A",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Lunapress",
         "model": "CP 21.5 A",
@@ -3853,17 +3997,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "98002",
         "name": "Lunapress CP 21.5 A",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Lunapress",
         "model": "CP 21.5 A",
         "station": "Puños",
+        "operationType": "Planchar puños",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "99609",
         "name": "Mimi Industries CP 21.5 A",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Mimi Industries",
         "model": "CP 21.5 A",
@@ -3873,7 +4018,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "XS9018120",
         "name": "Siruba DL 7200-NM1",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Siruba",
         "model": "DL 7200-NM1",
@@ -3883,7 +4028,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L0M600579",
         "name": "Juki LBH 1790 AN",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH 1790 AN",
@@ -3893,27 +4038,29 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L1MF01515",
         "name": "Juki LK1903BN",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LK1903BN",
         "station": "Puños",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1MF00882",
         "name": "Juki LK-1903 BN",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LK-1903 BN",
         "station": "Puños",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L0M600584",
         "name": "Juki LBH 1790 AN",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH 1790 AN",
@@ -3923,27 +4070,29 @@ const DEFAULT_MACHINERY = [
     {
         "id": "140995055",
         "name": "Jack T190BK",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Jack",
         "model": "T190BK",
         "station": "Puños",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "140995956",
         "name": "Jack T190BK",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Jack",
         "model": "T190BK",
         "station": "Puños",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HC01999",
         "name": "Juki LK 1903",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LK 1903",
@@ -3953,7 +4102,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L0FJ00314",
         "name": "Juki LBH 1790 S",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH 1790 S",
@@ -3963,7 +4112,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L0FM00204",
         "name": "Juki LBH 1790 S",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LBH 1790 S",
@@ -3973,7 +4122,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L1FE00622",
         "name": "Juki LK 1903 AN",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LK 1903 AN",
@@ -3983,7 +4132,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DLNTH01166",
         "name": "Juki DLN-5410-6",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "DLN-5410-6",
@@ -3993,7 +4142,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DOHL02177",
         "name": "Juki DDL-9000 B-SS",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL-9000 B-SS",
@@ -4003,7 +4152,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "823NA00429",
         "name": "Juki LH-3528 A-7",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "LH-3528 A-7",
@@ -4013,7 +4162,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "JK584501-40",
         "name": "Jack 58450 I",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Jack",
         "model": "58450 I",
@@ -4023,7 +4172,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "0225407",
         "name": "Pegasus EX2241-02",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Pegasus",
         "model": "EX2241-02",
@@ -4033,7 +4182,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "039678-7",
         "name": "Pegasus EX2241-02",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Pegasus",
         "model": "EX2241-02",
@@ -4043,7 +4192,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "152445",
         "name": "Pfaff 5616-96/99",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Pfaff",
         "model": "5616-96/99",
@@ -4053,11 +4202,12 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DOEE31673",
         "name": "Juki DDL-9000 B-SS",
-        "area": "Hector Fajardo",
+        "area": "Puños",
         "status": "Operando",
         "brand": "Juki",
         "model": "DDL-9000 B-SS",
         "station": "Puños",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4068,6 +4218,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "747LD-514M",
         "station": "Ens-1",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4128,6 +4279,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4138,6 +4290,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4148,6 +4301,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4158,6 +4312,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4168,6 +4323,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4178,6 +4334,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4188,6 +4345,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4198,6 +4356,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56300",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4208,6 +4367,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "MH380",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4218,6 +4378,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "MH380",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4228,6 +4389,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4238,6 +4400,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "8558W-1",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4248,6 +4411,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4258,6 +4422,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4268,6 +4433,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4288,6 +4454,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4298,6 +4465,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Special",
         "model": "56400",
         "station": "Ens-1",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4308,6 +4476,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4328,6 +4497,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4338,6 +4508,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN 9010",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4348,6 +4519,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN 9010",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4368,6 +4540,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL7200",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4378,6 +4551,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN 5410-7",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4388,6 +4562,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL 7200",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4398,6 +4573,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN 9010",
         "station": "Ens-1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4418,6 +4594,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL 7200",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4428,6 +4605,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL 7200",
         "station": "Ens-1",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4438,6 +4616,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Brother",
         "model": "B 791",
         "station": "Ens-1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4448,6 +4627,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL 7200",
         "station": "Ens-1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4458,6 +4638,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL 7200",
         "station": "Ens-1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4498,6 +4679,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN 5410-6",
         "station": "Ens-1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4508,6 +4690,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Siruba",
         "model": "DL 7200",
         "station": "Ens-1",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4528,6 +4711,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NM1-10",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4538,6 +4722,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "MH-380",
         "station": "Cuellos",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4548,6 +4733,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "MH-380",
         "station": "Cuellos",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4558,6 +4744,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "MH-380",
         "station": "Cuellos",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4568,6 +4755,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "MH-380",
         "station": "Cuellos",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4578,6 +4766,7 @@ const DEFAULT_MACHINERY = [
         "brand": "ADLER",
         "model": "973",
         "station": "Cuellos",
+        "operationType": "Cerrar cuello AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4648,6 +4837,7 @@ const DEFAULT_MACHINERY = [
         "brand": "ADLER",
         "model": "396",
         "station": "Cuellos",
+        "operationType": "Despuntar AUT.",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4708,6 +4898,7 @@ const DEFAULT_MACHINERY = [
         "brand": "LUNA PRESS",
         "model": "CP-323S",
         "station": "Cuellos",
+        "operationType": "planchar cuello",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4728,6 +4919,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4758,6 +4950,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL-7200-16",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4788,6 +4981,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL 7200",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -4818,6 +5012,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN 5410",
         "station": "Cuellos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5163,17 +5358,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DOHL02184",
         "name": "JUKI DDL-9000-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "DDL-9000-SS",
         "station": "Delanteros",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "0261568488",
         "name": "DURKOPP ADLER 261",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP ADLER",
         "model": "261",
@@ -5183,37 +5379,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "22074515627",
         "name": "JACK A6F-E",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "A6F-E",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "22054519192",
         "name": "JACK A6F-E",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "A6F-E",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "22054518090",
         "name": "JACK A6F-E",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "A6F-E",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOHH06132",
         "name": "JUKI DDL-9000B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
@@ -5223,117 +5422,128 @@ const DEFAULT_MACHINERY = [
     {
         "id": "DLNAG38213",
         "name": "JUKI 5410",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "5410",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2204450126523",
         "name": "JACK A6F-E",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "A6F-E",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "X89018107",
         "name": "SIRUBA DL7200-NM1-16",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "DL7200-NM1-16",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "X89018127",
         "name": "SIRUBA DL7200-NM1-16",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "DL7200-NM1-16",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOEG11902",
         "name": "JUKI DDL-9000B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Delanteros",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "951939",
         "name": "UNION SPECIAL 54400",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "UNION SPECIAL",
         "model": "54400",
         "station": "Delanteros",
+        "operationType": "Multiaguja cadeneta",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1749360",
         "name": "UNION SPECIAL 54400",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "UNION SPECIAL",
         "model": "54400",
         "station": "Delanteros",
+        "operationType": "Multiaguja cadeneta",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1763526",
         "name": "UNION SPECIAL 54400",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "UNION SPECIAL",
         "model": "54400",
         "station": "Delanteros",
+        "operationType": "Multiaguja cadeneta",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1708994",
         "name": "UNION SPECIAL 54400",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "UNION SPECIAL",
         "model": "54400",
         "station": "Delanteros",
+        "operationType": "Multiaguja cadeneta",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "1319091",
         "name": "KANSAI DFB-1412 PTV-1",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "KANSAI",
         "model": "DFB-1412 PTV-1",
         "station": "Delanteros",
+        "operationType": "Multiaguja cadeneta",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOEE31679",
         "name": "JUKI DDL-9000B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Delanteros",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "0261568402",
         "name": "DURKOPP ADLER 261",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP ADLER",
         "model": "261",
@@ -5343,7 +5553,7 @@ const DEFAULT_MACHINERY = [
     {
         "id": "0261568491",
         "name": "DURKOPP ADLER 261",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP ADLER",
         "model": "261",
@@ -5353,37 +5563,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "8DOFM21196",
         "name": "JUKI DDL-9000B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Delanteros",
+        "operationType": "Plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "218L007776",
         "name": "SIRUBA 747 LD-514M",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "747 LD-514M",
         "station": "Delanteros",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "8DOEC11154",
         "name": "JUKI DDL-9000B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Delanteros",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "0261568407",
         "name": "DURKOPP ADLER 261",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "DURKOPP ADLER",
         "model": "261",
@@ -5393,37 +5606,40 @@ const DEFAULT_MACHINERY = [
     {
         "id": "X89015017",
         "name": "SIRUBA DL7200-BM1-16",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "SIRUBA",
         "model": "DL7200-BM1-16",
         "station": "Delanteros",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "7036",
         "name": "AC. XL-75",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "AC.",
         "model": "XL-75",
         "station": "Delanteros",
+        "operationType": "planchar bolsa",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "6806",
         "name": "AC. XL-75",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "AC.",
         "model": "XL-75",
         "station": "Delanteros",
+        "operationType": "planchar bolsa",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "EM-027",
         "name": "LUNA PRESS CP-323T",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "LUNA PRESS",
         "model": "CP-323T",
@@ -5433,17 +5649,18 @@ const DEFAULT_MACHINERY = [
     {
         "id": "18101023217",
         "name": "JACK 58450J",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "58450J",
         "station": "Delanteros",
+        "operationType": "plana doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "PL1-000432",
         "name": "BROTHER N/A",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "BROTHER",
         "model": "N/A",
@@ -5453,27 +5670,29 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L1GG00380",
         "name": "JUKI LK-1900",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1900",
         "station": "Delanteros",
+        "operationType": "rematadora",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1GD00242",
         "name": "JUKI LK-1900",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1900",
         "station": "Delanteros",
+        "operationType": "rematadora",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "141295036",
         "name": "JACK T1900BSK",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JACK",
         "model": "T1900BSK",
@@ -5483,101 +5702,111 @@ const DEFAULT_MACHINERY = [
     {
         "id": "2L1HK01140",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK00480",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK01138",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK00479",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK00476",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HJ01998",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK00477",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK00471",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HJ02642",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
         "id": "2L1HK01139",
         "name": "JUKI LK-1903B-SS",
-        "area": "Emerson",
+        "area": "Frentes",
         "status": "Operando",
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Delanteros",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5598,6 +5827,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56400",
         "station": "Fuera de uso",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5608,6 +5838,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "MH380",
         "station": "Fuera de uso",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5628,6 +5859,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "Fuera de uso",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5638,6 +5870,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56400",
         "station": "Fuera de uso",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5658,6 +5891,7 @@ const DEFAULT_MACHINERY = [
         "brand": "U. SPECIAL",
         "model": "56300",
         "station": "Fuera de uso",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5668,6 +5902,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "LK1903A",
         "station": "Fuera de uso",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5678,6 +5913,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "LK1903A",
         "station": "Fuera de uso",
+        "operationType": "Botonera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5688,6 +5924,7 @@ const DEFAULT_MACHINERY = [
         "brand": "jack",
         "model": "JKI9270D",
         "station": "Fuera de uso",
+        "operationType": "Codo cadeneta",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5708,6 +5945,7 @@ const DEFAULT_MACHINERY = [
         "brand": "jack",
         "model": "58450-G",
         "station": "Fuera de uso",
+        "operationType": "Plana doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5728,6 +5966,7 @@ const DEFAULT_MACHINERY = [
         "brand": "jack",
         "model": "58450-J",
         "station": "Fuera de uso",
+        "operationType": "plana doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5738,6 +5977,7 @@ const DEFAULT_MACHINERY = [
         "brand": "juki",
         "model": "DLN5410-6",
         "station": "Fuera de uso",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5758,6 +5998,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "LBH-1790 S",
         "station": "Desarrollo Producto",
+        "operationType": "Ojalera",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5808,6 +6049,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Jack",
         "model": "T1900BSK",
         "station": "Desarrollo de producto",
+        "operationType": "Rematadora",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5838,6 +6080,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Especial",
         "model": "56200",
         "station": "Desarrollo de producto",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5848,6 +6091,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-5410-6",
         "station": "Desarrollo de producto",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5858,6 +6102,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Especial",
         "model": "56300",
         "station": "Desarrollo de producto",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5868,6 +6113,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "MO-6716S",
         "station": "Desarrollo de producto",
+        "operationType": "Sorgete",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5888,6 +6134,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-9010A-SS",
         "station": "Desarrollo de producto",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5898,6 +6145,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Especial",
         "model": "56400",
         "station": "Desarrollo de producto",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5908,6 +6156,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Union Especial",
         "model": "56400",
         "station": "Desarrollo de producto",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5928,6 +6177,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-5410-6",
         "station": "Desarrollo de producto",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5938,6 +6188,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-BM1-16",
         "station": "Desarrollo de producto",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5948,6 +6199,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-BM1",
         "station": "Desarrollo de producto",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5988,6 +6240,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-5410-7",
         "station": "Desarrollo de producto",
+        "operationType": "plana combinada",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -5998,6 +6251,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-BM1-16",
         "station": "Desarrollo de producto",
+        "operationType": "plana sencilla",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -6008,6 +6262,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "747L-514M",
         "station": "Desarrollo de producto",
+        "operationType": "Sorgete 4 hilos",
         "createdAt": "2026-07-06T20:57:42.033735Z"
     },
     {
@@ -6028,6 +6283,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-5410-6",
         "station": "ENS-2",
+        "operationType": "plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6038,6 +6294,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DLN-9010A-SS",
         "station": "ENS-2",
+        "operationType": "plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6048,6 +6305,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "LH-3528A-7",
         "station": "ENS-2",
+        "operationType": "Plana doble aguja",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6068,6 +6326,7 @@ const DEFAULT_MACHINERY = [
         "brand": "HOFFMAN",
         "model": "P.R",
         "station": "ENS-2",
+        "operationType": "Fusionar costados",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6078,6 +6337,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-SS",
         "station": "ENS-2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6088,6 +6348,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-SS",
         "station": "ENS-2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6108,6 +6369,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-SS",
         "station": "ENS-2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6118,6 +6380,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-SS",
         "station": "ENS-2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6128,6 +6391,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-SS",
         "station": "ENS-2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6138,6 +6402,7 @@ const DEFAULT_MACHINERY = [
         "brand": "Juki",
         "model": "DDL-9000B-SS",
         "station": "ENS-2",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6198,6 +6463,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "LKS-1903AN-SS302",
         "station": "Miselaneos",
+        "operationType": "Botonera",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6208,6 +6474,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NM1-16",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6238,6 +6505,7 @@ const DEFAULT_MACHINERY = [
         "brand": "NEW YORKER",
         "model": "Oxford Industries, inc.",
         "station": "Miselaneos",
+        "operationType": "planchar cuello",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6258,6 +6526,7 @@ const DEFAULT_MACHINERY = [
         "brand": "UNION SPECIAL",
         "model": "56300",
         "station": "Miselaneos",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6268,6 +6537,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200B-BM1-17Q",
         "station": "Miselaneos",
+        "operationType": "plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6278,6 +6548,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NM1-16",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6288,6 +6559,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Miselaneos",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6298,6 +6570,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA 747LD",
         "model": "747LD-514M-3-24/VTE/DKLT1-1",
         "station": "Miselaneos",
+        "operationType": "Sorgete",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6308,6 +6581,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Miselaneos",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6318,6 +6592,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "757KT-516M-3-35/CT",
         "station": "Miselaneos",
+        "operationType": "Sorgete",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6328,6 +6603,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200B-BM1-17Q",
         "station": "Miselaneos",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6358,6 +6634,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JACK",
         "model": "JK-8558W-1",
         "station": "Miselaneos",
+        "operationType": "cadeneta doble aguja",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6368,6 +6645,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SINGER",
         "model": "261",
         "station": "Miselaneos",
+        "operationType": "codo cadeneta",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6388,6 +6666,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "LK-1900AN-SS",
         "station": "Miselaneos",
+        "operationType": "rematadora",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6398,6 +6677,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-5410N-7",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6418,6 +6698,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "MO-6900",
         "station": "Miselaneos",
+        "operationType": "Sorgete",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6448,6 +6729,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "747DL-514M-3-24/VTE/DKLT1-1",
         "station": "Miselaneos",
+        "operationType": "Sorgete",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6458,6 +6740,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Miselaneos",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6478,6 +6761,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JACK",
         "model": "A6F",
         "station": "Miselaneos",
+        "operationType": "plana combinada D/AR",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6488,6 +6772,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-9010A-SS",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6498,6 +6783,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-9010A-SS",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6508,6 +6794,7 @@ const DEFAULT_MACHINERY = [
         "brand": "UNION SPECIAL",
         "model": "53600",
         "station": "Miselaneos",
+        "operationType": "Cadeneta doble aguja",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6528,6 +6815,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "747LD-514M-3-24/VTE/DKLT1-1",
         "station": "Miselaneos",
+        "operationType": "Sorgete",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6538,6 +6826,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "747LD-514M-3-24/VTE/DKLT1-1",
         "station": "Miselaneos",
+        "operationType": "Sorgete",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6558,6 +6847,7 @@ const DEFAULT_MACHINERY = [
         "brand": "US",
         "model": "L-7039-13",
         "station": "Miselaneos",
+        "operationType": "Cadeneta sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6598,6 +6888,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NM1-13",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6608,6 +6899,7 @@ const DEFAULT_MACHINERY = [
         "brand": "SIRUBA",
         "model": "DL7200-NM1-16",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6618,6 +6910,7 @@ const DEFAULT_MACHINERY = [
         "brand": "DURKOPP ADLER",
         "model": "261",
         "station": "Miselaneos",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6638,6 +6931,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-5410-6",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6648,6 +6942,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DDL-9000B-SS",
         "station": "Miselaneos",
+        "operationType": "Plana sencilla",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6688,6 +6983,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "DLN-9010A-SS",
         "station": "Miselaneos",
+        "operationType": "Plana combinada",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6698,6 +6994,7 @@ const DEFAULT_MACHINERY = [
         "brand": "JUKI",
         "model": "LK-1903B-SS",
         "station": "Miselaneos",
+        "operationType": "Botonera",
         "createdAt": "2026-08-10T00:00:00.000000Z"
     },
     {
@@ -6711,7 +7008,6 @@ const DEFAULT_MACHINERY = [
         "createdAt": "2026-08-10T00:00:00.000000Z"
     }
 ];
-
 const DEFAULT_ORDERS = [];
 
 // --- CATÁLOGO DE PIEZAS (datos importados desde Excel "Catalogo de piezas.xlsx") ---
@@ -9847,7 +10143,7 @@ function showMachineInfo(machineId) {
     if (machine) {
         nameDisplay.textContent = machine.name;
         areaDisplay.textContent = machine.area;
-        specsDisplay.textContent = `${machine.brand || 'Genérica'} / ${machine.model || 'N/A'}`;
+        specsDisplay.textContent = `${machine.brand || 'Genérica'} / ${machine.model || 'N/A'}${machine.operationType ? ' — Operación: ' + machine.operationType : ''}`;
         
         statusDisplay.textContent = machine.status;
         statusDisplay.className = `badge badge-status-${machine.status.split(' ')[0]}`; // Safe classing
@@ -10273,6 +10569,10 @@ function populateMachinery(filterSearch = "", filterArea = "all") {
                         <span>${m.model || 'N/A'}</span>
                     </div>
                     <div class="spec-item">
+                        <span>Tipo de Operación</span>
+                        <span>${m.operationType || 'N/A'}</span>
+                    </div>
+                    <div class="spec-item">
                         <span>Registro</span>
                         <span>${new Date(m.createdAt).toLocaleDateString()}</span>
                     </div>
@@ -10461,6 +10761,7 @@ function openEditMachineModal(machineId) {
     document.getElementById("new-machine-brand").value = machine.brand || "";
     document.getElementById("new-machine-model").value = machine.model || "";
     document.getElementById("new-machine-status").value = machine.status || "Operando";
+    document.getElementById("new-machine-operation-type").value = machine.operationType || "";
 
     const areaSelect = document.getElementById("new-machine-area");
     // Si el área actual no está en la lista (ej. "Corte" viejo), la agregamos temporalmente
@@ -10967,7 +11268,7 @@ function exportMachinePartsReport() {
     // Construir la hoja de cálculo manualmente para poder incluir el encabezado y el total al final
     const sheetData = [
         ["Reporte de Gastos en Piezas por Máquina"],
-        ["Máquina:", machine.name, "Código:", machine.id, "Área:", machine.area],
+        ["Máquina:", machine.name, "Código:", machine.id, "Área:", machine.area, "Tipo de Operación:", machine.operationType || "N/A"],
         [],
         ["Fecha", "Orden ID", "Pieza", "Número de Parte", "Cantidad", "Precio Unitario (LPS)", "Subtotal (LPS)"],
         ...expenseRows,
@@ -11164,6 +11465,7 @@ function exportReportToExcel() {
             "Código Máquina": o.machineId,
             "Nombre Máquina": machine.name,
             "Área Planta": machine.area,
+            "Tipo de Operación": machine.operationType || "",
             "Criticidad": o.priority,
             "Defecto Reportado": o.description,
             "Mecánico Asignado": o.mechanic,
@@ -11191,6 +11493,7 @@ function exportReportToExcel() {
         {wch: 16}, // Codigo
         {wch: 28}, // Nombre
         {wch: 14}, // Area
+        {wch: 20}, // Tipo de Operación
         {wch: 12}, // Criticidad
         {wch: 45}, // Defecto
         {wch: 20}, // Mecánico
@@ -11479,6 +11782,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const updatedStatus = document.getElementById("new-machine-status").value;
             const updatedBrand = document.getElementById("new-machine-brand").value.trim() || "Genérica";
             const updatedModel = document.getElementById("new-machine-model").value.trim() || "N/A";
+            const updatedOperationType = document.getElementById("new-machine-operation-type").value.trim();
 
             requestBossPinConfirmation(
                 `Ingresa el PIN de jefe para guardar los cambios de "${machine.name}" (${machine.id}).`,
@@ -11488,6 +11792,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     machine.status = updatedStatus;
                     machine.brand = updatedBrand;
                     machine.model = updatedModel;
+                    machine.operationType = updatedOperationType;
 
                     saveMachinery();
                     closeModal("add-machine-modal");
@@ -11514,6 +11819,7 @@ document.addEventListener("DOMContentLoaded", () => {
             status: document.getElementById("new-machine-status").value,
             brand: document.getElementById("new-machine-brand").value.trim() || "Genérica",
             model: document.getElementById("new-machine-model").value.trim() || "N/A",
+            operationType: document.getElementById("new-machine-operation-type").value.trim(),
             createdAt: new Date().toISOString()
         };
 
