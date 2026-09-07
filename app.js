@@ -10818,6 +10818,7 @@ function populateWorkOrders() {
                 <span class="board-card-meta"><i data-lucide="user" style="width:11px;height:11px"></i> ${o.mechanic}</span>
                 <span class="board-card-meta"><i data-lucide="clock" style="width:11px;height:11px"></i> ${new Date(o.createdAt).toLocaleDateString()}</span>
             </div>
+            ${o.enteredBy ? `<div class="board-card-meta" style="margin-top:4px;"><i data-lucide="user-check" style="width:11px;height:11px"></i> Ingresado por: ${o.enteredBy}</div>` : ""}
         `;
 
         if (o.status === "Pendiente") {
@@ -11011,6 +11012,7 @@ function openOrderActions(orderId) {
     document.getElementById("modal-machine-id-text").textContent = order.machineId;
     document.getElementById("modal-defect-desc").textContent = order.description;
     document.getElementById("modal-assigned-mechanic").textContent = order.mechanic;
+    document.getElementById("modal-entered-by").textContent = order.enteredBy || "N/A";
     
     const statusBadge = document.getElementById("modal-status-badge");
     statusBadge.textContent = order.status;
@@ -11469,6 +11471,7 @@ function exportReportToExcel() {
             "Criticidad": o.priority,
             "Defecto Reportado": o.description,
             "Mecánico Asignado": o.mechanic,
+            "Ingresado Por": o.enteredBy || "",
             "Fecha Creación": new Date(o.createdAt).toLocaleString("es-MX"),
             "Fecha Resolución": new Date(o.resolvedAt).toLocaleString("es-MX"),
             "Horas de Inactividad": calculateDiffHours(o.createdAt, o.resolvedAt),
@@ -11497,6 +11500,7 @@ function exportReportToExcel() {
         {wch: 12}, // Criticidad
         {wch: 45}, // Defecto
         {wch: 20}, // Mecánico
+        {wch: 20}, // Ingresado Por
         {wch: 22}, // Creación
         {wch: 22}, // Resolución
         {wch: 18}, // Horas
@@ -11850,6 +11854,7 @@ document.addEventListener("DOMContentLoaded", () => {
             description: document.getElementById("order-description").value.trim(),
             observations: document.getElementById("order-observations").value.trim(),
             mechanic: document.getElementById("order-mechanic").value,
+            enteredBy: document.getElementById("order-entered-by").value,
             status: "Pendiente",
             createdAt: new Date().toISOString(),
             resolvedAt: null,
@@ -11881,6 +11886,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `<b>Máquina:</b> ${machineName}\n` +
                 (machineDept ? `<b>Departamento:</b> ${machineDept}\n` : "") +
                 `<b>Prioridad:</b> ${newOrder.priority}\n` +
+                `<b>Ingresado por:</b> ${newOrder.enteredBy || "No especificado"}\n` +
                 `<b>Descripción:</b> ${newOrder.description || "Sin descripción"}\n\n` +
                 `Ingresa a la app de Monzini para ver el detalle completo.`;
             sendTelegramAlert(newOrder.mechanic, mensaje);
