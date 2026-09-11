@@ -9870,13 +9870,50 @@ function formatDate(isoString) {
     });
 }
 
+// Convierte un Date a sus componentes de hora de Honduras (America/Tegucigalpa),
+// sin importar la zona horaria configurada en el dispositivo del usuario.
+function toHondurasDate(d) {
+    const s = d.toLocaleString("en-US", { timeZone: "America/Tegucigalpa" });
+    return new Date(s);
+}
+
+// Devuelve la ventana de horario laboral (inicio/fin) para un día dado, en hora de Honduras.
+// Lunes a Jueves: 7:00 AM - 4:30 PM. Viernes: 7:00 AM - 3:30 PM. Sábado/Domingo: cerrado (null).
+function getBusinessWindowForDay(dateHN) {
+    const day = dateHN.getDay(); // 0=Domingo, 6=Sábado
+    if (day === 0 || day === 6) return null;
+    const y = dateHN.getFullYear(), m = dateHN.getMonth(), dt = dateHN.getDate();
+    const start = new Date(y, m, dt, 7, 0, 0, 0);
+    const end = (day === 5) ? new Date(y, m, dt, 15, 30, 0, 0) : new Date(y, m, dt, 16, 30, 0, 0);
+    return { start, end };
+}
+
+// Calcula las horas de inactividad reales de una orden, contando SOLO tiempo dentro
+// del horario laboral de la fábrica (L-J 7:00am-4:30pm, V 7:00am-3:30pm).
+// El tiempo fuera de horario y los fines de semana no se acumulan.
 function calculateDiffHours(startIso, endIso) {
     if (!startIso || !endIso) return "--";
-    const start = new Date(startIso);
-    const end = new Date(endIso);
-    const diffMs = end - start;
-    const diffHrs = diffMs / (1000 * 60 * 60);
-    return diffHrs.toFixed(1);
+    const start = toHondurasDate(new Date(startIso));
+    const end = toHondurasDate(new Date(endIso));
+    if (end <= start) return "0.0";
+
+    let totalMs = 0;
+    const cursor = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+    const lastDay = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+
+    while (cursor <= lastDay) {
+        const window = getBusinessWindowForDay(cursor);
+        if (window) {
+            const overlapStart = window.start > start ? window.start : start;
+            const overlapEnd = window.end < end ? window.end : end;
+            if (overlapEnd > overlapStart) {
+                totalMs += (overlapEnd - overlapStart);
+            }
+        }
+        cursor.setDate(cursor.getDate() + 1);
+    }
+
+    return (totalMs / (1000 * 60 * 60)).toFixed(1);
 }
 
 // --- CHART GENERATION (Chart.js) ---
@@ -10818,7 +10855,6 @@ function populateWorkOrders() {
                 <span class="board-card-meta"><i data-lucide="user" style="width:11px;height:11px"></i> ${o.mechanic}</span>
                 <span class="board-card-meta"><i data-lucide="clock" style="width:11px;height:11px"></i> ${new Date(o.createdAt).toLocaleDateString()}</span>
             </div>
-            ${o.enteredBy ? `<div class="board-card-meta" style="margin-top:4px;"><i data-lucide="user-check" style="width:11px;height:11px"></i> Ingresado por: ${o.enteredBy}</div>` : ""}
         `;
 
         if (o.status === "Pendiente") {
@@ -11012,7 +11048,6 @@ function openOrderActions(orderId) {
     document.getElementById("modal-machine-id-text").textContent = order.machineId;
     document.getElementById("modal-defect-desc").textContent = order.description;
     document.getElementById("modal-assigned-mechanic").textContent = order.mechanic;
-    document.getElementById("modal-entered-by").textContent = order.enteredBy || "N/A";
     
     const statusBadge = document.getElementById("modal-status-badge");
     statusBadge.textContent = order.status;
@@ -11129,7 +11164,7 @@ function generateReportTable() {
 
     filtered.forEach(o => {
         if (o.resolvedAt && o.createdAt) {
-            const diff = (new Date(o.resolvedAt) - new Date(o.createdAt)) / (1000 * 60 * 60);
+            const diff = parseFloat(calculateDiffHours(o.createdAt, o.resolvedAt));
             totalHrs += diff;
             resolvedCount++;
         }
@@ -11471,7 +11506,6 @@ function exportReportToExcel() {
             "Criticidad": o.priority,
             "Defecto Reportado": o.description,
             "Mecánico Asignado": o.mechanic,
-            "Ingresado Por": o.enteredBy || "",
             "Fecha Creación": new Date(o.createdAt).toLocaleString("es-MX"),
             "Fecha Resolución": new Date(o.resolvedAt).toLocaleString("es-MX"),
             "Horas de Inactividad": calculateDiffHours(o.createdAt, o.resolvedAt),
@@ -11500,7 +11534,6 @@ function exportReportToExcel() {
         {wch: 12}, // Criticidad
         {wch: 45}, // Defecto
         {wch: 20}, // Mecánico
-        {wch: 20}, // Ingresado Por
         {wch: 22}, // Creación
         {wch: 22}, // Resolución
         {wch: 18}, // Horas
@@ -11854,7 +11887,6 @@ document.addEventListener("DOMContentLoaded", () => {
             description: document.getElementById("order-description").value.trim(),
             observations: document.getElementById("order-observations").value.trim(),
             mechanic: document.getElementById("order-mechanic").value,
-            enteredBy: document.getElementById("order-entered-by").value,
             status: "Pendiente",
             createdAt: new Date().toISOString(),
             resolvedAt: null,
@@ -11886,7 +11918,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 `<b>Máquina:</b> ${machineName}\n` +
                 (machineDept ? `<b>Departamento:</b> ${machineDept}\n` : "") +
                 `<b>Prioridad:</b> ${newOrder.priority}\n` +
-                `<b>Ingresado por:</b> ${newOrder.enteredBy || "No especificado"}\n` +
                 `<b>Descripción:</b> ${newOrder.description || "Sin descripción"}\n\n` +
                 `Ingresa a la app de Monzini para ver el detalle completo.`;
             sendTelegramAlert(newOrder.mechanic, mensaje);
