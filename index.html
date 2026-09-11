@@ -550,9 +550,9 @@
                                     no recibirá la alerta (el resto de la app sigue funcionando igual).
                                 </p>
 
-                                <div class="telegram-config-item" style="margin-bottom: 18px; border-left: 3px solid var(--color-primary);">
-                                    <label for="telegram-chatid-jefe">Tu Chat ID (Jefe) — recibe copia de cada alerta enviada</label>
-                                    <input type="text" id="telegram-chatid-jefe" class="form-control input-dark" placeholder="Chat ID de Telegram (ej. 123456789)">
+                                <p class="text-muted" style="margin: 0 0 6px 0; font-weight:600; color: var(--text-primary);">Respaldos (reciben copia de cada alerta enviada):</p>
+                                <div id="telegram-backup-config-list" class="telegram-config-grid" style="margin-bottom: 18px;">
+                                    <!-- Se llena dinámicamente por JS -->
                                 </div>
 
                                 <div id="telegram-mechanic-config-list" class="telegram-config-grid">

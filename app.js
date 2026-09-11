@@ -31,6 +31,9 @@ const MECHANIC_LIST = [
     "Ever Humaña", "Jose Montes", "William Murillo", "Hector Fajardo", "Denis Rodriguez"
 ];
 
+// Personas que reciben copia de respaldo de CADA alerta de Telegram (no solo la suya).
+const BACKUP_LIST = ["Franklin Nuñez", "Ever Humaña", "Heidy"];
+
 function initFirebaseAuth() {
     if (!CONFIG_DATABASE_URL || !FIREBASE_API_KEY) {
         firebaseAuthReady = Promise.resolve(null);
@@ -9617,7 +9620,7 @@ let state = {
     orders: JSON.parse(localStorage.getItem("monzini_orders")) || DEFAULT_ORDERS,
     parts: JSON.parse(localStorage.getItem("monzini_parts")) || DEFAULT_PARTS,
     mechanicTelegram: JSON.parse(localStorage.getItem("monzini_mechanic_telegram")) || {},
-    jefeTelegramChatId: localStorage.getItem("monzini_jefe_telegram") || "",
+    backupTelegram: JSON.parse(localStorage.getItem("monzini_backup_telegram")) || {},
     unlockedReports: false
 };
 
@@ -9660,8 +9663,8 @@ function saveMechanicTelegram() {
     syncStateToCloud();
 }
 
-function saveJefeTelegram() {
-    localStorage.setItem("monzini_jefe_telegram", state.jefeTelegramChatId || "");
+function saveBackupTelegram() {
+    localStorage.setItem("monzini_backup_telegram", JSON.stringify(state.backupTelegram || {}));
     syncStateToCloud();
 }
 
@@ -9692,7 +9695,8 @@ async function sendTelegramMessage(chatId, mensaje) {
 }
 
 // Envía una alerta de incidencia por Telegram al mecánico asignado, y además
-// manda una copia de respaldo al Chat ID del jefe (si está configurado).
+// manda una copia de respaldo a cada persona de la lista de respaldo (si tiene Chat ID configurado).
+// Si el mecánico asignado es también una de las personas de respaldo, no se le duplica el mensaje.
 async function sendTelegramAlert(mechanicName, mensaje) {
     if (!TELEGRAM_BOT_TOKEN) return; // Alertas de Telegram desactivadas (token vacío)
     if (!mechanicName) return;
@@ -9704,11 +9708,16 @@ async function sendTelegramAlert(mechanicName, mensaje) {
         sendTelegramMessage(chatId, mensaje);
     }
 
-    // Copia de respaldo para el jefe, siempre que tenga su Chat ID configurado
-    if (state.jefeTelegramChatId) {
-        const mensajeCopia = `📋 <b>Copia de respaldo</b> (mecánico: ${mechanicName})\n\n${mensaje}`;
-        sendTelegramMessage(state.jefeTelegramChatId, mensajeCopia);
-    }
+    // Copia de respaldo para cada persona de la lista de respaldo, evitando duplicar
+    // el mensaje si esa persona es justo el mecánico asignado (mismo Chat ID).
+    if (!state.backupTelegram) return;
+    const mensajeCopia = `📋 <b>Copia de respaldo</b> (mecánico: ${mechanicName})\n\n${mensaje}`;
+    BACKUP_LIST.forEach(backupName => {
+        const backupChatId = state.backupTelegram[backupName];
+        if (!backupChatId) return;
+        if (chatId && backupChatId === chatId) return; // evita duplicar al propio mecánico asignado
+        sendTelegramMessage(backupChatId, mensajeCopia);
+    });
 }
 
 // Actualiza el indicador visual de la barra superior
@@ -9757,14 +9766,14 @@ async function loadStateFromCloud() {
             state.orders = data.orders || [];
             state.parts = data.parts || DEFAULT_PARTS;
             state.mechanicTelegram = data.mechanicTelegram || {};
-            state.jefeTelegramChatId = data.jefeTelegramChatId || "";
+            state.backupTelegram = data.backupTelegram || {};
             
             // Sincronizar respaldo en local storage
             localStorage.setItem("monzini_machinery", JSON.stringify(state.machinery));
             localStorage.setItem("monzini_orders", JSON.stringify(state.orders));
             localStorage.setItem("monzini_parts", JSON.stringify(state.parts));
             localStorage.setItem("monzini_mechanic_telegram", JSON.stringify(state.mechanicTelegram));
-            localStorage.setItem("monzini_jefe_telegram", state.jefeTelegramChatId);
+            localStorage.setItem("monzini_backup_telegram", JSON.stringify(state.backupTelegram));
             updateSyncBadge("success", "Sincronizado");
         } else {
             // Si la base de datos de la nube está vacía, subir el estado local actual solo si hay datos,
@@ -9805,7 +9814,7 @@ async function syncStateToCloud() {
                 orders: state.orders,
                 parts: state.parts,
                 mechanicTelegram: state.mechanicTelegram || {},
-                jefeTelegramChatId: state.jefeTelegramChatId || ""
+                backupTelegram: state.backupTelegram || {}
             })
         });
 
@@ -11619,11 +11628,23 @@ function renderPageContent(pageId) {
 
 function populateTelegramConfig() {
     const container = document.getElementById("telegram-mechanic-config-list");
+    const backupContainer = document.getElementById("telegram-backup-config-list");
     if (!container) return;
     if (!state.mechanicTelegram) state.mechanicTelegram = {};
+    if (!state.backupTelegram) state.backupTelegram = {};
 
-    const jefeInput = document.getElementById("telegram-chatid-jefe");
-    if (jefeInput) jefeInput.value = state.jefeTelegramChatId || "";
+    if (backupContainer) {
+        backupContainer.innerHTML = BACKUP_LIST.map(name => {
+            const safeId = `telegram-backup-chatid-${name.replace(/\s+/g, "_")}`;
+            const currentVal = state.backupTelegram[name] || "";
+            return `
+                <div class="telegram-config-item" style="border-left: 3px solid var(--color-primary);">
+                    <label for="${safeId}">${name}</label>
+                    <input type="text" id="${safeId}" class="form-control input-dark" placeholder="Chat ID de Telegram (ej. 123456789)" value="${currentVal}">
+                </div>
+            `;
+        }).join("");
+    }
 
     container.innerHTML = MECHANIC_LIST.map(name => {
         const safeId = `telegram-chatid-${name.replace(/\s+/g, "_")}`;
@@ -12160,11 +12181,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         saveMechanicTelegram();
 
-        const jefeInput = document.getElementById("telegram-chatid-jefe");
-        if (jefeInput) {
-            state.jefeTelegramChatId = jefeInput.value.trim();
-            saveJefeTelegram();
-        }
+        if (!state.backupTelegram) state.backupTelegram = {};
+        BACKUP_LIST.forEach(name => {
+            const input = document.getElementById(`telegram-backup-chatid-${name.replace(/\s+/g, "_")}`);
+            if (input) {
+                const val = input.value.trim();
+                if (val) {
+                    state.backupTelegram[name] = val;
+                } else {
+                    delete state.backupTelegram[name];
+                }
+            }
+        });
+        saveBackupTelegram();
 
         alert("✅ Configuración de Telegram guardada y sincronizada.");
     });
